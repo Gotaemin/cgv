@@ -132,8 +132,8 @@
                         <dd class="on">
                            <a href="" class="a">${vo.actor}</a>
                         </dd>
-                        <dt>장르 :&nbsp;${vo.ganre}</dt>
-                        <dd></dd>
+                        <dt>장르 :&nbsp;</dt>
+                        <dd>${vo.ganre}</dd>
                         <dt>&nbsp;/ 기본 : &nbsp;</dt>
                         <dd class="">${vo.ageLimit}세 이상,&nbsp;${vo.runtime}분,&nbsp;${vo.country}</dd>
                         <br>
@@ -162,7 +162,7 @@
                <div class="cols-content" id="menu" >
                <div class="col_detail">
                
-               <ul class="tab-menu" style="padding-top: 40px;" >
+               <ul class="tab-menu">
                   <li class="on" >
                      <a title="현재 선택됨" href="" class="a">주요정보</a>
                   </li>
@@ -318,7 +318,7 @@
                            <div class="box box_golden" style="position: absolute; right: 40px;">
                               <span class="sprite_preegg big great" style="background: url('../images/movie/movieList/sprite_preegg.png') no-repeat -115px -135px;"></span>
                               <span class="desc">GoldenEgg</span>
-                              <span class="percent">${vo.errRate}</span>
+                              <span class="percent">${vo.errRate}%</span>
                               <span class="tooltip">실관람평지수</span>
                            </div>
                         </div>
