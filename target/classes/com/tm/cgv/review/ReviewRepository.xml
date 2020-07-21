@@ -312,25 +312,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		left join (select * from movieImage where type=1) I
 		on(M.movieNum = I.movieNum)) order by M.d_createAt desc
    </select>
-   
-   <!-- ........................................................................................... -->
-
-   <!-- 받아온 num으로 join하여 정보출력 -->
-   <select id="reviewList2" parameterType="Long" resultType="ReviewVO">
-      select MRI.num, MRI.movieNum, MRI.title, MRI.fileName, MRI.theaterName, MRI.cinemaName, MRI.movieTimeNum, T.screenDate, T.screenTime, MRI.common, MRI.teenager, MRI.preference
-      from movieTime T inner join (select RI.num, RI.movieNum, RI.title, M.fileName, RI.theaterName, RI.cinemaName, RI.movieTimeNum, RI.common, RI.teenager, RI.preference
-      from movieImage M inner join (select R.num, R.movieNum, R.cinemaName, R.theaterName,R.movieTimeNum, R.common, R.teenager, R.preference, I.title
-      from reservation R inner join movieInfo I
-      on(R.movieNum = I.num) where R.num=#{num}) RI
-      on(M.movieNum = RI.movieNum)) MRI
-      on(T.num = MRI.movieTimeNum) 
-   </select>
-   
-   
-   <!-- m(Long타입)과 페이지(Pager) 2개 필요 -->
-   <select id="getList" parameterType="Pager" resultType="TestVO">
-      select * from test limit #{startRow},#{perPage}
-   </select>
 
 	<update id="reviewDiary_Delete" parameterType="ReviewVO">
 		update reviewDiary set d_deleteAt=now() 
