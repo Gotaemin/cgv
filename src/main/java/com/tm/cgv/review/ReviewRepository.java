@@ -12,8 +12,6 @@ import com.tm.cgv.util.Pager_reviewList;
 @Mapper
 public interface ReviewRepository {
 
-   //public List<TestVO> getList(Pager pager);
-   
    public List<ReviewVO> reviewList(HashMap<String, Object> pa);
    
    public int review_Write1(ReviewVO reviewVO);

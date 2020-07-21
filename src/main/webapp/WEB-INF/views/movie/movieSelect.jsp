@@ -135,7 +135,7 @@
                         <dt>장르 :&nbsp;${vo.ganre}</dt>
                         <dd></dd>
                         <dt>&nbsp;/ 기본 : &nbsp;</dt>
-                        <dd class="">${vo.ageLimit}세 이상,&nbsp;${vo.runtime},&nbsp;${vo.country}</dd>
+                        <dd class="">${vo.ageLimit}세 이상,&nbsp;${vo.runtime}분,&nbsp;${vo.country}</dd>
                         <br>
                         <dt>개봉 : &nbsp;</dt>
                         <dd class="on">${vo.openDate}</dd>

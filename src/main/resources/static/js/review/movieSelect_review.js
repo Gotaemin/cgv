@@ -279,13 +279,15 @@ function review_Modal(){
                          g_contents = data.contents;
 
                          document.getElementById("title").innerHTML =g_title; 
-                         document.getElementById("mContents").value =g_contents;
+                         
                          if(g_egg==1){
                             $('input:radio[name="egg"][value=1]').prop('checked', true);
                          }else{
                              $('input:radio[name="egg"][value=0]').prop('checked', true);
                          }
-                        //글자 byte조회
+                        //내용 가져오기
+                         document.getElementById("mContents").value =g_contents;
+                         //글자 byte조회
                         CheckByte(document.getElementById("mContents"));
                          
                         $("#myModal").modal({backdrop: 'static', keyboard: false});
@@ -313,10 +315,11 @@ function review_Modal(){
                      document.getElementById("title2").innerHTML =g_title; 
                      //egg초기화
                      $('input:radio[name="egg2"][value=1]').prop('checked', true);
+                     
                      //contents초기화
                      document.getElementById("mContents2").value ="";
                      //글자 byte조회
-                     CheckByte(document.getElementById("mContents2"));
+                     CheckByte2(document.getElementById("mContents2"));
                      
                      $("#myModall").modal({backdrop: 'static', keyboard: false});
                   }
