@@ -85,6 +85,7 @@ public class MovieInfoService {
 		String path = FilePathGenerator.addTimePath("")+"\\";
 		System.out.println(path+"path!!!!");
 		String extendPath = FilePathGenerator.addTimePath(filePath);
+		System.out.println(extendPath + " extendPath ");
 	    File file = filePathGenerator.getUseClassPathResource(extendPath);
 	    
 
