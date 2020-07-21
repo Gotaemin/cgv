@@ -176,7 +176,6 @@ function makeCuponList(name,couponNum,serialNum,eIssuance,price,count){
 //쿠폰은 하나만 체크 가능하도록
 var checkedCoupon = false;
 $("#discCoupon").on("click","#cgvCoupon ul li",function(evt){
-	console.log($(this).find("input").prop("checked"));
 	
 	if($(this).find("input").prop("checked")){
 		//선택 취소
@@ -193,15 +192,21 @@ $("#discCoupon").on("click","#cgvCoupon ul li",function(evt){
 				$(this).prop("checked",false);
 			});
 		}
-		$(this).find("input").prop("checked",true);
-		checkedCoupon = true;
 		usePrice = $(this).data("price");
 		
-		//할인내역 추가 - 폼 생성
-		appendDiscount("cgvCoupon",1);
+		if(lastPrice - usePrice > 0){
+			$(this).find("input").prop("checked",true);
+			checkedCoupon = true;
+			//할인내역 추가 - 폼 생성
+			appendDiscount("cgvCoupon",1);
+			
+			//할인 금액 출력
+			$("#cgvCoupon .form_result .price").text(addComma(usePrice));
+		}else{
+			alert("결제 금액보다 쿠폰액이 더 많아 사용이 불가능합니다.\n 쿠폰액 : "+addComma(usePrice)+"원");
+		}
+		
 	}
-	//할인 금액 출력
-	$("#cgvCoupon .form_result .price").text(addComma(usePrice));
 	
 	//2번 클릭 방지
 	evt.preventDefault();
@@ -255,26 +260,27 @@ $(".textBox2.type-n.nohan").blur(function(){
 	
 	if(usePrice == 0){
 		$(this).val(0);
-		
 		if(totalDiscount > 0){
 			var id = $(this).attr("id");
 			removeDiscount(id);
 			checkboxValue(id);
 		}
-		
 	}else if(chaPoint < 0){
 		alert("보유하신 금액인 "+hasPoint+"보다 크게 입력하셨습니다.");
-		$(this).val(usePrice);
 	}else if(usePrice < 1000){
 		alert("최소 1,000P부터 사용 가능합니다.");
-		$(this).val(usePrice);
 	}else if(usePrice % 10 != 0){
 		alert("10P 단위로 사용 가능합니다.");
-		$(this).val(usePrice);
 	}else{
-		//정상적인 사용가능 포인트
-		var id = $(this).attr("id");
-		appendDiscount(id,2);
+//		console.log("usePrice : "+usePrice)
+		console.log("lastPrice : "+lastPrice)
+		if(usePrice > lastPrice){
+			alert("사용하시려는 금액이 결제 금액보다 큽니다.");
+		}else{
+			//정상적인 사용가능 포인트
+			var id = $(this).attr("id");
+			appendDiscount(id,2);
+		}
 	}
 });
 
@@ -374,21 +380,30 @@ $("#summary_discount_list").on("click",".discount_del",function(){
 //계산해야될 금액 - 잔여금액 > 0     :		잔여금액 전부 (일의 자리 내림)
 $(".secondTit").click(function(){
 	//checked가 true이면
+	
 	if($(this).children().prop("checked") == true){
-		usePrice = removeComma($(this).parent().find(".hasPoint").text());
 		
-		if(lastPrice - usePrice < 0){
-			usePrice = lastPrice;
+		if(lastPrice != 0){
+			usePrice = removeComma($(this).parent().find(".hasPoint").text());
+			
+			if(lastPrice - usePrice < 0){
+				usePrice = lastPrice;
+			}else{
+				usePrice = Math.floor(usePrice/10)*10;
+			}
+			lastPrice = lastPrice - usePrice;
+			
+			//input창에 출력
+			$(this).parent().find("input").val(usePrice);
+			//할인내역 추가
+			var id = $(this).parent().find("input").attr("id");
+			appendDiscount(id,2);
 		}else{
-			usePrice = Math.floor(usePrice/10)*10;
+			alert("남은 결제금액이 0원입니다.");
+			$(this).find("input").prop("checked",false);
 		}
 		
-		lastPrice = lastPrice - usePrice;
-		//input창에 출력
-		$(this).parent().find("input").val(usePrice);
-		//할인내역 추가
-		var id = $(this).parent().find("input").attr("id");
-		appendDiscount(id,2);
+		
 	}else{
 		if(totalDiscount > 0){
 			var id = $(this).parent().find("input").attr("id");
@@ -540,8 +555,6 @@ function giftCardEnrollment(){
 	});
 	
 	var password = $(".inputCon.cardPw .input_txt").val();
-	//console.log(serialCode);
-	//console.log(password);
 	
 	$.ajax({
 		url : '../cuponInfo/cuponeEnrollment',
@@ -682,7 +695,6 @@ function reservation_save(result){
 		data : aa,
 		success : function(result2){
 			if(result2 > 0){
-				console.log("예매 번호 : "+ result2);
 				
 				if(beMemberVO != ''){
 					//비회원 테이블에  비회원 정보 저장
