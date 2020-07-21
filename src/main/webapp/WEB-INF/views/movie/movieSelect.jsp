@@ -269,8 +269,9 @@
 					      <c:forEach var="ar" items="${ar}" varStatus="i">
 					      
 						      <c:if test="${ar.type eq 3 }">
-							      <div class="item" style="margin-left: 300px; margin-top: 35px;">
-							       	<img alt="스틸컷" src="../images/movie/movieList/filmCover/${ar.fileName}" class="box-image">
+							      <div class="item" style="width: 100%; height: 100%;">
+							       	<img alt="스틸컷" src="../images/movie/movieList/filmCover/${ar.fileName}" class="box-image"
+							       	style="width: 100%; height: 100%;">
 							      </div>
 							       
 						       </c:if>

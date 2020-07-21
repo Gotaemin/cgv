@@ -595,9 +595,17 @@ input, select, img {
 }
 
 .sect-stillcut .slider-wrap {
-	width: 800px;
-	height: 340px;
+	/* width: 800px;
+	height: 340px; */
 }
+
+.carousel-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+    
 /*  ------------------------------------------------------------------------------트레일러/스틸컷 */
 .movie_grade {
 	position: relative;
