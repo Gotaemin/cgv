@@ -100,7 +100,7 @@ $(".theater-list").on("click",".area_theater_list > ul > li",function(){
 		$("#cinemaNum").val(selected_cinema);
 
 		//해당 극장의 조조,심야 시간 조회 - ajax
-		//search_time_limit(selected_cinema);
+		search_time_limit(selected_cinema);
 	}
 });
 		
@@ -129,7 +129,6 @@ function search_time_limit(selected_cinema){
 
 				timeLimitList.push(list);
 			}
-
 		}
 	});
 }
@@ -474,6 +473,8 @@ function timeMake(result){
 		var morning;
 		var night;
 		var index = 0;
+		
+		console.log(timeLimitList);
 		
 		for(i=0;i<timeLimitList.length;i++){
 			if(timeLimitList[i][2] == filmType){

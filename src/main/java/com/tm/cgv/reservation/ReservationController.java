@@ -288,14 +288,6 @@ public class ReservationController {
 		List<SeatVO> seatList = seatService.seatSelectList(seatVO);
 		
 		
-		//시간이 24시이면 00시로 변환
-		String timeArr[] = time.split(":");
-		if(timeArr[0].equals("24")) {
-			timeArr[0] = "00";
-			time = timeArr[0]+":"+timeArr[1];
-		}
-		
-		
 		//시간대별 가격 조회 - String time
 		TimePriceVO timePriceVO = new TimePriceVO();
 		timePriceVO.setTime(time);
