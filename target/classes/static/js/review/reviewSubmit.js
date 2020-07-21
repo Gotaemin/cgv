@@ -356,7 +356,7 @@
 					},
 					success:function(data){//여기서 data는 json
 						console.log(data);
-						$("#photo").html('<img alt="" src="../images/'+data.fileName+'" width="110px" height="154.6px">')
+						$("#photo").html('<img alt="" src="../images/movie/movieList/filmCover/'+data.fileName+'" width="110px" height="154.6px">')
 						$("#title1").html(data.title);
 						$("#uid").html(data.uid);	
 						$("#egg1").html(data.egg);
