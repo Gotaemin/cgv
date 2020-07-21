@@ -8,6 +8,17 @@
 	<c:import url="../template/head.jsp"></c:import> 
 	<link rel="stylesheet" href="/css/admin/cinema/cinemaList.css" />
 	<link href="/css/admin/cinema/theaterInsert.css" rel="stylesheet" />
+	<style type="text/css">
+	.arrow	{
+		cursor:pointer;
+		z-index:10;
+	}
+
+	.arrow-img	{
+		width:10px;
+			
+	}
+	</style>
 </head>
 <body class="sb-nav-fixed">
 	<c:import url="../template/header.jsp"></c:import> 
@@ -240,6 +251,9 @@
 						makeVo1(ch, j, 0);
 						
 					}
+
+					$("#r"+i).append('<span id="arrow'+i+'" class="arrow" name="'+ch+'"><img src="../../images/theater/arrow.png" class="arrow-img" /></span>')
+					
 				$("#seats_list").append('</div></div>');		
 				listLength = list.length;
 			}
@@ -434,6 +448,8 @@
 					}	
 					
 				}
+				$("#r"+i).append('<span id="arrow'+i+'" class="arrow" name="'+ch+'"><img src="../../images/theater/arrow.png" class="arrow-img" /></span>')
+				
 				
 				$("#seats_list").append('</div></div>');		
 				listLength = list.length;
@@ -453,7 +469,7 @@
 			console.log(chClass)
 		
 			var rw = chName.substring(0,1);
-			var cl = chName.substring(1,2); 
+			var cl = chName.substring(1); 
 			console.log("rw : " + rw);
 			console.log("cl : " + cl);
 			
@@ -601,6 +617,16 @@
 			}
 		}
 
+	$(".seat_box").on("click",".arrow",function(){
+		var r = $(this).attr("name")
+		var l = $("#seat_col").val();
+
+		for(b=1; b<=l; b++){
+			var n = r+b;
+			checkSeat("#"+n);
+		}
+		
+	});
 
 	
 	// space 조정 + - 버튼

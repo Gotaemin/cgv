@@ -60,6 +60,10 @@ public class TheaterService {
 		return theaterRepository.cinemaList();
 	}
 	
+	//theater name check
+	public TheaterVO theaterNameCheck(TheaterVO theaterVO) throws Exception {
+		return theaterRepository.theaterNameCheck(theaterVO);
+	}
 	
 	//theater insert
 	public int theaterInsert(TheaterVO theaterVO, int [] filmType, String [] row, String [] col, String [] grade, String [] row_space, String [] col_space) throws Exception{

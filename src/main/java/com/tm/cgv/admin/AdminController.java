@@ -660,6 +660,19 @@ public class AdminController {
 		return mv;
 	}
 	
+	@GetMapping("cinema/theaterNameCheck")
+	@ResponseBody
+	public int theaterNameCheck(TheaterVO theaterVO) throws Exception 	{
+		System.out.println("cinemaNum : " + theaterVO.getCinemaNum());
+		System.out.println("name : " + theaterVO.getName());
+		int result = 0;
+		TheaterVO vo = theaterService.theaterNameCheck(theaterVO);
+		if(vo != null) {
+			result = 1;
+		}
+		return result;
+	}
+	
 	@GetMapping("cinema/theaterSelect")
 	public ModelAndView adminTheaterSelect(int num, int cinemaNum) throws Exception {
 		System.out.println("num : " +num);

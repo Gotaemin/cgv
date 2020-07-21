@@ -29,6 +29,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into theater(cinemaNum,name,seatCount,filmType) values(#{cinemaNum},#{name},#{seatCount},#{filmType})
 	</insert>
 	
+	<select id="theaterNameCheck" parameterType="TheaterVO" resultType="TheaterVO">
+		select * from theater where name=#{name} and cinemaNum=#{cinemaNum}
+	</select>
+	
 	<select id="cinemaList" resultType="CinemaVO">
 		select num,name from cinema
 	</select>

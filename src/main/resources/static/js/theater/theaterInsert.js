@@ -110,7 +110,7 @@ function checkSeat(name){
 	//console.log("ck : " + ck);
 
 	var rw = chName.substring(0,1);
-	var cl = chName.substring(1,2); 
+	var cl = chName.substring(1); 
 	//console.log("rw : " + rw);
 	//console.log("cl : " + cl);
 	
@@ -176,8 +176,10 @@ function checkSeat(name){
 		$(name).addClass("rating_standard");
 		
 			for(i=0; i<listLength; i++){
+			
 				if(list[i].row == rw && list[i].col == cl){
 					list[i].grade = 2;
+					console.log(list[i].row + " / " + list[i].col + " / " + cl);
 					//console.log("-----------:"+list[i].grade);
 				}
 			}
@@ -303,45 +305,6 @@ function colMinus(j){
 // submit
 $("#btn_insert").click(function(){
 
-	// grade가 0인 것 앞쪽으로 정렬 후 list에서 제거
-	list.sort(function(a,b) {
-		return a["grade"] - b["grade"];
-	});
-
-	var cnt = 0; 
-	
-	for(i=0; i<listLength; i++){
-		if(list[i].grade=="0"){
-			cnt = cnt+1;
-		}
-		//console.log(list[i]);
-	}
-	//console.log(cnt);
-	list.splice(0,cnt);
-
-	
-	// list - row, col, grade / row_space / col_space -> form 안에 hidden으로 넣기
-	for(k=0; k<list.length; k++){
-		
-		console.log(list[k].row+""+list[k].col+ " : "+list[k].grade)
-		
-		var r = '<input type="hidden" name="row" value="'+list[k].row+'">';
-		r = r + '<input type="hidden" name="col" value="'+list[k].col+'">';
-		r = r + '<input type="hidden" name="grade" value="'+list[k].grade+'">';
-		$("#frm").append(r);
-	}
-
-	for(y=0; y<rowList.length; y++){
-		var r = '<input type="hidden" name="row_space" value="'+rowList[y]+'">';
-		$("#frm").append(r);
-	}
-
-	for(z=0; z<colList.length; z++){
-		var r = '<input type="hidden" name="col_space" value="'+colList[z]+'">';
-		$("#frm").append(r);
-	}
-	
-
 	// name & seatCount - null check
 	var name = document.getElementById("name");
 	var seatCount = document.getElementById("seatCount");
@@ -375,6 +338,44 @@ $("#btn_insert").click(function(){
 	
 	//submit
 	if(nameCheck && seatCheck && typeCheck){
+	
+		// grade가 0인 것 앞쪽으로 정렬 후 list에서 제거
+		list.sort(function(a,b) {
+			return a["grade"] - b["grade"];
+		});
+	
+		var cnt = 0; 
+		
+		for(i=0; i<listLength; i++){
+			if(list[i].grade=="0"){
+				cnt = cnt+1;
+			}
+			//console.log(list[i]);
+		}
+		//console.log(cnt);
+		list.splice(0,cnt);
+	
+		
+		// list - row, col, grade / row_space / col_space -> form 안에 hidden으로 넣기
+		for(k=0; k<list.length; k++){
+			
+			console.log(list[k].row+""+list[k].col+ " : "+list[k].grade)
+			
+			var r = '<input type="hidden" name="row" value="'+list[k].row+'">';
+			r = r + '<input type="hidden" name="col" value="'+list[k].col+'">';
+			r = r + '<input type="hidden" name="grade" value="'+list[k].grade+'">';
+			$("#frm").append(r);
+		}
+	
+		for(y=0; y<rowList.length; y++){
+			var r = '<input type="hidden" name="row_space" value="'+rowList[y]+'">';
+			$("#frm").append(r);
+		}
+	
+		for(z=0; z<colList.length; z++){
+			var r = '<input type="hidden" name="col_space" value="'+colList[z]+'">';
+			$("#frm").append(r);
+		}
 		$("#frm").submit();
 	}else if(typeCheck == false){
 		alert("필름타입은 적어도 한개 체크해야합니다!");
