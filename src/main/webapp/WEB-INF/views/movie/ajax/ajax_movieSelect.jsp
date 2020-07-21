@@ -6,6 +6,7 @@
 
  <div class="container1" >
 <div class="row" style="width: 800px; height: 630px;">
+
    <c:forEach items="${review}" var="vo2">
    <div class="col-sm-6" style="width:400px; height:210px; border-bottom: 1px solid #999999;">
       <ul id="movie_point_list_container" class="point_col2">
@@ -49,11 +50,7 @@
 	                           </li>
 	                        </ul>
 	                     </div>
-         
-                  
-                  <c:if test="">
-                  		f
-                  </c:if>  
+
                   </li>
             </ul>
             

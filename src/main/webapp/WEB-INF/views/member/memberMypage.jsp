@@ -145,7 +145,7 @@
 								<p></p>
 								<div class="inner-box"
 									style="background: url(../images/myPage/polaroid/icon_watched.png) no-repeat 50% 16px;">
-									<a href="" class="inner-box-a">
+									<a href="../review/reviewList" class="inner-box-a">
 										<h3>내가 본 영화</h3> <span>관람한 영화들을 한번에<br>모아보고 싶다면?
 									</span>
 									</a>
@@ -153,7 +153,7 @@
 								<p></p>
 								<div class="inner-box"
 									style="background: url(../images/myPage/polaroid/icon_mvdiary.png) no-repeat 50% 16px;">
-									<a href="" class="inner-box-a">
+									<a href="../review/reviewDiary" class="inner-box-a">
 										<h3>무비 다이어리</h3> <span>관람 후 내 감상평을 적어<br>추억하고 싶다면?
 									</span>
 									</a>
@@ -161,7 +161,7 @@
 								<p></p>
 								<div class="inner-box"
 									style="background: url(../images/myPage/polaroid/icon_photi.png) no-repeat 50% 16px;">
-									<a href="" class="inner-box-a">
+									<a href="javascript:void(0);" class="inner-box-a ticket11">
 										<h3>포토티켓</h3> <span>단 하나뿐인 나만의<br>티켓을 간직하고 싶다면?
 									</span>
 									</a>
@@ -309,6 +309,10 @@
 					} 
 				});
 			}
+		});
+
+		$(".ticket11").click(function(){
+			alert("준비중 입니다.");
 		});
 	</script>
 

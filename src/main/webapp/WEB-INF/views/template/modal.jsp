@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <!-- 쓰기 전용 -->
 
 <!-- The Modal -->
@@ -34,28 +35,28 @@
 									name="egg" value=0 class="egg"> <span
 									class="text_position">흠~좀 별로였어요;;;</span>
 								</label>
+
 							</div>
+	
+							<!-- 나중에 여기에 session으로 정보불러와서 같이 보내기 -->
+							<textarea id="mContents" name="contents" rows="5" cols="70"
+								onkeyup="CheckByte(this)"
+								placeholder="운영원칙에 어긋나는 게시물로 판단되는 글은 제재 조치를 받을 수 있습니다."
+								style="font-size: small;"></textarea>
+							<!-- textarea에서 키보드를 누르면 CheckByte.js의 해당내용(this)의 함수실행 -->
+	
 						</div>
-
-						<!-- 나중에 여기에 session으로 정보불러와서 같이 보내기 -->
-						<textarea id="mContents" name="contents" rows="5" cols="70"
-							onkeyup="CheckByte(this)"
-							placeholder="운영원칙에 어긋나는 게시물로 판단되는 글은 제재 조치를 받을 수 있습니다."
-							style="font-size: small;"></textarea>
-						<!-- textarea에서 키보드를 누르면 CheckByte.js의 해당내용(this)의 함수실행 -->
-
+	
+						<!-- Modal footer -->
+						<div class="modal-footer">
+							<span id="bytes">0</span>/280(byte) &emsp; <input type="button"
+								class="btn btn-danger" id="submitBtn1" value="작성완료!">
+						</div>
 					</div>
-
-					<!-- Modal footer -->
-					<div class="modal-footer">
-						<span id="bytes">0</span>/280(byte) &emsp; <input type="button"
-							class="btn btn-danger" id="submitBtn1" value="작성완료!">
-					</div>
-				</div>
-			</form>
+				</form>
+			</div>
 		</div>
 	</div>
-</div>
 
 
 <!-- ----------------------------------------------------------------------------------------------------------------  -->
