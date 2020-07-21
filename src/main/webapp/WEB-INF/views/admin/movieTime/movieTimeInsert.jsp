@@ -124,6 +124,7 @@
 		// 영화리스트 값 가져오기
 		function getMovieInfoList() {
 			var movieInfoList=[];
+
 			<c:forEach items="${movieInfoList}" var="vo">
 				
 				var movieInfoVO = {
@@ -146,13 +147,12 @@
 
 				movieInfoList.push(movieInfoVO);
 			</c:forEach>
-			
+
 			return movieInfoList;
 		}
 
 		// 영화리스트를 보여주기 위한 변수(perrow)값 가져오기 
 		function getPerRow() {
-
 			return ${perRow};
 		}
 
@@ -363,7 +363,7 @@
 			// 영화 등록 단계 관련
 			var movieInfoList = getMovieInfoList();
 			var perRow = getPerRow();
-			showMovieInfoList(movieInfoList, perRow);
+			showMovieInfoList(movieInfoList,perRow);
 			addClickEventToMovieInfoList();
 			addClickEventToMovieSearchBtn();
 			
