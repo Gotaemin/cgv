@@ -43,6 +43,8 @@ function changeSelect(){
 	rowList.length = 0;
 	colList.length = 0;
 	//list = [];
+	//console.log(rowList);
+	//console.log(colList);
 
 	var row = $("#seat_row").val();
 	var col = $("#seat_col").val();
@@ -76,6 +78,7 @@ function changeSelect(){
 				'<div class="col_label">'+j+'</div>');
 				}	
 
+				console.log(list)
 				
 			}
 			
@@ -83,19 +86,22 @@ function changeSelect(){
 			
 		$("#seats_list").append('</div></div>');		
 		listLength = list.length;
+		
+
+		//console.log(rowList);
+		//console.log(colList);
 	}
 	
 	//마지막 행, 열의 space 조정 버튼 지우기
 	$(".c"+col).find(".col_plus").remove();
 	$(".r"+row).find(".row_plus").remove();
 	
-	
 }
 
 // seat grade 조정
 function checkSeat(name){
-	console.log("---test---");
-	console.log(name);
+	//console.log("---test---");
+	//console.log(name);
 	
 
 	var grade=1; 
@@ -105,8 +111,8 @@ function checkSeat(name){
 
 	var rw = chName.substring(0,1);
 	var cl = chName.substring(1,2); 
-	console.log("rw : " + rw);
-	console.log("cl : " + cl);
+	//console.log("rw : " + rw);
+	//console.log("cl : " + cl);
 	
 
 	//좌석 삭제
@@ -119,7 +125,7 @@ function checkSeat(name){
 			for(i=0; i<listLength; i++){
 				if(list[i].row == rw && list[i].col == cl){
 					list[i].grade = 1;
-					console.log("-----------:"+list[i].grade);
+					//console.log("-----------:"+list[i].grade);
 				}
 			}
 
@@ -135,7 +141,7 @@ function checkSeat(name){
 			for(i=0; i<listLength; i++){
 				if(list[i].row == rw && list[i].col == cl){
 					list[i].grade = 0;
-					console.log("-----------:"+list[i].grade);
+					//console.log("-----------:"+list[i].grade);
 				}
 			}
 			
@@ -156,7 +162,7 @@ function checkSeat(name){
 			for(i=0; i<listLength; i++){
 				if(list[i].row == rw && list[i].col == cl){
 					list[i].grade = 1;
-					console.log("-----------:"+list[i].grade);
+					//console.log("-----------:"+list[i].grade);
 				}
 			}
 		}
@@ -172,7 +178,7 @@ function checkSeat(name){
 			for(i=0; i<listLength; i++){
 				if(list[i].row == rw && list[i].col == cl){
 					list[i].grade = 2;
-					console.log("-----------:"+list[i].grade);
+					//console.log("-----------:"+list[i].grade);
 				}
 			}
 		}
@@ -192,6 +198,9 @@ function checkSeat(name){
 			}
 		}
 	}
+
+	//console.log(rowList);
+	//console.log(colList);
 }
 
 
@@ -232,7 +241,7 @@ function rowPlus(i){
 	var c = '.r'+(i+1);	//r1
 	$(c).after('<p class="row_space rs'+(i+1)+'"></p>');
 	rowList.push(i+1);
-	console.log(rowList);
+	//console.log(rowList);
 	//아이콘이 -로 바뀌고 
 	//class, onclick, src 변경
 	
@@ -245,14 +254,14 @@ function rowPlus(i){
 function rowMinus(i){
 	//p태그 지우기
 	//List에서 i 제거하기
-	console.log(i + ">.<");
+	//console.log(i + ">.<");
 	
 	$(".rs"+(i+1)).remove();
 
 	for(l=0; l<rowList.length; l++){
 		if(rowList[l]=(i+1)){
 			rowList.splice(l,1);
-			console.log(rowList);
+			//console.log(rowList);
 			break;
 		}
 	}
@@ -266,14 +275,14 @@ function colPlus(j){
 	var c = ".c"+j;
 	$(".c"+j).after('<span class="col_space cs'+j+'">　</span>')
 	colList.push(j);
-	console.log(colList);
+	//console.log(colList);
 	$(c).find(".col_plus").attr("onclick","colMinus("+j+");");
 	$(c).find(".col_plus").find("#img").attr("src","/images/theater/minus.png");
 	$(c).find(".col_plus").attr("class","col_minus");
 }
 
 function colMinus(j){
-	console.log(j);
+	//console.log(j);
 	$(".cs"+j).remove();
 	for(l=0; l<colList.length; l++){
 		if(colList[l]=j){
@@ -305,17 +314,20 @@ $("#btn_insert").click(function(){
 		if(list[i].grade=="0"){
 			cnt = cnt+1;
 		}
-		console.log(list[i]);
+		//console.log(list[i]);
 	}
-	console.log(cnt);
+	//console.log(cnt);
 	list.splice(0,cnt);
 
 	
 	// list - row, col, grade / row_space / col_space -> form 안에 hidden으로 넣기
-	for(i=0; i<list.length; i++){
-		var r = '<input type="hidden" name="row" value="'+list[i].row+'">';
-		r = r + '<input type="hidden" name="col" value="'+list[i].col+'">';
-		r = r + '<input type="hidden" name="grade" value="'+list[i].grade+'">';
+	for(k=0; k<list.length; k++){
+		
+		console.log(list[k].row+""+list[k].col+ " : "+list[k].grade)
+		
+		var r = '<input type="hidden" name="row" value="'+list[k].row+'">';
+		r = r + '<input type="hidden" name="col" value="'+list[k].col+'">';
+		r = r + '<input type="hidden" name="grade" value="'+list[k].grade+'">';
 		$("#frm").append(r);
 	}
 

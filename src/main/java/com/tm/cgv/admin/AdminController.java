@@ -636,6 +636,19 @@ public class AdminController {
 	public ModelAndView theaterInsert(TheaterVO theaterVO, int [] filmType, String [] row, String [] col, String [] grade, String [] row_space, String [] col_space, int cinemaNum) throws Exception{	
 		ModelAndView mv = new ModelAndView();
 		
+		System.out.println("row : "+row);
+		for (String str : row) {
+			System.out.print(str+ "/ ");
+		}
+		System.out.println("col : "+col);
+		for (String str : col) {
+			System.out.print(str+ "/ ");
+		}
+		System.out.println("grade : "+grade);
+		for (String str : grade) {
+			System.out.print(str+ "/ ");
+		}
+		
 		int result = theaterService.theaterInsert(theaterVO, filmType, row, col, grade, row_space, col_space);
 		
 		if(result>0) {
