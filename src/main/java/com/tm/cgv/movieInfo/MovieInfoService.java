@@ -191,7 +191,10 @@ public class MovieInfoService {
 		
 		//===예매율 계산====
 		Map<String, Object> map2 = movieInfoRepository.rate(reservationVO);
-		Iterator<String> mm2 = map2.keySet().iterator();
+		//Iterator<String> mm2 = map2.keySet().iterator();
+		
+		if(map2!=null) {
+			
 		
 		float totalTicket = ((BigDecimal)map2.get("totalTicket")).floatValue();
 		float movieOne = (BigDecimal)map2.get("movieOne")==null?0.0f:((BigDecimal)map2.get("movieOne")).floatValue();
@@ -206,9 +209,10 @@ public class MovieInfoService {
 			movieInfoRepository.rateUpdate(movieInfoVO);
 		
 		}
+		}
 		//=====성별 계산 =====
 		Map<String, Object> map3 = movieInfoRepository.gender2(reservationVO);
-		Iterator<String> mm3 = map3.keySet().iterator();
+		//Iterator<String> mm3 = map3.keySet().iterator();
 		
 		Map<String, Object> map4 =movieInfoRepository.gTotal(reservationVO);
 		Iterator<String> mm4 =map4.keySet().iterator();
