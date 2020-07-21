@@ -76,7 +76,11 @@ function changeSelect(){
 				'<div class="col_label">'+j+'</div>');
 				}	
 
+				
 			}
+			
+			$("#r"+i).append('<span id="arrow'+i+'" class="arrow" name="'+ch+'"><img src="../../images/theater/arrow.png" class="arrow-img" /></span>')
+			
 		$("#seats_list").append('</div></div>');		
 		listLength = list.length;
 	}
@@ -85,12 +89,14 @@ function changeSelect(){
 	$(".c"+col).find(".col_plus").remove();
 	$(".r"+row).find(".row_plus").remove();
 	
+	
 }
 
 // seat grade 조정
 function checkSeat(name){
 	console.log("---test---");
 	console.log(name);
+	
 
 	var grade=1; 
 	var chName = $(name).attr("name");
@@ -102,10 +108,9 @@ function checkSeat(name){
 	console.log("rw : " + rw);
 	console.log("cl : " + cl);
 	
-	switch(seatColor) {
 
 	//좌석 삭제
-	case 0:
+	if(seatColor==0){
 		
 		if(chClass=='rating_delete'){
 			//$(name).attr("name","");
@@ -139,10 +144,10 @@ function checkSeat(name){
 			seatCount -= 1;
 			$("#seatCount").val(seatCount);
 		}
-		break;
+	}else if(seatColor==1){
 
 	//Economy
-	case 1:
+
 		// 테두리 색 맞게 바꾸기
 		// vo.grade = 1
 		if(chClass!='rating_delete'){
@@ -155,10 +160,9 @@ function checkSeat(name){
 				}
 			}
 		}
-		break;
+	}else if(seatColor==2){
 
 	//Standard
-	case 2:
 		// 테두리 색 맞게 바꾸기
 		// vo.grade = 2 
 		if(chClass!='rating_delete'){
@@ -172,10 +176,9 @@ function checkSeat(name){
 				}
 			}
 		}
-		break;
+	}else if(seatColor==3){
 
 	//Prime
-	case 3:
 		// 테두리 색 맞게 바꾸기
 		// vo.grade = 3
 		if(chClass!='rating_delete'){
@@ -188,9 +191,41 @@ function checkSeat(name){
 				}
 			}
 		}
-		break;
 	}
 }
+
+
+//한 줄 seat grade 조정
+//$(".arrow").each(function(){
+//	console.log("123");
+//	alert("test");
+//	$(this).click(function(){
+//		alert("하핳ㅎㅎㅎㅎ")
+//		var ch = $(this).attr("name");
+//		//해당 r의 col의 개수....어케구하지?
+//		//1) list에서 
+//		//2) parent() -> 그룹 안에 있는 seat의 개수
+//		var length = colList.length;
+//		alert("length : " + length);
+//		
+//	});
+//	
+//});
+
+
+$(".seat_box").on("click",".arrow",function(){
+	var r = $(this).attr("name")
+	var l = $("#seat_col").val();
+
+	for(b=1; b<=l; b++){
+		var n = r+b;
+		checkSeat("#"+n);
+	}
+	
+});
+
+
+
 
 // space 조정 + - 버튼
 function rowPlus(i){
