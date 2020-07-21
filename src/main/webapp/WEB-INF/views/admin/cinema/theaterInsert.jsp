@@ -8,6 +8,17 @@
 	<c:import url="../template/head.jsp"></c:import> 
 	<link rel="stylesheet" href="/css/admin/cinema/cinemaList.css" />
 	<link href="/css/admin/cinema/theaterInsert.css" rel="stylesheet" />
+	<style type="text/css">
+		.arrow	{
+			cursor:pointer;
+			z-index:10;
+		}
+	
+		.arrow-img	{
+			width:10px;
+				
+		}
+	</style>
 </head>
 <body class="sb-nav-fixed">
 	<c:import url="../template/header.jsp"></c:import> 
