@@ -23,15 +23,14 @@
 						<div>
 							<div class="group_radio" id="egg">
 								<!-- 각 class나 name에 같은값을 주면 된다. -->
-								<label class="label_radio"> <input type="radio"
+								<label class="label_radio goodegg"> <input type="radio"
 									name="egg" value=1 class="egg" checked="checked"> <span
 									class="text_position">좋았어요~^^</span>
 								</label>
-								<div>
-									<img alt="사용자의 프로필 사진" src="" class="profile-pic"> <span>사용자
-										이름</span>
-								</div>
-								<label class="label_radio"> <input type="radio"
+								<!-- <div>
+									<img alt="사용자의 프로필 사진" src="" class="profile-pic"> <span>사용자 이름</span>
+								</div> -->
+								<label class="label_radio nogoodegg"> <input type="radio"
 									name="egg" value=0 class="egg"> <span
 									class="text_position">흠~좀 별로였어요;;;</span>
 								</label>
