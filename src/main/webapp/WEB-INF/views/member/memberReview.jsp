@@ -109,7 +109,7 @@
                                  <button id="exit3" type="button" class="close" data-dismiss="modal"></button>
                               </div>
 
-                              <!-- Modal body -->
+                              <!-- Modal body 시작-->
                               <div class="modal-contents3">
                                  <div class="modal-body" style="position: relative;">
 
@@ -129,13 +129,8 @@
                                           style="border: 0; outline: 0; background-color: transparent !important;"> X 삭제</button>
                                     </div>
                                  </div>
-
-                                 <!-- Modal footer -->
-                                 <!-- <div class="modal-footer">
-                                    <input type="button" class="btn btn-danger" id="submitBtn3"
-                                       value="확인">
-                                 </div> -->
                               </div>
+                            <!-- Modal body 끝-->  
                            </div>
                         </div>
                      </div>

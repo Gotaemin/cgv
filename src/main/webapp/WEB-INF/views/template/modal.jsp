@@ -35,7 +35,7 @@
 									name="egg" value=0 class="egg"> <span
 									class="text_position">흠~좀 별로였어요;;;</span>
 								</label>
-
+								</div>
 							</div>
 	
 							<!-- 나중에 여기에 session으로 정보불러와서 같이 보내기 -->
