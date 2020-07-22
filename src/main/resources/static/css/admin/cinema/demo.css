@@ -12,7 +12,7 @@ a{text-decoration:none}
 
 .filmInfo	{
 	display:inline-block;
-	margin:8px 45px 0 45px;
+    margin: 8px 45px 0 55px;
 	float:left;
 }
 

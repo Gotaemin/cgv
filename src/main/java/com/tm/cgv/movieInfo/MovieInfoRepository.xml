@@ -131,7 +131,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		</choose>
  		) M
  		join
-		(select movieNum,fileName from movieImage) I
+		(select movieNum,fileName,type from movieImage where type=1) I
 		on(M.num = I.movieNum)
  	 </select>
 

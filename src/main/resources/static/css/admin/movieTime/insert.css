@@ -151,6 +151,10 @@ main {
 	position: relative;
 }
 
+#movieTimeInsert > div {
+	margin: 10px;
+}
+
 
 
 .form-control:disabled, .form-control[readonly]{
