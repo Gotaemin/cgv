@@ -63,7 +63,7 @@
 															<div class="form-group" >
 																<label for="files">타이틀 이미지:</label> <input type="file"
 																	class="form-control files check" id="files"
-																	placeholder="타이틀 이미지 선택" name="files">
+																	placeholder="타이틀 이미지 선택" name="files" style="width: 34%">
 															</div>
 
 															<div class="form-group" id="d1" style="position: relative;">
@@ -72,19 +72,21 @@
 																	style="width: 20px; height: 20px; cursor:pointer;
 																	 top: 1px; left: 60px; position: absolute;"
 																	 id="addI">
+																	 
+																<div class="group1" style="margin-bottom:5px;">
+																	<input type="file" multiple="multiple" style="width:16.5%!important; float:left;"
+																	 class="form-control files check form-control2" id="files"placeholder="트레일러 이미지 선택" name="files">
+																	<input type="text" class="form-control videolink check form-control2" 
+																	id="videolink" placeholder="예고편 영상 링크" name="videolink"
+																	style="padding: 12px; width: 16.7%!important;display: inline-block;">
+																</div>
 																<div id="tt">
 																	<div class="form-group" id="f" style="float: left;">
 																	</div>
 																</div>
 															</div>
 
-															<!-- <div class="form-group" style="width: 650px; float: left; margin-left: 80px;margin-right: 50px;" id="d2">
-																	<label for="files">트레일러</label> <br>
-																	<label for="videolink">video:</label>
-																	 <img alt="" src="../../images/theater/plus.png" 
-																	style="width: 20px; height: 20px;" id="addV">
-																	
-																</div> -->
+															
 														
 															<div class="form-group"  style="clear: both;">
 																<label for="title" >제목:</label> <input type="text"
@@ -135,6 +137,11 @@
 																<img alt="" src="../../images/theater/plus.png" 
 																style="width: 20px; height: 20px; width: 20px; height: 20px; 
 																top: 2px; left: 50px; position: absolute; cursor: pointer;" id="addS"> 
+																<div style="display:flex;"><input type="file" class="form-control steelCut check form-control2" 
+																	id="steelCut" placeholder="스틸컷 이미지 " name="files"
+																		style="margin-bottom:5px; width: 34%">
+																</div>
+																
 																<div class="form-group" id="st">
 																
 																</div>
@@ -166,8 +173,11 @@
 																<label for="contents" >Contents:</label>
 																<textarea rows="" cols="" class="form-control check"
 																	id="contents" name="contents">${vo.contents }</textarea>
-
 															</div>
+															
+															
+															  
+															
 
 														</tbody>
 
@@ -225,8 +235,12 @@
 	
 	<script type="text/javascript" src="/js/template/bootstrap-datepicker.js"></script>
 	<script type="text/javascript" src="/js/template/bootstrap-datepicker.ko.min.js"></script>
-	<script type="text/javascript">
+	
 
+	
+	
+	<script type="text/javascript">
+	
 	var num=0;
 	var count =1;
 	var tcount =0;
@@ -241,7 +255,8 @@
 	var steelCutCount = $("#steelCutCount").val();
 	//트레일러 이미지
 	$("#addI").click(function(){
-		if(num<3){
+		
+		if(num<2){
 			//이미지
 			$("#f").append(
 					'<div class="group1" style="margin-bottom:5px;">'+
@@ -274,10 +289,10 @@
 
 	// 스틸컷 이미지
 	$("#addS").click(function(){
-		if(numS<5){
-			$("#st").append('<div style="display:flex;"><input type="file" class="form-control videolink check form-control2" '+
-					'id="videolink" placeholder="스틸컷 이미지 " name="files"'+
-					'style="margin-bottom:5px;"> <span class="xS">X</span></div>');
+		if(numS<4){
+			$("#st").append('<div style="display:flex;"><input type="file" class="form-control steelCut check form-control2" '+
+					'id="steelCut" placeholder="스틸컷 이미지 " name="files"'+
+					'style="margin-bottom:5px;width: 34%"> <span class="xS">X</span></div>');
 			numS++;
 			countS++;
 
