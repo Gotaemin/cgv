@@ -103,7 +103,7 @@ $("#addUnderDataBtn").click(function(){
 		+ '<div style="display:flex!important;">'
 		+ '<input type="text" class="sTime form-control timeBox" onKeyup="inputTimeColon(this);" placeholder="HH:MM" maxlength="5"  style="width: 45%;  margin: 0 auto" required="required"/>'
 		+ ' ~ ' 
-		+ '<input type="text" name="eTime" class="eTime form-control timeBox" onKeyup="inputTimeColon(this);" placeholder="HH:MM" maxlength="5"  style="width: 45%;  margin: 0 auto" required="required"/>'
+		+ '<input type="text" name="eTime" class="eTime form-control timeBox" onKeyup="inputTimeColon(this);" placeholder="HH:MM" maxlength="5"  style="width: 45%;  margin: 0 auto; margin-right: 0" required="required"/>'
 		+ '</div>'
 		+ '</div>'
 		+ '<div class="form-group">'

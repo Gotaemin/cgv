@@ -196,7 +196,7 @@ public class MemberService implements UserDetailsService {
  	    String extendPath = FilePathGenerator.addTimePath(filePath);
  	    System.out.println(extendPath + " extendPath ");
  	    File file = filePathGenerator.getUseClassPathResource(extendPath);
- 		
+
  		if(files.length>0) {
 			
  			// 1번 들어올 for문, multipartFile[] 을 쓰는 이유는 다음번에 참고용으로 사용하기 위함

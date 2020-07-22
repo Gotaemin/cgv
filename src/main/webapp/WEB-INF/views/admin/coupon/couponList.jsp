@@ -23,7 +23,7 @@
 			<main>
 				<div class="container-fluid">
 					<h1>Coupon List</h1>
-					<p>쿠폰 목록</p>
+					<p>-쿠폰 목록 페이지-</p>
 
 					<form action="./couponList" id="form-Data" class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0" style="float:right; padding-bottom: 20px;display:flex!important; " >
 						<input type="hidden" id="curPage" name="curPage" value="">
