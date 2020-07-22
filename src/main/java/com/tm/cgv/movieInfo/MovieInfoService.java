@@ -82,10 +82,10 @@ public class MovieInfoService {
 	}
 	public long movieWrite(MovieInfoVO movieInfoVO,List<MultipartFile> files,String[] videolink,int trailerCount,int steelCutCount) throws Exception{
 		
-		String path = FilePathGenerator.addTimePath("")+"\\";
-		System.out.println(path+"path!!!!");
-		String extendPath = FilePathGenerator.addTimePath(filePath);
-		System.out.println(extendPath + " extendPath ");
+		String path = FilePathGenerator.addTimePath("");
+	    System.out.println(path+"path!!!!");
+	    String extendPath = FilePathGenerator.addTimePath(filePath);
+	    System.out.println(extendPath + " extendPath ");
 	    File file = filePathGenerator.getUseClassPathResource(extendPath);
 	    
 

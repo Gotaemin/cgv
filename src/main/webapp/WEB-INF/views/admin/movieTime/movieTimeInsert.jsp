@@ -146,8 +146,11 @@
 				}
 
 				movieInfoList.push(movieInfoVO);
+
 			</c:forEach>
 
+			console.log(movieInfoVO);
+			
 			return movieInfoList;
 		}
 
