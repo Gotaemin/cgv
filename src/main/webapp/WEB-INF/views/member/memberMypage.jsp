@@ -137,7 +137,7 @@
 							<div class="box-polaroid">
 								<div class="inner-box"
 									style="background: url(../images/myPage/polaroid/icon_preegg.png) no-repeat 50% 16px;">
-									<a href="" class="inner-box-a">
+									<a href="javascript:void(0);" class="inner-box-a ticket11">
 										<h3>기대되는 영화</h3> <span>보고싶은 영화들을 미리<br>담아두고 싶다면?
 									</span>
 									</a>
@@ -199,7 +199,7 @@
 													</div>
 													<div class="rt-info2-div2">
 														<dl>
-															<dd>총 결제금액&nbsp</dd>
+															<dd>총 결제금액&nbsp;</dd>
 															<dt>${reservationVO.totalPrice}</dt>
 														</dl>
 														<div>
@@ -314,6 +314,8 @@
 		$(".ticket11").click(function(){
 			alert("준비중 입니다.");
 		});
+
+		
 	</script>
 
 
