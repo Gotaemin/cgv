@@ -170,12 +170,12 @@
 					html += `<div class="row">`;
 				}
 
-				html += `<div id="`+vo.num+`" class="col-sm-2 div-btn" data-title="`+vo.title+`">` +
+				html += `<div id="`+vo.num+`" style="padding-bottom:15px;" class="col-sm-2 div-btn" data-title="`+vo.title+`">` +
 							`<div class="card">`+
-								`<img class="card-img-top" style="width:100%;" src="/images/movie/movieList/filmCover/`+vo.fileName+`"/>`+
-								`<div class="card-header">` +
-									`<p class="card-title"><strong>`+vo.title+`</strong></p>`+
-									`<p class="card-text" style="font-size:small;">상영시간: `+vo.runtime+`분  <br> 예매율:`+vo.rate+`% </p>` +
+								`<img class="card-img-top" style="width:100%; height:260px;" src="/images/movie/movieList/filmCover/`+vo.fileName+`"/>`+
+								`<div class="card-header" style="height:122px;">` +
+									`<p class="card-title"  style="height:50px; overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"><strong>`+vo.title+`</strong></p>`+
+									`<p class="card-text" style="position:absolute; bottom:15px; font-size:small;">상영시간: `+vo.runtime+`분  <br> 예매율:`+vo.rate+`% </p>` +
 								`</div>` +
 							`</div>` +
 						`</div>`
