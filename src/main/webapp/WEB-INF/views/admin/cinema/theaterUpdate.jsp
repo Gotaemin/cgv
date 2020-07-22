@@ -199,7 +199,6 @@
 		
 		function changeGrade(grade){
 			seatColor = grade;
-			alert(grade);
 		}
 
 		
@@ -459,7 +458,6 @@
 
 		// seat grade 조정
 		function checkSeat(name){
-			alert("test");
 			var grade=1; 
 			var chName = $(name).attr("name");
 			var chClass = $(name).attr("class");
@@ -550,6 +548,48 @@
 						}
 					}
 				}
+			}else if(seatColor=4){
+				//seatBooking table의 reservationNum을 0으로
+				//grade는 4로
+				//컨트롤러 넘긴 후 grade가 4인 것은....X > 몇 개 없을 테니까 따로 String을 보내도 될 것 같음
+				//아무튼.....A5 이런 형식으로 보내서?
+				//아니면 따로따로 보내서
+				//DB에서 검색 몇관의 몇번시트인지
+				//
+				if(chClass!='rating_delete' && !$(name).hasClass('rating_stop')){
+					//alert(chClass)
+					console.log(chClass);
+					//$(name).find("span").css('border','2px solid #f71708');
+					//$(name).removeClass();
+					$(name).addClass("rating_stop");
+					/* 	for(i=0; i<listLength; i++){
+							if(list[i].row == rw && list[i].col == cl){
+								list[i].grade = 3;
+							}
+						} */
+						//stop list 만들어서 row, col, grade 삽입
+					var stopVO = {
+						"r":rw,
+						"c":cl
+					} 
+					stopList.push(stopVO);
+					console.log(",,,")
+					console.log(stopList);
+				}else if($(name).hasClass('rating_stop')){
+					//alert("name : " + name)
+					//alert("yes")
+					$(name).removeClass("rating_stop");
+					//$(name).addClass("rating_economy");
+					for(i=0; i<stopList.length; i++){
+						if(stopList[i].r == rw && stopList[i].c == cl){
+							stopList[i].c=0;
+						}
+					}
+					console.log(stopList);
+					
+				}
+			
+
 			}
 
 			//console.log(rowList);
@@ -722,6 +762,17 @@
 				var r = '<input type="hidden" name="col_space" value="'+colList[z]+'">';
 				$("#frm").append(r);
 			}
+
+			for(n=0; n<stopList.length; n++){
+				alert(stopList[n]);
+				console.log(stopList[n])
+				var r = '<input type="hidden" name="stop_rc" value="'+stopList[n].r+'">';
+				r = r + '<input type="hidden" name="stop_idx" value="'+stopList[n].c+'">';
+				$("#frm").append(r);
+				
+			}
+
+			
 			$("#frm").submit();
 		}else if(typeCheck == false){
 			alert("필름타입은 적어도 한개 체크해야합니다!");
