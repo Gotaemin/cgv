@@ -200,3 +200,60 @@
 .p-div{
 	padding: 0;
 }
+
+/**/
+
+/**/
+.label_radio{
+	display: inline-block;
+	position: absolute;
+    width: 164px;
+	height: 56px;
+	top: 10px;
+	cursor: pointer;
+	text-align: center;
+}
+
+.label_radio input[type="radio"]{
+	display:none;
+}
+
+.label_radio input[type="radio"] + span{
+	display:inline-block;
+	background-color: #fff;
+    border: 3px solid #b5b5b5; 
+	padding:0px 10px;
+	text-align:center;
+	line-height:50px;
+    width: 138px;
+	height: 50px;
+	border-radius: 0.25rem;
+}
+
+.label_radio input[type="radio"]:checked + span{
+	border: 3px solid #e71a0f;
+	color:#000;
+	font-weight: 600;
+}
+
+.goodegg{
+	left: 130px;
+}
+
+.nogoodegg{
+	right: 130px;
+}
+
+.eggimg{
+	position: absolute;
+	clip: rect(0px, 45px, 22px, 27px);
+	top: 17px;
+	left: 10px;
+}
+
+.noeggimg{
+	position:absolute; 
+	clip: rect(0px, 23px, 22px, 0px);
+	top: 17px; 
+	left: 20px;
+}
