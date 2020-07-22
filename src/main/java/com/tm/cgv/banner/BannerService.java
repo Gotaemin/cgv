@@ -40,7 +40,7 @@ public class BannerService {
 	//insert
 	public int bannerInsert(BannerVO bannerVO, MultipartFile files) throws Exception {
 		FilePathGenerator filePathGenerator = new FilePathGenerator();
-		String path = FilePathGenerator.addTimePath("")+"\\";
+		String path = FilePathGenerator.addTimePath("");
 		System.out.println(path+"path!!!!");
 		System.out.println("filePath : " + sideFilePath);
 		String extendPath = FilePathGenerator.addTimePath(sideFilePath);

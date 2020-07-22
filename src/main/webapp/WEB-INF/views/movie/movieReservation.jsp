@@ -635,11 +635,8 @@
     </c:forEach>
 
 	for(i=0;i<list.length;i++){
-		//console.log(list[i].name+" "+list[i].local);
 		$(".theater-area-list > ul > li").each(function(){
-			
 			if(list[i].local == $(this).data("local")){
-				//console.log(list[i].name+" "+list[i].local);
 				$(this).find(".content").append('<li class="" data-theater="'+ list[i].name+'" data-num="'+ list[i].num+'">'
 						+ '<a href="#" onclick="return false;">'
 						+ list[i].name
@@ -658,10 +655,8 @@
 	}
 
 	var selectedMovieNum = `${selectedMovieNum}`;
-	console.log("selectedMovieNum : "+selectedMovieNum);
 	if(selectedMovieNum != 0){
 		movieNum = selectedMovieNum;
-		
 		//선택한 영화에 대한 나머지 정보값들 조회
 		ajaxLoad();
 
@@ -670,16 +665,10 @@
 	}
 
 	
-	//console.log($(".theater-area-list > ul > li").length);
-
 	var data;
 	var memberId = `${memberVO.username}`;
 	var beMemberVO = `${beMemberVO}`;
-	//beMemberVO = "login";
 	
-	console.log("memberID : "+memberId);
-	console.log("beMemberVO : "+beMemberVO);
-
 	var guestVO = {
 		reservationNum : `${beMemberVO.reservationNum}`,
 		birth : `${beMemberVO.birth}`,
@@ -687,9 +676,6 @@
 		pwd : `${beMemberVO.pwd}`,
 		_csrf : $("#_csrf").val()
 	}
-
-	//console.log(guestVO);
-
 
 	//결제완료 페이지로 이동
 	$(".tnb_container").on("click",".tnb.step3 .btn-right",function(){
@@ -726,7 +712,6 @@
 
 
 </script>
-
 </body>
 </html>
 

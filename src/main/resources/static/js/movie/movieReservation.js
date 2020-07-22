@@ -110,6 +110,8 @@ var timeLimitList = [];
 
 //해당극장의 조조,심야시간 구해오기
 function search_time_limit(selected_cinema){
+	//timeLimitList = [];
+	timeLimitList.length = 0;
 	$.ajax({
 		url : '../timePrice/searchLimit',
 		type : 'get',
@@ -474,44 +476,39 @@ function timeMake(result){
 		var night;
 		var index = 0;
 		
-		console.log(timeLimitList);
+		//console.log(timeLimitList);
 		
 		for(i=0;i<timeLimitList.length;i++){
 			if(timeLimitList[i][2] == filmType){
 				index = i;
+				morning = timeLimitList[index][0];
+				night = timeLimitList[index][1];
+				
+				morningList = morning.split(",");
+				nightList = night.split(",");
+				
+				var t1 = new Date(0,0,0,morningList[0],morningList[1]); //조조
+				var t2 = new Date(0,0,0,nightList[0],nightList[1]); //심야
+				var t3 = new Date(0,0,0,timeList[0],timeList[1]); //비교시간
+				
+				
+				//비교시간이 10 > x || 23 < x
+				//if(timeList[0] > 23){
+				if(t3 > t2){
+					//심야
+					$(this).addClass("night");
+				}else if(t3 < t1){
+					//조조
+					$(this).addClass("morning");
+				}
+				break;
 			}
 		}
 		
-		morning = timeLimitList[index][0];
-		night = timeLimitList[index][1];
-		
-		morningList = morning.split(",");
-		nightList = night.split(",");
-		
-		var t1 = new Date(0,0,0,morningList[0],morningList[1]); //조조
-		var t2 = new Date(0,0,0,nightList[0],nightList[1]); //심야
-		var t3 = new Date(0,0,0,timeList[0],timeList[1]); //비교시간
 		
 		
-		//비교시간이 10 > x || 23 < x
-		//if(timeList[0] > 23){
-		if(t3 > t2){
-			//심야
-//			var gap = t3.getTime() - t2.getTime();
-//			var hh_gap = Math.floor(gap/1000/60/60);
-//			if(hh_gap <= 0){
-//				$(this).addClass("night");
-//			}
-			$(this).addClass("night");
-		}else if(t3 < t1){
-			//조조
-//			var gap = t1.getTime() - t3.getTime();
-//			var hh_gap = Math.floor(gap/1000/60/60);
-//			if(hh_gap > 0){
-//				$(this).addClass("morning");
-//			}
-			$(this).addClass("morning");
-		}
+		
+		
 		
 	});
 	

@@ -22,7 +22,7 @@
 			<main style="min-width: 1578px;">
 				<div class="container-fluid">
 					<h1>Reservation List</h1>
-					<p>예매 내역 목록</p>
+					<p>-예매 내역 목록-</p>
 
 					<form action="../reservation/selectList" id="form-Data" class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0" style="float:right; padding-bottom: 20px;display:flex!important; " >
 						<div class="form-group" style="padding-right: 10px; text-align: right; ">
@@ -53,7 +53,7 @@
 						<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="table-layout: fixed;">
 							<thead>
 								<tr class="admin-tr">
-									<th style="width: 48px;">No.</th>
+									<th style="width: 60px;">No.</th>
 									<th>영화제목</th>
 									<th style="width: 80px;">시작 시간</th>
 									<th style="width: 78px;">결제 번호</th>
@@ -100,9 +100,9 @@
 											<a href="#" onclick="show(${vo.paymentNum})" style="color: #333;">${vo.paymentNum}</a>
 										</td>
 										<td class="flimType ate-center">${vo.filmType}</td>
-										<td class="ate-center">${vo.cinemaName}</td>
+										<td class="ate-center" title="${vo.cinemaName}">${vo.cinemaName}</td>
 										<td class="ate-center">${vo.theaterName}</td>
-										<td class="ate-center">${vo.seats}</td>
+										<td class="ate-center" title="${vo.seats}">${vo.seats}</td>
 										<td class="ate-center">${vo.common}</td>
 										<td class="ate-center">${vo.teenager}</td>
 										<td class="ate-center">${vo.preference}</td>
@@ -117,14 +117,15 @@
 						</table>
 						
 						<!-- DB 업로드/ 다운로드 -->
-						<form action="../../excel/upload/reservation" method="post" enctype="multipart/form-data">
+						<form action="../../excel/upload/reservation" method="post" enctype="multipart/form-data"
+						style="float: left; position: absolute; display: flex;">
 							<input type="hidden" id="_csrf" name="${_csrf.parameterName}" value="${_csrf.token}" />
-							<input type="file" name="file">
-							<input type="submit" value="btnUpload">
+							<input type="file" name="file" class="form-control" accept=".xls, .xlsx" style="padding: 2.5px; margin-right: 5px;">
+							<input type="submit" value="EXCEL UPLOAD" class="btn-warning btn">
 						</form>
 						
 						 
-						<button class="btn btn-primary" id="btnDownload" style="float: right;">EXCEL DOWN</button>
+						<button class="btn btn-success" id="btnDownload" style="float: right; right: 90px; position: absolute;">EXCEL DOWN</button>
 						<script type="text/javascript">
 							$("#btnDownload").click(function(){
 								location.href="../../reservation.xls";

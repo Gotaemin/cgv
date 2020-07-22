@@ -7,6 +7,20 @@
 	<c:import url="../template/head.jsp"></c:import>
 	<c:import url="../template/datepicker.jsp"></c:import>
 	<c:import url="../template/timepicker.jsp"></c:import>
+	<link rel="stylesheet" href="/css/admin/cinema/timetablejs.css">
+	<style type="text/css">
+		.timetable_custom {
+			max-width : 1444px;
+		}
+		
+		.timetable>section>header {
+			font-size: smaller;
+		}
+	
+	</style>
+	<script type="text/javascript" src="/js/template/timetable.js"></script>
+	
+	
     <link rel="stylesheet" href="/css/admin/movieTime/insert.css">
 </head>
 <body class="sb-nav-fixed">
@@ -23,8 +37,6 @@
 				<div class="container-fluid" style=" padding: 40px;">
 					<h1>Movie Time Insert</h1>
 					<p>영화 상영시간 등록</p>
-					
-					
 					
 					<!-- Tab -->
 					<ul class="nav nav-tabs">
@@ -61,13 +73,13 @@
 								<div class="pager">
 									<ul class="pagination">
 										<c:if test="${pager.curBlock gt 1}">
-											<li class="page-item"><a class="page-link" href="./insert?theaterNum=${theaterVO.num}&curPage=${pager.startNum - 1}&kind=${pager.kind}&search=${pager.search}">이전</a></li>
+											<li class="page-item"><a class="page-link" href="./insert?num=${theaterVO.num}&cinemaNum=${theaterVO.cinemaNum}&curPage=${pager.startNum - 1}&kind=${pager.kind}&search=${pager.search}">이전</a></li>
 										</c:if>
 										<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-											<li class="page-item"><a class="page-link" href="./insert?theaterNum=${theaterVO.num}&curPage=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+											<li class="page-item"><a class="page-link" href="./insert?num=${theaterVO.num}&cinemaNum=${theaterVO.cinemaNum}&curPage=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
 										</c:forEach>
 										<c:if test="${pager.curBlock lt pager.totalBlock}">
-											<li class="page-item"><a class="page-link" href="./insert?theaterNum=${theaterVO.num}&curPage=${pager.lastNum + 1}&kind=${pager.kind}&search=${pager.search}">다음</a></li>
+											<li class="page-item"><a class="page-link" href="./insert?num=${theaterVO.num}&cinemaNum=${theaterVO.cinemaNum}&curPage=${pager.lastNum + 1}&kind=${pager.kind}&search=${pager.search}">다음</a></li>
 										</c:if>
 									</ul>
 								</div>
@@ -75,7 +87,6 @@
 							
 							<!-- 날짜 및 시간 선택 -->
 							<div id="selectDatetime" class="container tab-pane fade">
-							
 								<div class="container">
 									
 									<div id="movieTimeInsert">
@@ -142,15 +153,17 @@
 					visitor : `${vo.visitor}`,
 					rate : `${vo.rate}`,
 					errRate : `${vo.errRate}`,
-					fileName : `${vo.movieImageVOs.fileName}`
+					fileName : `${vo.fileName}`
 				}
+
+				console.log(movieInfoVO.fileName);
 
 				movieInfoList.push(movieInfoVO);
 
 			</c:forEach>
 
 			console.log(movieInfoVO);
-			
+
 			return movieInfoList;
 		}
 
@@ -170,12 +183,12 @@
 					html += `<div class="row">`;
 				}
 
-				html += `<div id="`+vo.num+`" class="col-sm-2 div-btn" data-title="`+vo.title+`">` +
+				html += `<div id="`+vo.num+`" style="padding-bottom:15px;" class="col-sm-2 div-btn" data-title="`+vo.title+`">` +
 							`<div class="card">`+
-								`<img class="card-img-top" style="width:100%;" src="/images/movie/movieList/filmCover/`+vo.fileName+`"/>`+
-								`<div class="card-header">` +
-									`<p class="card-title"><strong>`+vo.title+`</strong></p>`+
-									`<p class="card-text" style="font-size:small;">상영시간: `+vo.runtime+`분  <br> 예매율:`+vo.rate+`% </p>` +
+								`<img class="card-img-top" style="width:100%; height:245px;" src="/images/movie/movieList/filmCover/`+vo.fileName+`"/>`+
+								`<div class="card-header" style="height:122px;">` +
+									`<p class="card-title"  style="height:50px; overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"><strong>`+vo.title+`</strong></p>`+
+									`<p class="card-text" style="position:absolute; bottom:15px; font-size:small;">상영시간: `+vo.runtime+`분  <br> 예매율:`+vo.rate+`% </p>` +
 								`</div>` +
 							`</div>` +
 						`</div>`
@@ -213,7 +226,8 @@
 				var searchTag = $("#searchTag").val();
 				var searchTxt = $("#searchTxt").val();
 				var theaterNum = $("#theaterNum").val();
-				location.href = "./insert?theaterNum="+theaterNum+"curPage=&kind="+searchTag+"&search="+searchTxt;
+				var cinemaNum = $("#cinemaNum").val();
+				location.href = "./insert?num="+theaterNum+"&cinemaNum="+cinemaNum+"&curPage=&kind="+searchTag+"&search="+searchTxt;
 			});
 		}
 
@@ -302,6 +316,13 @@
 		        clearable: false, //Make the picker's input clearable (has clickable "x")
 		    });
 		}
+
+		// timepicker addEventTimepicker
+		function addEventTimepicker() {
+
+			// 영화 겹치는 시간 있는지 확인
+			
+		}
 		
 		// submit 버튼 클릭시
 		function addClickEventSubmitBtn() {
@@ -359,7 +380,36 @@
 					});
 			});
 		}
-		
+
+		// timetable api
+		function showTimetable() {
+
+			var selectedDate = $("#datepicker").val();
+			var timetable = new Timetable();
+			timetable.setScope(6, 2); // optional, only whole hours between 0 and 23
+			//timetable.useTwelveHour(); //optional, displays hours in 12 hour format (1:00PM)
+
+			//timetable.addLocations(['Silent Disco', 'Nile', 'Len Room', 'Maas Room']);
+			timetable.addLocations([selectedDate]);
+			//timetable.addEvent('Frankadelic', 'Nile', new Date(2015,7,17,10,45), new Date(2015,7,17,12,30));
+
+			var options = {
+					  url: '#', // makes the event clickable
+					  class: 'vip', // additional css class
+					  data: { // each property will be added to the data-* attributes of the DOM node for this event
+					    id: 4,
+					    ticketType: 'VIP'
+					  },
+					  onClick: function(event, timetable, clickEvent) {} // custom click handler, which is passed the event object and full timetable as context  
+					};
+
+			//timetable.addEvent('Jam Session', 'Nile', new Date(2015,7,17,21,15), new Date(2015,7,17,23,30), options);
+			console.log(timetable);
+			
+			var renderer = new Timetable.Renderer(timetable);
+			renderer.draw('.timetable'); // any css selector
+		}
+
 		// main()
 		$(function() {
 
@@ -377,6 +427,9 @@
 
 			// 등록 단계 관련
 			addClickEventSubmitBtn();
+
+			// 시간표 관련
+			showTimetable();
 		});
 		
 	</script>

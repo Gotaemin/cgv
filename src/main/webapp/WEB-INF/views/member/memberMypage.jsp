@@ -37,7 +37,6 @@
 				</div>
 			</div>
 
-
 			<div class="contents">
 				<div class="sect-common">
 					<div class="mycgv-info-wrap">
@@ -55,8 +54,8 @@
 									<button id="go_edit_page" type="button" title="새창열림">수정</button>
 								</div>
 								<div class="person-info2">
-									<p>전화번호 : ${memberVO.phone}</p>
-									<p>생년월일 : ${memberVO.birth}</p>
+									<p id="phone" data-phone="${memberVO.phone}"></p>
+									<p id="birth" data-birth="${memberVO.birth}"></p>
 									<p>E-mail : ${memberVO.email}</p>
 								</div>
 							</div>
@@ -137,7 +136,7 @@
 							<div class="box-polaroid">
 								<div class="inner-box"
 									style="background: url(../images/myPage/polaroid/icon_preegg.png) no-repeat 50% 16px;">
-									<a href="" class="inner-box-a">
+									<a href="javascript:void(0);" class="inner-box-a ticket11">
 										<h3>기대되는 영화</h3> <span>보고싶은 영화들을 미리<br>담아두고 싶다면?
 									</span>
 									</a>
@@ -199,7 +198,7 @@
 													</div>
 													<div class="rt-info2-div2">
 														<dl>
-															<dd>총 결제금액&nbsp</dd>
+															<dd>총 결제금액&nbsp;</dd>
 															<dt>${reservationVO.totalPrice}</dt>
 														</dl>
 														<div>
@@ -235,7 +234,9 @@
 	</div>
 	<script type="text/javascript" src="/js/template/common.js"></script>
 	<script type="text/javascript">
-		
+
+		$("#phone").html("전화번호 : "+makePhoneNum($("#phone").data("phone")));
+		$("#birth").html("생년월일 : "+makeBirth(`${memberVO.birth}`));
 		$("#cjPoint").html(addComma("<em>${cjPoint}</em> 점"));
 		
 		//금액에 콤마 적용
@@ -314,6 +315,8 @@
 		$(".ticket11").click(function(){
 			alert("준비중 입니다.");
 		});
+
+		
 	</script>
 
 

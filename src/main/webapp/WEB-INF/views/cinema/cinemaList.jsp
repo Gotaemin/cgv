@@ -74,7 +74,7 @@
 		
 						<div id="div_TheaterPrice_box">
 							<!-- 테이블 생성 반복 -->
-							<div class="mp_tablebox">
+							<div class="mp_tablebox" style="display: flex;">
 							
 							</div>
 						</div>

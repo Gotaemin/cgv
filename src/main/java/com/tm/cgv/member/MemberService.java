@@ -1,7 +1,6 @@
 package com.tm.cgv.member;
 
 import java.io.File;
-import java.io.InputStream;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -19,6 +18,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.tm.cgv.auth.AuthRepository;
 import com.tm.cgv.auth.AuthVO;
 import com.tm.cgv.auth.RoleEnum;
+import com.tm.cgv.rememberMe.RememberMeRepository;
+import com.tm.cgv.rememberMe.RememberMeVO;
 import com.tm.cgv.util.FileManager;
 import com.tm.cgv.util.FilePathGenerator;
 import com.tm.cgv.util.GenerateRandomNumber;
@@ -37,6 +38,9 @@ public class MemberService implements UserDetailsService {
 	@Autowired
 	private AuthRepository authRepository;
 
+	@Autowired
+	private RememberMeRepository rememberMeRepository;
+	
 	@Autowired
 	private MemberInfoMaker memberInfoMaker;
 	
@@ -90,7 +94,7 @@ public class MemberService implements UserDetailsService {
         // birth, age, fileName 세팅
         memberBasicVO.setBirth(memberInfoMaker.makeBirth(year, month, day));
         memberBasicVO.setAge(memberInfoMaker.makeAge(year));
-        memberBasicVO.setFileName("defaultProfile");
+        memberBasicVO.setFileName("defaultProfile.png");
         
         
         // db에 저장
@@ -173,6 +177,16 @@ public class MemberService implements UserDetailsService {
  	// member 지우기 (실데이터 삭제 아님)
  	public int memberDelete(MemberBasicVO memberBasicVO) throws Exception {
  		
+ 		// auth삭제
+ 		AuthVO authVO = new AuthVO();
+ 		authVO.setUsername(memberBasicVO.getUsername());
+ 		authRepository.delete(authVO);
+ 		
+ 		// rememberMe삭제
+ 		RememberMeVO rememberMeVO = new RememberMeVO();
+ 		rememberMeVO.setUsername(memberBasicVO.getUsername());
+ 		rememberMeRepository.deleteByUsername(rememberMeVO);
+ 		
  		return memberRepository.memberDelete(memberBasicVO);
  	}
  	
@@ -184,18 +198,19 @@ public class MemberService implements UserDetailsService {
  		// 기존 이미지 삭제 (defaultProfile.png가 아니라면) && 이미지가 새로 들어왔다면
  	 	if(!findMemberVO.getFileName().equals("defaultProfile.png") && files.length != 0) {
  	 		
- 	 		String delPath = filePath + findMemberVO.getFileName().substring(0, findMemberVO.getFileName().lastIndexOf("\\")+1);
+ 	 		String delPath = filePath + findMemberVO.getFileName().substring(0, findMemberVO.getFileName().lastIndexOf("/")+1);
  	 		String fileName = findMemberVO.getFileName().substring(11);
  	 		File delFile = filePathGenerator.getUseClassPathResource(delPath);
  	 		int result = fileManager.deleteFile(fileName, delFile);
  	 	}
  		
  		// 파일 저장
- 		String path = FilePathGenerator.addTimePath("")+"\\";
- 		String extendPath = FilePathGenerator.addTimePath(filePath);
- 		File file = filePathGenerator.getUseClassPathResource(extendPath);
- 		System.out.println(session.getServletContext().getRealPath(extendPath));
- 		
+ 	 	String path = FilePathGenerator.addTimePath("");
+ 	    System.out.println(path+"path!!!!");
+ 	    String extendPath = FilePathGenerator.addTimePath(filePath);
+ 	    System.out.println(extendPath + " extendPath ");
+ 	    File file = filePathGenerator.getUseClassPathResource(extendPath);
+
  		if(files.length>0) {
 			
  			// 1번 들어올 for문, multipartFile[] 을 쓰는 이유는 다음번에 참고용으로 사용하기 위함

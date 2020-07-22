@@ -58,6 +58,11 @@
 	$(".check").click(function() {
     	var nick = $("#nick-name").val();
         console.log(nick);
+
+		if(nick=="") {
+			alert("변경할 닉네임을 입력해주세요");
+			return;
+		}
         $.ajax({
             url:'./memberNickCheck',
             type:'get',

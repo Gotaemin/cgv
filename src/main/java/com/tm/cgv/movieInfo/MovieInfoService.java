@@ -73,22 +73,28 @@ public class MovieInfoService {
 	
 	public List<MovieInfoVO> forMovieTimeInsertList(Pager pager) throws Exception{
 		
+		System.out.println("curPage : "+pager.getCurPage());
 		pager.makeRow();
 		System.out.println(pager.getStartRow()+"StartRow");
+		System.out.println("startRow : "+pager.getStartRow());
+		System.out.println("perPage : "+pager.getPerPage());
 		long totalCount = movieInfoRepository.forMovieTimeInsertCount(pager);
 		pager.makeBlock(totalCount);
+		System.out.println("startNum : "+pager.getStartNum());
+		System.out.println("lastNum : "+pager.getLastNum());
 		
 		return movieInfoRepository.forMovieTimeInsertList(pager);
 	}
+	
 	public long movieWrite(MovieInfoVO movieInfoVO,List<MultipartFile> files,String[] videolink,int trailerCount,int steelCutCount) throws Exception{
 		
 		String path = FilePathGenerator.addTimePath("");
 	    System.out.println(path+"path!!!!");
 	    String extendPath = FilePathGenerator.addTimePath(filePath);
 	    System.out.println(extendPath + " extendPath ");
+
 	    File file = filePathGenerator.getUseClassPathResource(extendPath);
 	    
-
 		long result = movieInfoRepository.movieWrite(movieInfoVO);
 		// 포스터 이미지, 트레일러 영상 이미지들
 		System.out.println("======================================");
