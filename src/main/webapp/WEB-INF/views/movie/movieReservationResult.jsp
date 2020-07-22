@@ -94,7 +94,6 @@ discountInfo();
 
 //하단바 
 $("#ticket_tnb").css("display","none");
-$(".ticket_tnb").css("margin-top","100px");
 
 //총 결제액
 $(".ticket_summary .payment_price .price").text(addComma(`${reservationVO.totalPrice}`));

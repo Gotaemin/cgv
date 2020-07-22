@@ -80,7 +80,9 @@
 																</c:if>
 
 																<input type="text" class="form-control files check stt"
-																	id="files" placeholder="타이틀 이미지 선택" name="files" value="${vo.movieImageVOs[0].originName}"  readonly="readonly">
+																	id="files" placeholder="타이틀 이미지 선택" name="files" value="${vo.movieImageVOs[0].originName}"  readonly="readonly"
+																	style="width: 67.5%;"
+																	>
 
 																
 															</div>
@@ -175,7 +177,7 @@
 																		<div style="display: flex; margin-bottom: 10px;">
 																		<input type="text"
 																			class="form-control files check stcc" id="files"
-																			placeholder="타이틀 이미지 선택" name="steel" value="${ar.originName}" readonly="readonly">
+																			placeholder="타이틀 이미지 선택" name="steel" value="${ar.originName}" readonly="readonly" style="width: 190%;">
 																		<p class="mv-p">
 																			<img alt="" src="../../images/movie/movieList/x.png"
 																			data-imgpaths ="${ar.fileName}"
