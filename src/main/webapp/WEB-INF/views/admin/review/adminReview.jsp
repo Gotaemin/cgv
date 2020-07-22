@@ -42,8 +42,8 @@
 						
 
 
-						<div style="position: absolute; right: 129px;"><button class="btn btn-danger" id="allDelete">전체삭제</button></div>
-						<div style="position: absolute; right: 42px;"><button class="btn btn-info" id="partDelete">부분삭제</button></div>
+						<div style="position: absolute; right: 129px;"><button class="btn btn-info" id="cancelDelete">신고취소</button></div>
+						<div style="position: absolute; right: 42px;"><button class="btn btn-danger" id="partDelete">신고삭제</button></div>
 
 					</div>
 					
@@ -151,20 +151,32 @@
 		});
 
 		
-		/* 전체 삭제 */
-		$("#allDelete").click(function(){
-			if(confirm("신고된 모든 리뷰를 삭제 하시겠습니까?")){
-				$.ajax ({
+		/* 신고 취소 */
+		$("#cancelDelete").click(function(item){
+			var result=0;
+			var result2 = [];
+
+			if(confirm("선택한 리뷰의 신고내역을 초기화 하시겠습니까?")){
+				$(".c1").each(function(){
+					if($(this).prop("checked")){
+						result = $(this).attr("data-num");
+						result2.push(result); //배열
+					}
+				});
+
+ 				$.ajax ({
 					type:"GET",
-					url:"./allDelete",
+					url:"./cancelDelete",
+					traditional: true,
 					data:{
+						num : result2,
 					},
 					success:function(data){
-						alert("리뷰삭제 완료");
+						alert("해당 리뷰 신고초기화 완료");
 						location.reload();
 						
 					}
-				})
+				})	 
 			}
 		});
 
@@ -177,7 +189,6 @@
 				$(".c1").each(function(){
 					if($(this).prop("checked")){
 						result = $(this).attr("data-num");
-						//console.log(typeof result); 
 						result2.push(result); //배열
 					}
 				});
