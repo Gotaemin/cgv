@@ -474,7 +474,6 @@
 					for(i=0; i<listLength; i++){
 						if(list[i].row == rw && list[i].col == cl){
 							list[i].grade = 1;
-							//console.log("-----------:"+list[i].grade);
 						}
 					}
 
@@ -490,7 +489,6 @@
 					for(i=0; i<listLength; i++){
 						if(list[i].row == rw && list[i].col == cl){
 							list[i].grade = 0;
-							//console.log("-----------:"+list[i].grade);
 						}
 					}
 					
@@ -511,7 +509,6 @@
 					for(i=0; i<listLength; i++){
 						if(list[i].row == rw && list[i].col == cl){
 							list[i].grade = 1;
-							//console.log("-----------:"+list[i].grade);
 						}
 					}
 				}
@@ -529,7 +526,6 @@
 						if(list[i].row == rw && list[i].col == cl){
 							list[i].grade = 2;
 							console.log(list[i].row + " / " + list[i].col + " / " + cl);
-							//console.log("-----------:"+list[i].grade);
 						}
 					}
 				}
@@ -549,24 +545,10 @@
 					}
 				}
 			}else if(seatColor=4){
-				//seatBooking table의 reservationNum을 0으로
-				//grade는 4로
-				//컨트롤러 넘긴 후 grade가 4인 것은....X > 몇 개 없을 테니까 따로 String을 보내도 될 것 같음
-				//아무튼.....A5 이런 형식으로 보내서?
-				//아니면 따로따로 보내서
-				//DB에서 검색 몇관의 몇번시트인지
-				//
 				if(chClass!='rating_delete' && !$(name).hasClass('rating_stop')){
 					//alert(chClass)
 					console.log(chClass);
-					//$(name).find("span").css('border','2px solid #f71708');
-					//$(name).removeClass();
 					$(name).addClass("rating_stop");
-					/* 	for(i=0; i<listLength; i++){
-							if(list[i].row == rw && list[i].col == cl){
-								list[i].grade = 3;
-							}
-						} */
 						//stop list 만들어서 row, col, grade 삽입
 					var stopVO = {
 						"r":rw,
@@ -588,12 +570,7 @@
 					console.log(stopList);
 					
 				}
-			
-
 			}
-
-			//console.log(rowList);
-			//console.log(colList);
 		}
 
 
@@ -736,9 +713,7 @@
 				if(list[i].grade=="0"){
 					cnt = cnt+1;
 				}
-				//console.log(list[i]);
 			}
-			//console.log(cnt);
 			list.splice(0,cnt);
 		
 			
@@ -764,7 +739,6 @@
 			}
 
 			for(n=0; n<stopList.length; n++){
-				alert(stopList[n]);
 				console.log(stopList[n])
 				var r = '<input type="hidden" name="stop_rc" value="'+stopList[n].r+'">';
 				r = r + '<input type="hidden" name="stop_idx" value="'+stopList[n].c+'">';
