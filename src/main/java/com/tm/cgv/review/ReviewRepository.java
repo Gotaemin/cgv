@@ -68,7 +68,7 @@ public interface ReviewRepository {
    
    public int adminReviewDelete(ReviewVO reviewVO);
    
-   public int allDelete();
+   public int cancelDelete(int reservationNum);
    
    public int partDelete(int reservationNum);
    

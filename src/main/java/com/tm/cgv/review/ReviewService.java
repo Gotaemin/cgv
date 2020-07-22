@@ -169,8 +169,8 @@ public class ReviewService {
       return reviewRepository.adminReviewDelete(reviewVO);
    }
    
-   public int allDelete()throws Exception {
-      return reviewRepository.allDelete();
+   public int cancelDelete(int reservationNum)throws Exception {
+      return reviewRepository.cancelDelete(reservationNum);
    }
    
    public int partDelete(int reservationNum)throws Exception {
