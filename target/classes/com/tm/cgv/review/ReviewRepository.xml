@@ -260,7 +260,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </update>
    
    <update id="cancelDelete" parameterType="ArrayList">
-      update review set spoiler=0 and swearword=0
+      update review set spoiler=0, swearword=0
       where createAt is not null and deleteAt is null 
       and (spoiler<![CDATA[>]]>0 or swearword<![CDATA[>]]>0) and reservationNum=#{reservationNum}
    </update>

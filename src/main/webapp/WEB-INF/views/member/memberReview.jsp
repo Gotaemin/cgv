@@ -149,6 +149,8 @@
                         <span id="more-plus">더보기</span> <span id="l_count1"></span>
                         <!-- 가져오는 정보의 갯수 -->
                      </button>
+                     
+                     
                   </div>
                </div>
             </div>
