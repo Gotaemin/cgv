@@ -171,7 +171,7 @@
 								<div class="my-reserve-bar">
 									<div>
 										<h3>MY 예매내역</h3>
-										<span>&nbsp1건</span> <a href="#" class="plus-btn">예매내역 더보기</a>
+										<span>&nbsp${totalCount}건</span> <a href="#" class="plus-btn">예매내역 더보기</a>
 									</div>
 									<span>예매번호로만 티켓을 찾을 수 있으니 반드시 확인 부탁드립니다.</span>
 								</div>

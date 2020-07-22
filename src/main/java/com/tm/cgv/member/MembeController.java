@@ -179,8 +179,11 @@ class MemberController {
     	ReservationVO reservationVO = new ReservationVO();
     	reservationVO.setUid(((MemberBasicVO)session.getAttribute("memberVO")).getUsername());
     	List<ReservationVO> myReservationList = reservationService.myReservationList(reservationVO);
+    	int totalCount = myReservationList.size();
+    	
     	
     	mv.addObject("myReservationList", myReservationList);
+    	mv.addObject("totalCount", totalCount);
     	
     	mv.addObject("cjPoint", cjPoint);
     	mv.addObject("couponNum", couponNum);

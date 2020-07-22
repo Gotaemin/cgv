@@ -125,12 +125,12 @@ function discount_select(selected,other){
 
 //할인 수단으로 쿠폰 선택시 ajax으로 해당 값들을 읽어옴
 function discount_cupon_ajax(){
-	var memberNum = $("#memberId").val();
+	//var memberNum = $("#memberId").val();
 	$.ajax({
 		url : '../memberCupon/memberCouponSelect',
 		type : 'get',
 		data : {
-			uid : memberNum
+			uid : memberId
 		},
 		dataType : 'json',
 		success : function(result){
@@ -217,13 +217,13 @@ $("#discCoupon").on("click","#cgvCoupon ul li",function(evt){
 
 //할인 수단으로 포인트 선택시 ajax으로 해당 값들을 읽어옴
 function discount_point_ajax(){
-	var memberNum = $("#memberId").val();
+	//var memberNum = $("#memberId").val();
 	
 	$.ajax({
 		url : '../point/pointSelectList',
 		type : 'get',
 		data : {
-			memberNum : memberNum
+			memberNum : memberId
 		},
 		success : function(result){
 			for(i=0;i<result.length;i++){

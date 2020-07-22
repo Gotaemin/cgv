@@ -20,23 +20,28 @@ $("#price").keyup(function() {
 //2.할인쿠폰 - 시리언번호(6자리-숫자) 생성
 $("#btnCreate").click(function() {
 	var type = $("#selectBox option:selected").val();
-	console.log(type);
-
-	$.ajax({
-		url : './makeSerial',
-		type : 'get',
-		data : {
-			type : type
-		},
-		success : function(result) {
-			console.log(result);
-			if (type == 1) {
-				//시리얼번호,비번
-				$("#pwd").val(result[1])
+	console.log(path);
+	
+	if(path != 'couponUpdate'){
+		$.ajax({
+			url : './makeSerial',
+			type : 'get',
+			data : {
+				type : type
+			},
+			success : function(result) {
+				console.log(result);
+				if (type == 1) {
+					//시리얼번호,비번
+					$("#pwd").val(result[1])
+				}
+				$("#serialNum").val(result[0])
 			}
-			$("#serialNum").val(result[0])
-		}
-	});
+		});
+	}else{
+		alert("이미 생성된 시리얼 번호는 변경할 수 없습니다.")
+	}
+	
 });
 
 if (path == 'couponInsert') {
@@ -55,7 +60,6 @@ if (path == 'couponInsert') {
 	$("#selectBox option").each(function() {
 		$(this).prop("disabled", true);
 	});
-	$("#btnCreate").text("재생성");
 	$("#btnSubmit").text("수정하기");
 }
 

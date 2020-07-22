@@ -132,7 +132,7 @@ body{
 
 
 .section .col-head{
-	background: url("../../images/movie/movieReservation/titles.png") no-repeat 50% 3px;
+	background: url("../../images/movie/movieReservation/titles.png") no-repeat 50% -25px;
 	
 	position: relative;
 	height: 33px;
@@ -144,7 +144,7 @@ body{
 /* col-head ********************/
 .section-movie .col-head{
 	background-position: 50% 8px;
-}
+}	
 
 .section-theather .col-head{
 	background-position: 50% -25px;
