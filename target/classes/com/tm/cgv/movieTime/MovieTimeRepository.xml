@@ -6,6 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.tm.cgv.movieTime.MovieTimeRepository">
  	
+ 	
+ 	
  	<select id="movieTimeSelectOne" parameterType="Integer" resultType="MovieTimeVO">
  		SELECT * FROM movieTime WHERE num = #{num} AND deleteAt IS NULL 
  	</select>
@@ -21,7 +23,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	<select id="selectOneRecently" resultType="MovieTimeVO">
  		SELECT * FROM movieTime ORDER BY num DESC LIMIT 1;
  	</select>
-	 	
+	
+	<!-- <select id="selectVOsByTheaterNumAndScreenDate" parameterType="MovieTimeVO" resultType="MovieTimeVO">
+		
+	</select> -->
+	
  	<update id="updateDeleteAtByScreenDate" parameterType="MovieTimeVO">
  		UPDATE movieTime SET deleteAt=now() WHERE screenDate <![CDATA[<=]]> #{screenDate}
  	</update>

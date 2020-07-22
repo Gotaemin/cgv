@@ -166,11 +166,14 @@ public class MemberService implements UserDetailsService {
  	
  	// memberList 띄우기
  	public List<MemberBasicVO> memberList(Pager pager) throws Exception {
- 		System.out.println("startNum : "+pager.getStartNum());
- 		System.out.println("perpage : "+pager.getPerPage());
- 		long totalNum = memberRepository.memberCount(pager);
-		pager.makeRow();
+ 		
+ 		pager.makeRow();
+		System.out.println("startRow : "+pager.getStartRow());
+		System.out.println("perPage : "+pager.getPerPage());
+		long totalNum = memberRepository.memberCount(pager);
 		pager.makeBlock(totalNum);
+		System.out.println("startNum : "+pager.getStartNum());
+		System.out.println("lastNum : "+pager.getLastNum());
  		return memberRepository.memberList(pager);
  	}
  	

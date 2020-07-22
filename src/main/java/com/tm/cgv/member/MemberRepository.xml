@@ -61,7 +61,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	</select>
  
 	<select id="memberCount" resultType="Long">
-		SELECT COUNT(username) FROM member
+		SELECT COUNT(username) FROM
+		(SELECT * FROM member
 		<where>
 			<if test="kind == 'id'">
 				username <include refid="search"/>
@@ -73,7 +74,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				phone <include refid="search"/>
 			</if>
 		</where>
-		ORDER BY username DESC LIMIT #{startRow}, #{perPage}
+		ORDER BY username DESC) tmp
 	</select>
 	
 	<select id="memberList" parameterType="Pager" resultType="MemberBasicVO">

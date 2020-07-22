@@ -828,6 +828,7 @@ public class AdminController {
 		System.out.println(pager.getKind());
 		System.out.println(pager.getSearch());
 		
+		pager.setPerPage(10);
 		List<MemberBasicVO> list = memberService.memberList(pager);
 		mv.addObject("list", list);
 		mv.addObject("pager", pager);
