@@ -27,7 +27,7 @@
 				<div class="score">
 					<strong class="percent">예매율<span>${list.rate}%</span></strong>
 					<div class="egg-gage small">
-						<span class="egg great"></span> <span class="percent">75%</span>
+						<span class="egg great"></span> <span class="percent">${list.errRate}%</span>
 					</div>
 				</div>
 				<span class="text-info"> <strong>${list.openDate}<span>개봉${i.index}</span></strong>

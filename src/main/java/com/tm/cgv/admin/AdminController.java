@@ -174,6 +174,8 @@ public class AdminController {
 	public ModelAndView movieWrite(ModelAndView mv,MovieInfoVO movieInfoVO,List<MultipartFile> files,String[] videolink,int trailerCount,int steelCutCount) throws Exception{
 		int num = movieInfoVO.getNum();
 		System.out.println("num : " + num);
+		System.out.println("trailerCount : " + trailerCount);
+		System.out.println("steelCutCount : " + steelCutCount);
 		
 		long result = movieInfoService.movieWrite(movieInfoVO, files,videolink,trailerCount,steelCutCount);
 		if(result>0) {

@@ -40,8 +40,8 @@
 										<form action="./movie${path}" method="post" enctype="multipart/form-data">
 										<input type="hidden" id="_csrf" name="${_csrf.parameterName}" value="${_csrf.token}" />
 											<fieldset>
-												<input type="hidden" id="trailerCount" value="0" name="trailerCount"><!-- 카운트 값이 들어옴 -->
-												<input type="hidden" id="steelCutCount" value="0" name="steelCutCount">
+												<input type="hidden" id="trailerCount" value="1" name="trailerCount"><!-- 카운트 값이 들어옴 -->
+												<input type="hidden" id="steelCutCount" value="1" name="steelCutCount">
 												<div class="tbl_write">
 
 													<input type="hidden" value="${vo.movieImageVOs.num}"
@@ -63,7 +63,7 @@
 															<div class="form-group" >
 																<label for="files">타이틀 이미지:</label> <input type="file"
 																	class="form-control files check" id="files"
-																	placeholder="타이틀 이미지 선택" name="files">
+																	placeholder="타이틀 이미지 선택" name="files" style="width: 34%">
 															</div>
 
 															<div class="form-group" id="d1" style="position: relative;">
@@ -72,19 +72,21 @@
 																	style="width: 20px; height: 20px; cursor:pointer;
 																	 top: 1px; left: 60px; position: absolute;"
 																	 id="addI">
+																	 
+																 <div class="group1" style="margin-bottom:5px;">
+																	<input type="file" multiple="multiple" style="width:16.5%!important; float:left;"
+																	 class="form-control files check form-control2" id="files"placeholder="트레일러 이미지 선택" name="files">
+																	<input type="text" class="form-control videolink check form-control2" 
+																	id="videolink" placeholder="예고편 영상 링크" name="videolink"
+																	style="padding: 12px; width: 16.7%!important;display: inline-block;">
+																</div> 
 																<div id="tt">
 																	<div class="form-group" id="f" style="float: left;">
 																	</div>
 																</div>
 															</div>
 
-															<!-- <div class="form-group" style="width: 650px; float: left; margin-left: 80px;margin-right: 50px;" id="d2">
-																	<label for="files">트레일러</label> <br>
-																	<label for="videolink">video:</label>
-																	 <img alt="" src="../../images/theater/plus.png" 
-																	style="width: 20px; height: 20px;" id="addV">
-																	
-																</div> -->
+															
 														
 															<div class="form-group"  style="clear: both;">
 																<label for="title" >제목:</label> <input type="text"
@@ -135,6 +137,11 @@
 																<img alt="" src="../../images/theater/plus.png" 
 																style="width: 20px; height: 20px; width: 20px; height: 20px; 
 																top: 2px; left: 50px; position: absolute; cursor: pointer;" id="addS"> 
+																 <div style="display:flex;"><input type="file" class="form-control steelCut check form-control2" 
+																	id="steelCut" placeholder="스틸컷 이미지 " name="files"
+																		style="margin-bottom:5px; width: 34%">
+																</div> 
+																
 																<div class="form-group" id="st">
 																
 																</div>
@@ -166,8 +173,11 @@
 																<label for="contents" >Contents:</label>
 																<textarea rows="" cols="" class="form-control check"
 																	id="contents" name="contents">${vo.contents }</textarea>
-
 															</div>
+															
+															
+															  
+															
 
 														</tbody>
 
@@ -225,23 +235,24 @@
 	
 	<script type="text/javascript" src="/js/template/bootstrap-datepicker.js"></script>
 	<script type="text/javascript" src="/js/template/bootstrap-datepicker.ko.min.js"></script>
-	<script type="text/javascript">
+	
 
-	var num=0;
-	var count =1;
-	var tcount =0;
+	
+	
+	<script type="text/javascript">
+	
+	var num=0; // 트레일러 이미지
 	var trailerCount = $("#trailerCount").val();
 	
-	var num2=0;
+	var num2=0; //비디오 링크
 	var count2=1;
 
-	var numS =0;
-	var countS=1;
-	var scount =0;
+	var numS =0; // 스틸컷
 	var steelCutCount = $("#steelCutCount").val();
 	//트레일러 이미지
 	$("#addI").click(function(){
-		if(num<3){
+		
+		if(num<2){
 			//이미지
 			$("#f").append(
 					'<div class="group1" style="margin-bottom:5px;">'+
@@ -252,15 +263,10 @@
 					'style="padding: 12px; width: 45%!important;display: inline-block;">'+
 					'<span class="x" style="width: 10%!important;">X</span>'+
 					'</div>');
-
 		
-		
-			num++;
-			count++;
+			num++;		
+			trailerCount++;
 			
-			tcount = count-1; //트레일러 이미지 type을 위해 count하는 값
-			trailerCount=tcount;
-		
 			$("#trailerCount").val(trailerCount);
 			console.log(trailerCount);
 			
@@ -274,15 +280,13 @@
 
 	// 스틸컷 이미지
 	$("#addS").click(function(){
-		if(numS<5){
-			$("#st").append('<div style="display:flex;"><input type="file" class="form-control videolink check form-control2" '+
-					'id="videolink" placeholder="스틸컷 이미지 " name="files"'+
-					'style="margin-bottom:5px;"> <span class="xS">X</span></div>');
+		if(numS<4){
+			$("#st").append('<div style="display:flex;"><input type="file" class="form-control steelCut check form-control2" '+
+					'id="steelCut" placeholder="스틸컷 이미지 " name="files"'+
+					'style="margin-bottom:5px;width: 34%"> <span class="xS">X</span></div>');
+			
 			numS++;
-			countS++;
-
-			scount = countS-1;
-			steelCutCount=scount;
+			steelCutCount++;
 			$("#steelCutCount").val(steelCutCount);
 			
 			}else{
@@ -295,7 +299,8 @@
  	$("#f").on("click",".x",function(){ //추가된 파일 필요없을 시 삭제
 		$(this).parent().remove();
  		num--;
- 		 
+ 		trailerCount--;
+ 		$("#trailerCount").val(trailerCount);
 		});
 
    $("#f2").on("click",".x",function(){ //추가된 비디오링크 필요없을 시 삭제
@@ -306,6 +311,8 @@
 	$("#st").on("click",".xS",function(){
 		$(this).parent().remove();
 		numS--;
+		steelCutCount--;
+		$("#steelCutCount").val(steelCutCount);
 		});
 
 	// datepicker 초기화

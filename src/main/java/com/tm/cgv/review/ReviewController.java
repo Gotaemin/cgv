@@ -354,7 +354,8 @@ public class ReviewController {
    @GetMapping("reviewDiary_Write")
    @ResponseBody
    public int reviewDiary_Write(ReviewVO reviewVO)throws Exception {
-
+	   System.out.println("testttttttttttttt");
+	   System.out.println("opinion: "+reviewVO.getOpinion());
 	   int result = reviewService.reviewDiary_Write(reviewVO);
 	   
 	   return result;
