@@ -261,14 +261,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</choose> 
 		LIMIT #{startRow},#{perPage}) movieInfo
 		LEFT JOIN
-		(SELECT movieNum, fileName FROM movieImage WHERE num IN (SELECT num FROM movieInfo) AND type =1) movieImage
+		(SELECT movieNum, fileName FROM movieImage WHERE movieNum IN (SELECT num FROM movieInfo) AND type =1) movieImage
 		ON (movieInfo.num = movieImage.movieNum);
  	</select>
  	
  	<select id="forMovieTimeInsertCount" parameterType="Pager" resultType="Integer">
- 		SELECT COUNT(num) FROM movieInfo WHERE title LIKE CONCAT('%',#{search},'%') AND deleteAt IS NULL 
-		ORDER BY
-		<choose>
+ 		SELECT COUNT(num) FROM 
+ 		(SELECT * FROM movieInfo WHERE title LIKE CONCAT('%',#{search},'%') AND deleteAt IS NULL 
+ 		ORDER BY
+ 		<choose>
 			<when test="kind == 'date'">
 				createAt DESC, openDate ASC
 			</when>
@@ -279,7 +280,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				rate DESC
 			</otherwise>
 		</choose> 
-		LIMIT #{startRow},#{perPage}
+		) tmp
  	</select>
  	<!-- 제목 중복체크 -->
  	<select id="titleCheck" parameterType="MovieInfoVO" resultType="MovieInfoVO">

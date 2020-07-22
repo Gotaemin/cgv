@@ -157,7 +157,7 @@ public class EventService {
 		//하나만 삭제 후 다시 삽입 > 받아온 delNum으로 그거만 삭제 후 넣기
 		
 		FilePathGenerator filePathGenerator = new FilePathGenerator();
-		String path = FilePathGenerator.addTimePath("")+"\\";
+		String path = FilePathGenerator.addTimePath("");
 	    System.out.println(path+"path!!!!");
 	    String extendPath = FilePathGenerator.addTimePath(filePath);
 	    File file = filePathGenerator.getUseClassPathResource(extendPath);

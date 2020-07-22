@@ -85,9 +85,10 @@ public class FilePathGenerator {
 
 	public static String addTimePath(String filePath) throws Exception{
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/");
 		String extendPath = sdf.format(new Date());
-		return filePath + extendPath.replace("-", File.separator);
+		//return filePath + extendPath.replace("-", File.separator);	
+		return filePath + extendPath;
 	}
 }
 
