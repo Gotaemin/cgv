@@ -53,7 +53,7 @@
 						<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="table-layout: fixed;">
 							<thead>
 								<tr class="admin-tr">
-									<th style="width: 55px;">No.</th>
+									<th style="width: 60px;">No.</th>
 									<th>영화제목</th>
 									<th style="width: 80px;">시작 시간</th>
 									<th style="width: 78px;">결제 번호</th>
@@ -100,9 +100,9 @@
 											<a href="#" onclick="show(${vo.paymentNum})" style="color: #333;">${vo.paymentNum}</a>
 										</td>
 										<td class="flimType ate-center">${vo.filmType}</td>
-										<td class="ate-center">${vo.cinemaName}</td>
+										<td class="ate-center" title="${vo.cinemaName}">${vo.cinemaName}</td>
 										<td class="ate-center">${vo.theaterName}</td>
-										<td class="ate-center">${vo.seats}</td>
+										<td class="ate-center" title="${vo.seats}">${vo.seats}</td>
 										<td class="ate-center">${vo.common}</td>
 										<td class="ate-center">${vo.teenager}</td>
 										<td class="ate-center">${vo.preference}</td>

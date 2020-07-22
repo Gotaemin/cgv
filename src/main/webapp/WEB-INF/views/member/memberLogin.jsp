@@ -62,8 +62,8 @@
 								<!-- 4. pw input field의 name 속성값이 'password' -->
 								<input type="hidden" id="location" name="loc" value="/"/>
 								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-								<input type="text" name="username" value="user02">
-								<input type="password" name="password" value="user02">
+								<input type="text" name="username" value="">
+								<input type="password" name="password" value="">
 
 							</div>
 							<button type="submit"><span>로그인</span></button>

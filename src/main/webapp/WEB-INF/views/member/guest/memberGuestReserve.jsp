@@ -115,7 +115,7 @@
 											<tr class="tr-box">
 												<th>비밀번호(4자리)</th>
 												<td>
-													<input type="text" class="input-box pwd" maxlength="4"
+													<input type="password" class="input-box pwd" maxlength="4"
 														onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
 												</td>
 											</tr>

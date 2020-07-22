@@ -126,9 +126,11 @@ public class GuestController {
 	//에매 완료시 guest 테이블에 정보 저장
 	@ResponseBody
 	@PostMapping("guestInsert")
-	public int guestInsert(GuestVO guestVO) throws Exception{
+	public int guestInsert(GuestVO guestVO,HttpSession session) throws Exception{
 		int result = 0;
 		result = guestService.guestInsert(guestVO);
+		
+		session.removeAttribute("beMemberVO");
 		
 		return result;
 	}

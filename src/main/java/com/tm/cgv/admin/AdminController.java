@@ -853,10 +853,14 @@ public class AdminController {
 		List<MovieInfoVO> movieInfoList = movieInfoService.forMovieTimeInsertList(pager);
 		for (MovieInfoVO movieInfoVO : movieInfoList) {
 			
-			System.out.println("fileName : "+movieInfoVO.getFileName());
+			//System.out.println("movieNum : "+movieInfoVO.getNum());
+			//System.out.println("fileName : "+movieInfoVO.getFileName());
+			// contents 엔터 쳐지면 에러나므로 필요없는 값인 contents는 빼버림
+			movieInfoVO.setContents("");
 		}
 		theaterVO = theaterService.theaterSelect(theaterVO.getNum());
 		
+		mv.addObject("pager", pager);
 		mv.addObject("movieInfoList", movieInfoList);
 		mv.addObject("theaterVO", theaterVO);
 		mv.setViewName("admin/movieTime/movieTimeInsert");
@@ -1155,11 +1159,6 @@ public class AdminController {
 	      
 	      return mv;
 	   }
-	
-	
-	
-	
-	
 	
 	//==============================
 	// event

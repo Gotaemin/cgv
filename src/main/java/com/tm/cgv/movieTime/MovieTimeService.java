@@ -29,7 +29,21 @@ public class MovieTimeService {
 	
 	public int insert(MovieTimeVO movieTimeVO) throws Exception{
 		
-		int result = movieTimeRepository.insert(movieTimeVO);
+		// movieTimeVO.screenTime setting
+		String screenTime = movieTimeVO.getScreenTime();
+    	
+		String[] separatedTime = screenTime.split(":");
+    	int hour = Integer.parseInt(separatedTime[0]);
+    	if(0 <= hour && hour <= 2) {
+    		hour += 24;
+    	
+    		screenTime = hour +":"+ separatedTime[1];
+        	System.out.println(screenTime);
+        	
+        	movieTimeVO.setScreenTime(screenTime);
+    	}
+    	
+    	int result = movieTimeRepository.insert(movieTimeVO);
 		movieTimeVO = movieTimeRepository.selectOneRecently();
 		
 		SeatBookingVO seatBookingVO = new SeatBookingVO();
@@ -41,6 +55,8 @@ public class MovieTimeService {
 			vo.setNum(0);
 			vo.setMovieTimeNum(movieTimeVO.getNum());
 			vo.setReservationNum(0);
+			
+			
 			
 			seatBookingRepository.seatBookingInsert(vo);
 		}
