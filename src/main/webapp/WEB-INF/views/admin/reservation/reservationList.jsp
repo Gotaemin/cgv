@@ -125,7 +125,7 @@
 						</form>
 						
 						 
-						<button class="btn btn-success" id="btnDownload" style="float: right;">EXCEL DOWN</button>
+						<button class="btn btn-success" id="btnDownload" style="float: right; right: 90px; position: absolute;">EXCEL DOWN</button>
 						<script type="text/javascript">
 							$("#btnDownload").click(function(){
 								location.href="../../reservation.xls";

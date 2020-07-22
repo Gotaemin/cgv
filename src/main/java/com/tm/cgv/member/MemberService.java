@@ -1,7 +1,6 @@
 package com.tm.cgv.member;
 
 import java.io.File;
-import java.io.InputStream;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -19,6 +18,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.tm.cgv.auth.AuthRepository;
 import com.tm.cgv.auth.AuthVO;
 import com.tm.cgv.auth.RoleEnum;
+import com.tm.cgv.rememberMe.RememberMeRepository;
+import com.tm.cgv.rememberMe.RememberMeVO;
 import com.tm.cgv.util.FileManager;
 import com.tm.cgv.util.FilePathGenerator;
 import com.tm.cgv.util.GenerateRandomNumber;
@@ -37,6 +38,9 @@ public class MemberService implements UserDetailsService {
 	@Autowired
 	private AuthRepository authRepository;
 
+	@Autowired
+	private RememberMeRepository rememberMeRepository;
+	
 	@Autowired
 	private MemberInfoMaker memberInfoMaker;
 	
@@ -90,7 +94,7 @@ public class MemberService implements UserDetailsService {
         // birth, age, fileName 세팅
         memberBasicVO.setBirth(memberInfoMaker.makeBirth(year, month, day));
         memberBasicVO.setAge(memberInfoMaker.makeAge(year));
-        memberBasicVO.setFileName("defaultProfile");
+        memberBasicVO.setFileName("defaultProfile.png");
         
         
         // db에 저장
@@ -162,16 +166,29 @@ public class MemberService implements UserDetailsService {
  	
  	// memberList 띄우기
  	public List<MemberBasicVO> memberList(Pager pager) throws Exception {
- 		System.out.println("startNum : "+pager.getStartNum());
- 		System.out.println("perpage : "+pager.getPerPage());
- 		long totalNum = memberRepository.memberCount(pager);
-		pager.makeRow();
+ 		
+ 		pager.makeRow();
+		System.out.println("startRow : "+pager.getStartRow());
+		System.out.println("perPage : "+pager.getPerPage());
+		long totalNum = memberRepository.memberCount(pager);
 		pager.makeBlock(totalNum);
+		System.out.println("startNum : "+pager.getStartNum());
+		System.out.println("lastNum : "+pager.getLastNum());
  		return memberRepository.memberList(pager);
  	}
  	
  	// member 지우기 (실데이터 삭제 아님)
  	public int memberDelete(MemberBasicVO memberBasicVO) throws Exception {
+ 		
+ 		// auth삭제
+ 		AuthVO authVO = new AuthVO();
+ 		authVO.setUsername(memberBasicVO.getUsername());
+ 		authRepository.delete(authVO);
+ 		
+ 		// rememberMe삭제
+ 		RememberMeVO rememberMeVO = new RememberMeVO();
+ 		rememberMeVO.setUsername(memberBasicVO.getUsername());
+ 		rememberMeRepository.deleteByUsername(rememberMeVO);
  		
  		return memberRepository.memberDelete(memberBasicVO);
  	}

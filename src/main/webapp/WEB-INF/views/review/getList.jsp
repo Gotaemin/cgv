@@ -8,7 +8,7 @@
 
       <div class="list_p" style="position: relative;">
 
-         <div class="list_p_content"><!-- 이미지 주소부분 나중에 수정해야함 -->
+         <div class="list_p_content">
             <div class="list_p_photo" style="position: relative; top: 10px;">
             	<img alt="" src="${pageContext.request.contextPath}/images/movie/movieList/filmCover/${vo.fileName}" width="110px" height="154.6px"> 
             </div>
@@ -69,25 +69,6 @@
       </div>
       
       
-      
-      
-      
-
-
-      
-<%-- 
-   <div>title : ${vo.title}</div>
-   <div>fileName : ${vo.fileName}</div>
-   
-   <div>theaterName : ${vo.theaterName}</div>
-   <div>cinemaName : ${vo.cinemaName}</div>
-   
-   <div>movieTimeNum : ${vo.movieTimeNum}</div>
-   <div>screenTime : ${vo.screenTime}</div>
-   
-   <div>people : ${vo.people}</div>
-
-    --%>
    <br>
    
 </c:forEach>

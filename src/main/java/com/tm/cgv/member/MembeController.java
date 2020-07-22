@@ -2,6 +2,7 @@ package com.tm.cgv.member;
 
 import java.util.List;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -217,13 +218,32 @@ class MemberController {
     
     // 회원탈퇴
    	@GetMapping("memberDelete")
-   	@ResponseBody
-   	public int memberDelete(MemberBasicVO memberBasicVO) throws Exception {
+   	public ModelAndView memberDelete(MemberBasicVO memberBasicVO, HttpSession session) throws Exception {
+   		
+   		ModelAndView mv = new ModelAndView();
+   			
+   		String path = "./myPage";
+   		String msg = "탈퇴 실패";
    		
    		System.out.println("memberDelete");
    		System.out.println(memberBasicVO.getUsername());
-   		System.out.println(memberService.memberDelete(memberBasicVO));
-   		return 1;
+   		int result = memberService.memberDelete(memberBasicVO);
+   		if(result > 0) {
+   			
+   			// session삭제, cookie삭제(0값으로 덮어쓰기)
+   			session.removeAttribute("memberVO");
+   			Cookie cookie = new Cookie("remember-me", "");
+   			cookie.setMaxAge(0);
+   			
+   			path="/";
+   			msg="탈퇴 성공";
+   		}
+   		
+
+   		mv.addObject("path", path);
+   		mv.addObject("msg", msg);
+   		mv.setViewName("common/result");
+   		return mv;
    	}
    	
     // 접근 거부 페이지

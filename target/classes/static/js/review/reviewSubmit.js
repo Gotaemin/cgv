@@ -294,35 +294,7 @@
 
 					}
 				});
-				
-				
-				//3. 세번째 모달
-/*			$(".popupOnlyRead").click(function(){
-					
-					g_num=$(this).data("num2");
-					console.log(g_num);
-					$.ajax({
-						type:"POST",
-						url:"./review_Select",
-						data:{
-							reservationNum : g_num,
-						},
-						success:function(data){//여기서 data는 json
-							$("#photo").html('<img alt="" src="../images/'+data.fileName+'" width="110px" height="154.6px">')
-							$("#title1").html(data.title);
-							$("#uid").html(data.uid);	
-							$("#egg1").html(data.egg);
-							$("#contents").html(data.contents);
-							$("#createAt").html(data.createAt);	
-							$("#sss"+g_num).click();
-							
-							}
-						})
-					
-				});*/
-				
 
-				
 			});
 			
 			//1.현재 getList의 curPage을 받는 function 안쪽에 , 2.getList꾸려주는 ajax 바깥에 쓰기
