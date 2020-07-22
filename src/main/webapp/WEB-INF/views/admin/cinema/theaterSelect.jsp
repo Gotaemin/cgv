@@ -192,7 +192,7 @@
 		<!-- rating_economy(노랑) rating_comfort(초록) rating_prime(빨강)  -->
 		if($(this).data("grade")==1){
 			//economy
-			$(this).addClass(" ");
+			$(this).addClass("rating_economy");
 		}else if($(this).data("grade")==2){
 			//standard
 			$(this).addClass("rating_comfort");

@@ -109,8 +109,8 @@ code, h3{
 
 .theater .seats .roww .seat a .no{
 	display: block;
-    width: 15px;
-    height: 15px;
+    width: 16px;
+    height: 16px;
     line-height: 15px;
     overflow: hidden;
     text-align: center;
@@ -140,40 +140,33 @@ code, h3{
 }
 
     .theater .seats .roww .seat.rating_economy a .no{
-	width: 15px;
-    height: 15px;
-    line-height: 15px;
+	width: 16px;
+    height: 16px;
+    line-height: 16px;
     border: solid 2px #ed8c00;
 }
 
     .theater .seats .roww .seat.rating_comfort a .no{
-	width: 15px;
-    height: 15px;
-    line-height: 15px;
+	width: 16px;
+    height: 16px;
+    line-height: 16px;
     border: solid 2px #01c73c;
 }
 
-    .theater .seats .roww .seat.rating_prime a .no{
-	width: 15px;
-    height: 15px;
-    line-height: 15px;
-    border: solid 2px #f71708;
-}
-
 
 
     .theater .seats .roww .seat.rating_prime a .no{
-	width: 15px;
-    height: 15px;
-    line-height: 15px;
+	width: 16px;
+    height: 16px;
+    line-height: 16px;
     border: solid 2px #f71708;
 }
 
 
 .theater .seats .roww .seat.rating_stop a .no{
-	width: 15px;
-    height: 15px;
-    line-height: 15px;
+	width: 16px;
+    height: 16px;
+    line-height: 16px;
     border: solid 2px 000;
     background: #000;
 }
