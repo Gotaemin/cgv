@@ -30,25 +30,24 @@
 
 		
 		<!-- POI -->
+		<!-- write -->
 		<dependency>
 		    <groupId>org.apache.poi</groupId>
 		    <artifactId>poi</artifactId>
 		    <version>3.17</version>
 		</dependency>
 		
+		<!-- read -->
 		<dependency>
 		  <groupId>org.apache.poi</groupId>
 		  <artifactId>poi-ooxml</artifactId> <!-- 엑셀 2007 이상 버전에서 사용 -->
 		  <version>3.11</version>
 		</dependency>
-		
 		<dependency>
 		  <groupId>commons-io</groupId>
 		  <artifactId>commons-io</artifactId>
 		  <version>2.4</version>
 		</dependency>
-		
-
  
  		<!-- for img resizing -->
  		<!-- https://mvnrepository.com/artifact/net.coobird/thumbnailator -->
@@ -128,7 +127,6 @@
 			<artifactId>json-simple</artifactId>
 			<version>1.1.1</version>
 		</dependency>
-
 		
 		<!-- json -->
 		<dependency>

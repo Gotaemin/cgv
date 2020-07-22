@@ -37,7 +37,6 @@
 				</div>
 			</div>
 
-
 			<div class="contents">
 				<div class="sect-common">
 					<div class="mycgv-info-wrap">
@@ -55,8 +54,8 @@
 									<button id="go_edit_page" type="button" title="새창열림">수정</button>
 								</div>
 								<div class="person-info2">
-									<p>전화번호 : ${memberVO.phone}</p>
-									<p>생년월일 : ${memberVO.birth}</p>
+									<p id="phone" data-phone="${memberVO.phone}"></p>
+									<p id="birth" data-birth="${memberVO.birth}"></p>
 									<p>E-mail : ${memberVO.email}</p>
 								</div>
 							</div>
@@ -235,7 +234,9 @@
 	</div>
 	<script type="text/javascript" src="/js/template/common.js"></script>
 	<script type="text/javascript">
-		
+
+		$("#phone").html("전화번호 : "+makePhoneNum($("#phone").data("phone")));
+		$("#birth").html("생년월일 : "+makeBirth(`${memberVO.birth}`));
 		$("#cjPoint").html(addComma("<em>${cjPoint}</em> 점"));
 		
 		//금액에 콤마 적용

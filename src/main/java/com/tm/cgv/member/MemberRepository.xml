@@ -96,8 +96,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		UPDATE member SET enabled = 0 WHERE username = #{username}
 	</update>
 	
-	
- 
  	<update id="memberEdit" parameterType="MemberBasicVO">
  		UPDATE member SET username=#{username}, password=#{password}, name=#{name},
  			birth=#{birth}, phone=#{phone}, email=#{email}, gender=#{gender}, age=#{age},

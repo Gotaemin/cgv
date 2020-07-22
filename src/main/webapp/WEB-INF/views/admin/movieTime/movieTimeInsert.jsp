@@ -38,8 +38,6 @@
 					<h1>Movie Time Insert</h1>
 					<p>영화 상영시간 등록</p>
 					
-					
-					
 					<!-- Tab -->
 					<ul class="nav nav-tabs">
 						<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#selectMovie">영화 선택</a></li>
@@ -228,7 +226,8 @@
 				var searchTag = $("#searchTag").val();
 				var searchTxt = $("#searchTxt").val();
 				var theaterNum = $("#theaterNum").val();
-				location.href = "./insert?theaterNum="+theaterNum+"curPage=&kind="+searchTag+"&search="+searchTxt;
+				var cinemaNum = $("#cinemaNum").val();
+				location.href = "./insert?num="+theaterNum+"&cinemaNum="+cinemaNum+"&curPage=&kind="+searchTag+"&search="+searchTxt;
 			});
 		}
 
