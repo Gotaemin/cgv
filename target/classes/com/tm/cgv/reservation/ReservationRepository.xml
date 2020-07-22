@@ -53,6 +53,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<association property="movieImageVO" javaType="MovieImageVO">
 			<id column="movieNum" property="movieNum"/>
 			<result column="fileName" property="fileName"/>
+			<result column="type" property="type"/>
 		</association>	
 		
 	</resultMap>
@@ -91,7 +92,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(select num as pNum,pay_method from payment) P
 		on(B.paymentNum = P.pNum))C
 		join
-		(select movieNum,fileName from movieImage) I
+		(select movieNum,fileName,type from movieImage where type=1) I
 		on(miNum = I.movieNum)
 	</select>
 	

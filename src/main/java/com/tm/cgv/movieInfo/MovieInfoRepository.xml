@@ -261,7 +261,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</choose> 
 		LIMIT #{startRow},#{perPage}) movieInfo
 		LEFT JOIN
-		(SELECT movieNum, fileName FROM movieImage WHERE num IN (SELECT num FROM movieInfo) AND type =1) movieImage
+		(SELECT movieNum, fileName FROM movieImage WHERE movieNum IN (SELECT num FROM movieInfo) AND type =1) movieImage
 		ON (movieInfo.num = movieImage.movieNum);
  	</select>
  	
@@ -289,4 +289,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	<select id="titleEngCheck" parameterType="MovieInfoVO" resultType="MovieInfoVO">
  		select * from movieInfo where titleEng=#{titleEng} and deleteAt is null;
  	</select>
+ 	
+ 	<update id="visitorUpdate" parameterType="MovieInfoVO">
+ 		update movieInfo set 
+ 		<if test="kind == 'reservation'">
+ 			visitor = visitor + #{visitor}
+ 		</if>
+ 		<if test="kind == 'cancle'">
+ 			visitor = visitor - #{visitor}
+ 		</if>
+ 		 
+ 		where num = #{num}
+ 	</update>
+ 	
  </mapper>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

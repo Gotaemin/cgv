@@ -440,4 +440,8 @@ public class MovieInfoService {
 		return movieInfoRepository.titleEngCheck(movieInfoVO);
 	}
 	
+	public int visitorUpdate(MovieInfoVO movieInfoVO) throws Exception{
+		return movieInfoRepository.visitorUpdate(movieInfoVO);
+	}
+	
 }
