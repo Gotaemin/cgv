@@ -1,5 +1,5 @@
 @charset "UTF-8";
-.timetable{display:flex;align-items:stretch;width:100%;max-width:1365px;overflow:hidden;box-sizing:border-box}
+.timetable{margin:0 auto;display:flex;align-items:stretch;width:100%;max-width:1365px;overflow:hidden;box-sizing:border-box}
 .timetable *{box-sizing:inherit}
 .timetable li,.timetable ul{list-style-type:none;margin:0}
 .timetable li,.timetable ul{padding:0}
@@ -40,7 +40,7 @@
 	overflow:hidden;
 	color:#fff;
 	border:1px solid #e32c1b;
-	transform-style:preserve-3d
+	transform-style:preserve-3d;
 	}
 .timetable .time-entry small{position:relative;top:50%;transform:translateY(-50%);display:block}
 .timetable .time-entry:hover{background-color:#e74030}

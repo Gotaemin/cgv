@@ -189,7 +189,7 @@
                <div id="ctl00_PlaceHolderContent_Section_Chart" class="sect-graph sect-graph-emotion" style="margin-top: 40px;">
                   <ul class="graph">
                      <li>
-                        <span class="strong">성별 예매 분포</span>
+                        <span class="strong rect-title">성별 예매 분포</span>
                         <div id="qplot_sex" class="chart jqplot-target" style="position: relative">
                          <div id="chart_div" style="position: absolute; left: -20px;">
                             
@@ -197,7 +197,7 @@
                         </div>
                      </li>
                      <li>
-                        <span class="strong">연령별 예매 분포</span>
+                        <span class="strong rect-title">연령별 예매 분포</span>
                         <div id="qplot_sex" class="chart jqplot-target" style="position: relative">
                         <div id="columnchart_values" style="width: 900px; height: 300px; position: absolute; left: -71px;" >
                         

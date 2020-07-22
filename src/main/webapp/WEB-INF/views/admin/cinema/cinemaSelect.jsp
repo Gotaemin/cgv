@@ -125,16 +125,18 @@
 										  		<span class="film_title">3D</span><span class="film_color film_3d"></span>
 										  		<span class="film_title">4D</span><span class="film_color film_4d"></span>
 										  	</div>
-										  	<div class="calendar">
+										  	<div class="calendar" style="height: 36px;">
 												<div class="form-group">
-													<label for="screenDate">날짜 선택 :</label>
-													<input id="datepicker${i.index}" class="datepicker"  type="text" name="screenDate">
+													<label for="screenDate" style="width: 70px;">날짜 선택 :</label>
+													<input id="datepicker${i.index}" class="datepicker"  type="text" name="screenDate"
+													style="border: 1px solid #6c757d">
 													<span id="submitBtn${i.index}" name="${vo.num}" class="submitBtn btn btn-primary">검색</span>
 												</div>
 											</div>
 											
-											<div class="movieTime" style="margin-left:1275px;">
-												<input type="button" value="상영 시간 등록" class="btn btn-primary movieTimeInsert" data-num="${vo.num}">
+											<div class="movieTime" style="margin-left:1310px;">
+												<input type="button" value="상영 시간 등록" class="btn btn-primary movieTimeInsert" data-num="${vo.num}"
+												style="font-size: 15px;">
 											</div>
 														  	
 										  	<div class="timetable" id="timetable${i.index}" name="${i.index}"></div>

@@ -90,8 +90,8 @@
 											<input id="movieTitle" class="form-control" type="text" disabled>
 										</div>
 										<div class="form-group">
-											<label for="selectedFilm">상영 필름 종류 선택:</label>
-											<select id=selectedFilm name="selectedFilm"></select>
+											<label for="selectedFilm" style="width: 130px;">상영 필름 종류 선택:</label>
+											<select id=selectedFilm name="selectedFilm" class="form-control"></select>
 										</div>
 										<div class="form-group">
 											<label for="screenDate">날짜 선택 :</label>
