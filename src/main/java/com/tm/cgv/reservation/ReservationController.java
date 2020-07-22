@@ -92,6 +92,15 @@ public class ReservationController {
 		result = movieTimeService.remainSeatSum(movieTimeVO);
 		System.out.println("잔여좌석 : "+result);
 		
+		//관람인원 수 증가(예매된 좌석의 수만큼 감소)
+		int totalPerson = reservationVO.getCommon() + reservationVO.getTeenager() + reservationVO.getPreference();
+		MovieInfoVO movieInfoVO = new MovieInfoVO();
+		movieInfoVO.setVisitor(totalPerson);
+		movieInfoVO.setNum(reservationVO.getMovieNum());
+		movieInfoVO.setKind("cancle");
+		movieInfoService.visitorUpdate(movieInfoVO);
+		
+		
 		//포인트 DB업데이트 - (할인 정보 조회 -> 조회결과로 각 point 값 들 갱신)
 		//1.할인정보 조회
 		List<DiscountInfoVO> discountList = discountInfoService.discountInfoSelect(reservationVO.getNum());
@@ -176,8 +185,8 @@ public class ReservationController {
 		int result = 0;
 		int seatCheck = 0;
 		
-		System.out.println("할인 타입(0없음/1쿠폰/2포인트/3비회원) : "+type);
-		System.out.println("선택한 쿠폰 번호 : "+couponNum);
+		//System.out.println("할인 타입(0없음/1쿠폰/2포인트/3비회원) : "+type);
+		//System.out.println("선택한 쿠폰 번호 : "+couponNum);
 		
 		//예매 번호 등록 - Reservation
 		result = reservationService.reservationInsert(reservationVO);
@@ -223,6 +232,13 @@ public class ReservationController {
 			}
 		}
 		
+		//관람인원 수 증가(예매된 좌석의 수만큼 증가)
+		int totalPerson = reservationVO.getCommon() + reservationVO.getTeenager() + reservationVO.getPreference();
+		MovieInfoVO movieInfoVO = new MovieInfoVO();
+		movieInfoVO.setVisitor(totalPerson);
+		movieInfoVO.setNum(reservationVO.getMovieNum());
+		movieInfoVO.setKind("reservation");
+		movieInfoService.visitorUpdate(movieInfoVO);
 		
 		
 		//좌석 번호 등록 : SeatBooking
@@ -251,7 +267,6 @@ public class ReservationController {
 				movieTimeService.remainSeatUpdate(movieTimeVO);
 			}
 		}
-		
 		
 		return result;
 	}

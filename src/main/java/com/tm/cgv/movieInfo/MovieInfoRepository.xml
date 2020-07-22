@@ -289,4 +289,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	<select id="titleEngCheck" parameterType="MovieInfoVO" resultType="MovieInfoVO">
  		select * from movieInfo where titleEng=#{titleEng} and deleteAt is null;
  	</select>
+ 	
+ 	<update id="visitorUpdate" parameterType="MovieInfoVO">
+ 		update movieInfo set 
+ 		<if test="kind == 'reservation'">
+ 			visitor = visitor + #{visitor}
+ 		</if>
+ 		<if test="kind == 'cancle'">
+ 			visitor = visitor - #{visitor}
+ 		</if>
+ 		 
+ 		where num = #{num}
+ 	</update>
+ 	
  </mapper>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

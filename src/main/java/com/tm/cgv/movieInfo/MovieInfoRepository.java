@@ -56,4 +56,6 @@ public interface MovieInfoRepository {
 	
 	public MovieInfoVO titleCheck(MovieInfoVO movieInfoVO) throws Exception;
 	public MovieInfoVO titleEngCheck(MovieInfoVO movieInfoVO) throws Exception;
+	
+	public int visitorUpdate(MovieInfoVO movieInfoVO) throws Exception;
  }

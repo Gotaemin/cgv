@@ -695,7 +695,7 @@ function reservation_save(result){
 		data : aa,
 		success : function(result2){
 			if(result2 > 0){
-				
+				console.log("예매 번호 ");
 				if(beMemberVO != ''){
 					//비회원 테이블에  비회원 정보 저장
 					guestVO.reservationNum = result2;
