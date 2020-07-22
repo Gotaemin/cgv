@@ -55,7 +55,7 @@
 						<!-- 목록 -->
 						<table class="table table-bordered" id="dataTable" width="100%"
 							cellspacing="0">
-							<tr class="admin-tr">
+							<tr class="admin-tr" style="font-weight: 600;">
 								<td>제목</td>
 								<td>영문제목</td>
 								<td>상영시간</td>

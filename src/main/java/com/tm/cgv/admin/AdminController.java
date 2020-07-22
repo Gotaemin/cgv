@@ -1127,10 +1127,15 @@ public class AdminController {
 	   }
 	   
 	   //전체삭제
-	   @GetMapping("review/allDelete")
+	   @GetMapping("review/cancelDelete")
 	   @ResponseBody
-	   public int allDelete()throws Exception {
-	      int result = reviewService.allDelete();
+	   public int cancelDelete(Integer[] num)throws Exception {
+	      ArrayList<Integer> ar = new ArrayList<>(Arrays.asList(num));
+	      int result = 0;
+	      for (Integer reservationNum : ar) {
+	         result = reviewService.cancelDelete(reservationNum);
+	      }
+	      
 	      return result;
 	   }
 	   

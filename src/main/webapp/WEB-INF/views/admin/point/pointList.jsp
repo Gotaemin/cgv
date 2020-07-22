@@ -23,8 +23,8 @@
 			<%-- <input id="_csrf" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> --%>
 			<main>
 				<div class="container-fluid">
-					<h1>Point ${path}</h1>
-					<p>포인트 사용 내역</p>
+					<h1>Point List</h1>
+					<p>-포인트 사용 내역 페이지-</p>
 
 					<form action="./pointHistoryList" id="form-Data" class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0" style="float:right; padding-bottom: 20px;display:flex!important; " >
 						<input type="hidden" id="curPage" name="curPage" value="${pager.curPage}">

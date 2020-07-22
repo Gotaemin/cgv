@@ -259,10 +259,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       update review set deleteAt=now() where reservationNum=#{reservationNum}
    </update>
    
-   <update id="allDelete">
-      update review set deleteAt = now() 
+   <update id="cancelDelete" parameterType="ArrayList">
+      update review set spoiler=0 and swearword=0
       where createAt is not null and deleteAt is null 
-      and (spoiler<![CDATA[>]]>0 or swearword<![CDATA[>]]>0)
+      and (spoiler<![CDATA[>]]>0 or swearword<![CDATA[>]]>0) and reservationNum=#{reservationNum}
    </update>
    
    <update id="partDelete" parameterType="ArrayList">

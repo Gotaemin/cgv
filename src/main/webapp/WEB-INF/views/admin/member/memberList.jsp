@@ -19,7 +19,7 @@
 			<main>
 				<div class="container-fluid">
 					<h1>Member List</h1>
-					<p>멤버 목록</p>
+					<p>-멤버 목록 페이지-</p>
 
 					<!-- 검색창 -->
 					<div class="input-group">

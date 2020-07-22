@@ -59,7 +59,7 @@
 										<button id="addUnderDataBtn" type="button" class="btn" style="padding: 0px 10px; position: absolute; right: 0px;">+</button>
 										<div>
 											<label for="Time" style="width: 210px!important; margin: 0 5px;">시간대</label>
-											<label for="adult-price" style="width: 210px!important; margin: 0 10px;">일반가격</label>
+											<label for="adult-price" style="width: 210px!important; margin: 0 5px;">일반가격</label>
 											<label for="youth-price" style="width: 210px!important; margin:0;">청소년가격</label>
 										</div>
 										<div id="underData">
