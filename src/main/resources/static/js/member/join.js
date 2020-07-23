@@ -237,12 +237,7 @@
 		});
 		
 		// ID 중복 체크
-		var idCheck = false
 		$("#idCheck").click(function() {
-
-			if(idCheck) {
-				return;
-			}
 
 			var id = $("#userID").val();
 
@@ -254,7 +249,6 @@
 					$("#userID").val("");
 				}else{
 					alert("사용가능한 아이디 입니다.");
-					idCheck = true;
 				}
 			});
 		});
@@ -335,7 +329,7 @@
 				return;
 			}
 
-			phone = "01071679549";	// test code
+			//phone = "01071679549";	// test code
 			// ajax로 인증으로 번호 보내기 /member/phoneConfirm
 			$.get(
 				"/member/phoneConfirm",{ 	

@@ -131,15 +131,15 @@ public class MemberService implements UserDetailsService {
  		// 해당되는 유저가 없다면, sms 인증 진행
  		// 인증번호 생성, redis에 key : value 형태로 (phone:authCode) 저장 
     	GenerateRandomNumber authMaker = new GenerateRandomNumber();
-        //String authCode = authMaker.excuteGenerate();
-        String authCode = "137955";
+        String authCode = authMaker.excuteGenerate();
+        //String authCode = "137955";
         
         
         // 폰 번호가 없음 -> 인증 메시지 보내기
     	String contents = "[CGV]인증번호는 "+authCode+" 입니다";
     	System.out.println(memberBasicVO.getPhone());
     	System.out.println(contents);
-    	//smsSender.smsSend(memberBasicVO.getPhone(), contents);
+    	smsSender.smsSend(memberBasicVO.getPhone(), contents);
     	
     	// redis에 set
     	redisTemplate.opsForValue().set(memberBasicVO.getPhone(), authCode);

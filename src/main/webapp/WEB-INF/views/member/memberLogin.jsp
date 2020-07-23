@@ -62,7 +62,7 @@
 								<!-- 4. pw input field의 name 속성값이 'password' -->
 								<input type="hidden" id="location" name="loc" value="/"/>
 								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-								<input type="text" name="username" value="">
+								<input id="username" type="text" name="username" value="">
 								<input type="password" name="password" value="">
 
 							</div>
@@ -126,10 +126,15 @@
 	
 	<!-- 사이드바 ---------------------------------------------------------------------------------------------->
 	<c:import url="../template/sidebar.jsp"></c:import>
+	<script type="text/javascript">
+		$("#username").blur(function() {
+
+			if($(this).val() == "admin") {
+				$("#location").val("/admin");
+				console.log($("#location").val());
+			}	
+		});
+	</script>
 </div>
-
-
-
-
 </body>
 </html>
