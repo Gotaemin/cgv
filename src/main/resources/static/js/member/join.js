@@ -239,6 +239,7 @@
 		// ID 중복 체크
 		$("#idCheck").click(function() {
 
+
 			var id = $("#userID").val();
 
 			$.get("./memberIdCheck",{

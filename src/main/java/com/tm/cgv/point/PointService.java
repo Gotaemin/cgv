@@ -47,4 +47,8 @@ public class PointService {
 		return pointRepository.pointInsert(pointVO);
 	}
 	
+	public PointVO pointExistCheck(PointVO pointVO) throws Exception{
+		return pointRepository.pointExistCheck(pointVO);
+	}
+	
 }

@@ -32,7 +32,7 @@
 	
 								
 						  <div class="form-group">
-						   	 <label for="name">이름:</label>
+						   	 <label for="name">상영관명:</label>
 						   	 <input type="text" class="form-control" id="name" name="name" value="${vo.name}" required="required">
 						  </div>
 						  

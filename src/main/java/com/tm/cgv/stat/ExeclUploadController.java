@@ -59,9 +59,9 @@ public class ExeclUploadController {
 	    	  //num,uid,filmType,cinemaName,theaterName,seats,common,teenager,preference,totalPrice,creatAt
 	    	  System.out.println("========================== "+i);
 	    	  reservationVO.setNum(0);
-	    	  reservationVO.setMovieNum(1);
-	    	  reservationVO.setPaymentNum(1);
-	    	  reservationVO.setMovieTimeNum(1);
+	    	  reservationVO.setMovieNum((int)row.getCell(1).getNumericCellValue());
+	    	  reservationVO.setPaymentNum((int)row.getCell(2).getNumericCellValue());
+	    	  reservationVO.setMovieTimeNum((int)row.getCell(3).getNumericCellValue());
 	    	  reservationVO.setUid(row.getCell(4).getStringCellValue());
 	    	  reservationVO.setFilmType((int)row.getCell(5).getNumericCellValue());
 	    	  reservationVO.setCinemaName(row.getCell(6).getStringCellValue());
