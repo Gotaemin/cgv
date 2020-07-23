@@ -475,7 +475,7 @@ public class AdminController {
 
 		int result = timePriceService.timePriceDeleteFilm(timePriceVO);
 		
-		mv.setViewName("redirect:../../cinemaSelect?num="+timePriceVO.getCinemaNum());
+		mv.setViewName("redirect:../cinemaSelect?num="+timePriceVO.getCinemaNum());
 		
 		return mv;
 	}
@@ -1058,9 +1058,6 @@ public class AdminController {
 		mv.addObject("pager", pager);
 		mv.addObject("pointHistoryList", pointHistoryList);
 		mv.setViewName("admin/point/pointList");
-
-	
-
 		
 		return mv;
 	}

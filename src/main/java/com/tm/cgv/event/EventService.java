@@ -81,7 +81,7 @@ public class EventService {
 		
 		//EventImage에 들어갈 정보 만들기
 		FilePathGenerator filePathGenerator = new FilePathGenerator();
-		String path = FilePathGenerator.addTimePath("")+"\\";
+		String path = FilePathGenerator.addTimePath("");
 	    System.out.println(path+"path!!!!");
 	    String extendPath = FilePathGenerator.addTimePath(filePath);
 	    File file = filePathGenerator.getUseClassPathResource(extendPath);
