@@ -14,5 +14,7 @@ public interface PointRepository {
 	public int pointInsert(PointVO pointVO) throws Exception;
 	
 	public int pointDiscountUpdate(PointVO pointVO) throws Exception;
+	
+	public PointVO pointExistCheck(PointVO pointVO) throws Exception;
 
 }
