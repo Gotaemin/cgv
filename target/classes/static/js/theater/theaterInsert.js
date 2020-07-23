@@ -100,20 +100,11 @@ function changeSelect(){
 
 // seat grade 조정
 function checkSeat(name){
-	//console.log("---test---");
-	//console.log(name);
-	
-
 	var grade=1; 
 	var chName = $(name).attr("name");
-	var chClass = $(name).attr("class");;
-	//console.log("ck : " + ck);
-
+	var chClass = $(name).attr("class");
 	var rw = chName.substring(0,1);
 	var cl = chName.substring(1); 
-	//console.log("rw : " + rw);
-	//console.log("cl : " + cl);
-	
 
 	//좌석 삭제
 	if(seatColor==0){
