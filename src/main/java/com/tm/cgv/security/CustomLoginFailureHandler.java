@@ -31,8 +31,6 @@ public class CustomLoginFailureHandler implements AuthenticationFailureHandler {
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
 
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
 		String errormsg = null;
 
 		/*
@@ -54,12 +52,12 @@ public class CustomLoginFailureHandler implements AuthenticationFailureHandler {
         request.setAttribute("msg", errormsg);
         request.setAttribute("path", "/");
  
-        System.out.println("username : "+username);
-		System.out.println("password : "+password);
+        System.out.println("username : "+request.getParameter("username"));
+		System.out.println("password : "+request.getParameter("password"));
 		System.out.println("errormsg : "+errormsg);
 		System.out.println(exception.getMessage());
 		
-        // result.jsp 보내서 alert 띄우고 다시 login page로 보낼까?
+        // result.jsp 보내서 alert 띄우고 다시 login page
         request.getRequestDispatcher("../WEB-INF/views/common/result.jsp").forward(request, response);
 	}
 }
