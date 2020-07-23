@@ -10,6 +10,7 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.DataFormat;
+import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -37,6 +38,10 @@ public class ReservationListXls extends AbstractXlsView {
         
         DataFormat numberDataFormat = workbook.createDataFormat();
         numberCellStyle.setDataFormat(numberDataFormat.getFormat("#,##0"));
+
+        CellStyle styleOfBoardFillFontBlack11 = workbook.createCellStyle();
+        styleOfBoardFillFontBlack11.setFillForegroundColor(IndexedColors.LAVENDER.getIndex());
+
         
         //시트 생성(시트 제목)
         Sheet sheet = workbook.createSheet("sheet01");
@@ -46,74 +51,120 @@ public class ReservationListXls extends AbstractXlsView {
         //movieInfoVO : title,runTime
         //movieTimeVO : screenTime,screenDate,
         //paymentVO : imp_uid,merchant_uid,pg,pay_method,apply_num
+        ReservationVO stat = voList.get(0);
+        Row row = sheet.createRow(0);
         
-        for (int i = 0 ; i < voList.size() ; i++) {
-            ReservationVO stat = voList.get(i);
-            Row row = sheet.createRow(i);
+        Cell cell0 = row.createCell(0);
+        cell0.setCellStyle(styleOfBoardFillFontBlack11);
+        cell0.setCellValue("번호");
+        Cell cell1 = row.createCell(1);
+        cell1.setCellValue("아이디");
+        Cell cell2 = row.createCell(2);
+        cell2.setCellValue("필름타입");
+        Cell cell3 = row.createCell(3);
+        cell3.setCellValue("극장");
+        Cell cell4 = row.createCell(4);
+        cell4.setCellValue("상영관");
+        Cell cell5 = row.createCell(5);
+        cell5.setCellValue("좌석");
+        Cell cell6 = row.createCell(6);
+        cell6.setCellValue("일반");
+        Cell cell7 = row.createCell(7);
+        cell7.setCellValue("청소년");
+        Cell cell8 = row.createCell(8);
+        cell8.setCellValue("우대");
+        Cell cell9 = row.createCell(9);
+        cell9.setCellValue("총 결제액");
+        Cell cell10 = row.createCell(10);
+        cell10.setCellValue("예매일");
+        Cell cell11 = row.createCell(11);
+        cell11.setCellValue("제목");
+        Cell cell12 = row.createCell(12);
+        cell12.setCellValue("러닝타임");
+        Cell cell13 = row.createCell(13);
+        cell13.setCellValue("상영시간");
+        Cell cell14 = row.createCell(14);
+        cell14.setCellValue("상영날짜");
+        Cell cell15 = row.createCell(15);
+        cell15.setCellValue("imp_uid");
+        Cell cell16 = row.createCell(16);
+        cell16.setCellValue("merchant_uid");
+        Cell cell17 = row.createCell(17);
+        cell17.setCellValue("pg");
+        Cell cell18 = row.createCell(18);
+        cell18.setCellValue("pg_method");
+        Cell cell19 = row.createCell(19);
+        cell19.setCellValue("applyNum");
+        
+        
+        
+        for (int i = 1 ; i < voList.size() ; i++) {
+            stat = voList.get(i);
+            row = sheet.createRow(i);
             
-            Cell cell0 = row.createCell(0);
+            cell0 = row.createCell(0);
             cell0.setCellValue(stat.getNum());
 
-            Cell cell1 = row.createCell(1);
+            cell1 = row.createCell(1);
             cell1.setCellValue(stat.getUid());
 
-            Cell cell2 = row.createCell(2);
+            cell2 = row.createCell(2);
             cell2.setCellValue(stat.getFilmType());
             
-            Cell cell3 = row.createCell(3);
+            cell3 = row.createCell(3);
             cell3.setCellValue(stat.getCinemaName());
 
-            Cell cell4 = row.createCell(4);
+            cell4 = row.createCell(4);
             cell4.setCellValue(stat.getTheaterName());
 
-            Cell cell5 = row.createCell(5);
+            cell5 = row.createCell(5);
             cell5.setCellValue(stat.getSeats());
             
-            Cell cell6 = row.createCell(6);
+            cell6 = row.createCell(6);
             cell6.setCellValue(stat.getCommon());
             
-            Cell cell7 = row.createCell(7);
+            cell7 = row.createCell(7);
             cell7.setCellValue(stat.getTeenager());
             
-            Cell cell8 = row.createCell(8);
+            cell8 = row.createCell(8);
             cell8.setCellValue(stat.getPreference());
             
-            Cell cell9 = row.createCell(9);
+            cell9 = row.createCell(9);
             cell9.setCellType(CellType.NUMERIC);
             cell9.setCellValue(stat.getTotalPrice());
             cell9.setCellStyle(numberCellStyle);
             
-            Cell cell10 = row.createCell(10);
+            cell10 = row.createCell(10);
             cell10.setCellValue(stat.getCreateAt());
             
             //movieInfoVO
-            Cell cell11 = row.createCell(11);
+            cell11 = row.createCell(11);
             cell11.setCellValue(stat.getMovieInfoVO().getTitle());
             
-            Cell cell12 = row.createCell(12);
+            cell12 = row.createCell(12);
             cell12.setCellValue(stat.getMovieInfoVO().getRuntime());
             
             //MovieTimeVO
-            Cell cell13 = row.createCell(13);
+            cell13 = row.createCell(13);
             cell13.setCellValue(stat.getMovieTimeVO().getScreenTime());
             
-            Cell cell14 = row.createCell(14);
+            cell14 = row.createCell(14);
             cell14.setCellValue(stat.getMovieTimeVO().getScreenDate());
             
             //PaymentVO
-            Cell cell15 = row.createCell(15);
+            cell15 = row.createCell(15);
             cell15.setCellValue(stat.getPaymentVO().getImp_uid());
             
-            Cell cell16 = row.createCell(16);
+            cell16 = row.createCell(16);
             cell16.setCellValue(stat.getPaymentVO().getMerchant_uid());
             
-            Cell cell17 = row.createCell(17);
+            cell17 = row.createCell(17);
             cell17.setCellValue(stat.getPaymentVO().getPg());
             
-            Cell cell18 = row.createCell(18);
+            cell18 = row.createCell(18);
             cell18.setCellValue(stat.getPaymentVO().getPay_method());
             
-            Cell cell19 = row.createCell(19);
+            cell19 = row.createCell(19);
             cell19.setCellValue(stat.getPaymentVO().getApply_num());
             
             
