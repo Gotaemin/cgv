@@ -21,28 +21,27 @@
 	<!-- 컨테이너 -------------------------------------------------------------------------------------->
 	<input type="hidden" id="_csrf" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	<div class="container">
-	<div class="contents">
-		<div class="c_nav">
-			<div class="nav_linemap">
-				<ul>
-					<li>
-						<a href="../">
-							<img alt="go to Home" src="../images/login/btn_home.png">					
-						</a>
-					</li>
-					<li>
-						<a href="./movieList">영화</a>
-					</li>
-					<li>
-						<a href="./movieList">무비차트</a>
-					</li>
-					<li class="last">
-						무비차트
-					</li>
-				</ul>
-			</div>
+	<div class="c_nav">
+		<div class="nav_linemap">
+			<ul>
+				<li>
+					<a href="../">
+						<img alt="go to Home" src="../images/login/btn_home.png">					
+					</a>
+				</li>
+				<li>
+					<a href="./eventList">이벤트</a>
+				</li>
+				<li>
+					<a href="./eventList">이벤트리스트</a>
+				</li>
+				<li class="last">
+					이벤트상세
+				</li>
+			</ul>
 		</div>
-		
+	</div>
+	<div class="contents">
 		<div class="tbl-viw-head">
 			<h3>
 				<em class="txt-lightblue">${vo.kind}</em>

@@ -27,6 +27,7 @@ public interface CinemaRepository {
 	
 	public void totalUpdate(CinemaVO cinemaVO) throws Exception;
 	
+	
 	//Delete
 	public int cinemaDelete(int num) throws Exception;
 	

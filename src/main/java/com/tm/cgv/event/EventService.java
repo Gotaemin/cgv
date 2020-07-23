@@ -52,9 +52,10 @@ public class EventService {
 	
 	public List<EventVO> eventList(Pager_eventList pager) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		
+		System.out.println("service curPage : " + pager.getCurPage());
 		pager.makeRow();
 		long totalCount = eventRepository.eventCount(pager);
+		System.out.println("totalCount : " + totalCount);
 		pager.makeBlock(totalCount);
 		List<EventVO> list = eventRepository.eventList(pager);
 

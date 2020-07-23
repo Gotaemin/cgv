@@ -67,8 +67,8 @@
 														</colgroup>
 														<tbody>
 															<div class="form-group">
-														   	 <label for="local">분류:</label>
-														   	 <select class="form-control" id="" name="kind">
+														   	 <label for="kind">분류:</label>
+														   	 <select class="form-control" id="kind" name="kind">
 														   	 	<option value="special">스페셜이벤트</option>
 														   	 	<option value="movie">영화/예매</option>
 														   	 	<option value="discount">제휴/할인</option>
@@ -246,9 +246,9 @@
 			});
 		});
 
-		$("#test1").click(function(){
-			$("#fo").append('<input type="text" value=">.<">');
-		})
+
+		var c = '${vo.kind}';
+		$('#kind option[value="'+c+'"]').prop("selected",true);
 
 		
 
