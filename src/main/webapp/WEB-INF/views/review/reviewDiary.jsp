@@ -86,7 +86,7 @@
 								<div class="td1" id="total" title="${m_count}"
 								style="margin: 0;">
 									CGV와 함께한 추억들
-									<c:out value="${m_count}" />
+									
 									${d_count} 건
 								</div>
 								<!-- el태그 -->
