@@ -102,12 +102,12 @@
 		var maxSize = 3145728; 		// 3MB
 
 		if(fileSize >= maxSize) {
-			alert(file.name+" 파일 사이즈 초과");
+			alert(fileName+" 파일 사이즈 초과");
 			return false;
 		}
 	
 		if(regex.test(fileName)) {
-			alert(file.name+" 해당 종류의 파일은 업로드 할 수 없습니다");
+			alert(fileName+" 해당 종류의 파일은 업로드 할 수 없습니다");
 			return false;
 		}
 		return true;
@@ -125,6 +125,7 @@
 		for(var i=0; i<files.length; i++) {
 
 			if(!checkFile(files[i].name, files[i].size)) {
+				console.log("이미지가 아니거나 너무 큰 이미지입니다");
 				return false;
 			}
 
@@ -145,6 +146,8 @@
 					alert("수정이 완료되었습니다");
 					opener.editCallback(result);
 					window.close();
+				} else {
+					alert("수정 실패");
 				}
 			}
 		});
