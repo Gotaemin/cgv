@@ -385,7 +385,7 @@
 		
 		/* ---------내 평점 보기---------- */
 		$("#look").click(function(){
-			window.location.href='http://${pageContext.request.contextPath}/review/reviewLook';
+			window.location.href='${pageContext.request.contextPath}/review/reviewLook';
 		});
 		
 /*		function reviewLook(curPage){
