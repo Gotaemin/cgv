@@ -334,7 +334,7 @@ function selectedCheck(){
 	}
 	if($(".date-list ul li.day").hasClass("selected") == true){
 		cDate = true;
-
+	}
 	if(cMovie && cTheater && cDate){
 		$("#ticket .step1 .section-time .col-body .placeholder").css("display","none");
 		$("#ticket .step1 .section-time .col-body .time-list").css("display","block");
