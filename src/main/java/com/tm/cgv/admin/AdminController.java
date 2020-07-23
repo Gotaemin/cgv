@@ -1058,9 +1058,6 @@ public class AdminController {
 		mv.addObject("pager", pager);
 		mv.addObject("pointHistoryList", pointHistoryList);
 		mv.setViewName("admin/point/pointList");
-
-	
-
 		
 		return mv;
 	}
