@@ -1182,9 +1182,10 @@ public class AdminController {
 	@ResponseBody
 	public ModelAndView selectKind(String kind, Pager_eventList pager) throws Exception {
 		ModelAndView mv = new ModelAndView();
+	
 		List<EventVO> list = eventService.eventList(pager);
 		System.out.println(list.size() + " :: size");
-		
+	
 		mv.addObject("pager", pager);
 		mv.addObject("list", list);
 		mv.setViewName("admin/event/ajax/selectKind");

@@ -150,18 +150,22 @@
 
 		$("#name").blur(function(){
 
-			var theaterName = $("#name").val();
-			var cinemaNum = $("#cineNum").val();
-			$.get("./theaterNameCheck",{
-					name:theaterName, cinemaNum:cinemaNum
-				},function(result){
-					if(result == 1){
-						alert("이미 존재하는 상영관 이름입니다.")
-						$("#name").val("");
-					}else{
-						alert("사용 가능한 이름입니다.")
-					}
-			});
+			if($(this).val()!=""){
+				var theaterName = $("#name").val();
+				var cinemaNum = $("#cineNum").val();
+				$.get("./theaterNameCheck",{
+						name:theaterName, cinemaNum:cinemaNum
+					},function(result){
+						if(result == 1){
+							alert("이미 존재하는 상영관 이름입니다.")
+							$("#name").val("");
+						}else{
+							alert("사용 가능한 이름입니다.")
+						}
+				});
+			}else{
+				alert("상영관명을 입력해주세요.");
+			}
 		});
 		
 	</script>

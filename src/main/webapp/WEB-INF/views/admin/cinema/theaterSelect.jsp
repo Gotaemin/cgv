@@ -17,7 +17,7 @@
                 <main>
                     <div class="container-fluid" style="padding: 40px;">
                         <h1 class="mt-4">Theater Select</h1>
-                        <p>-영화관 정보 수정 페이지-</p>
+                        <p>-영화관 정보 페이지-</p>
                         <h3>${cine.name} CGV</h3>
 						<div class="card mb-4">
                             <div class="card-body">

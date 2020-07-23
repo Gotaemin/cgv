@@ -37,7 +37,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="totalUpdate" parameterType="CinemaVO">
 		update cinema set totalTheater=totalTheater+1, totalSeat=totalSeat+#{totalSeat} where num=#{num}
 	</update>
-	
 
 	<delete id="cinemaDelete" parameterType="Integer">
 		delete from cinema where num=#{num}
