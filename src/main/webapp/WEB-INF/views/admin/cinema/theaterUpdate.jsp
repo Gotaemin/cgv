@@ -251,7 +251,7 @@
 						
 					}
 
-					$("#r"+i).append('<span id="arrow'+i+'" class="arrow" name="'+ch+'"><img src="../../images/theater/arrow.png" class="arrow-img" /></span>')
+					$("#r"+i).append('<span id="arrow'+i+'" class="arrow" name="'+ch+'"><img src="/images/theater/arrow.png" class="arrow-img" /></span>')
 					
 				$("#seats_list").append('</div></div>');		
 				listLength = list.length;
