@@ -132,7 +132,9 @@
 			if($(this).val() == "admin") {
 				$("#location").val("/admin");
 				console.log($("#location").val());
-			}	
+			} else {
+				$("#location").val("/");
+			}
 		});
 	</script>
 </div>
