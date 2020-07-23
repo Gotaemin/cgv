@@ -16,8 +16,7 @@
 				<p class="txt1">${vo.title}</p>
 				<p class="txt2">
 					"${vo.startDate}~${vo.endDate}"
-					<span> . </span>
-					<em>D-5</em>
+					<!-- <em>D-5</em> -->
 				</p>
 			</div>
 

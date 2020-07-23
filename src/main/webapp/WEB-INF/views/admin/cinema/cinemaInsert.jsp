@@ -113,18 +113,19 @@
 	
 
 		$("#name").blur(function(){
-
-			var cinemaName = $("#name").val();
-			$.get("./cinemaNameCheck",{
-					name:cinemaName
-				},function(result){
-					if(result == 1){
-						alert("이미 존재하는 극장 이름입니다.")
-						$("#name").val("");
-					}else{
-						alert("사용 가능한 이름입니다.")
-					}
-			});
+			if($(this).val()!=""){
+				var cinemaName = $("#name").val();
+				$.get("./cinemaNameCheck",{
+						name:cinemaName
+					},function(result){
+						if(result == 1){
+							alert("이미 존재하는 극장 이름입니다.")
+							$("#name").val("");
+						}else{
+							alert("사용 가능한 이름입니다.")
+						}
+				});
+			}
 		});
 		</script>
 

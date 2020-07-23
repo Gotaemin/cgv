@@ -50,7 +50,7 @@
 		</c:if>
 		
 		<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="p">
-			<li class="page-item"><a href="./eventList?curPage=${p}" class="page-link custompager" title="${p}">${p}</a></li>
+			<li class="page-item"><a href="./cinemaList?curPage=${p}&local=${pager.kind}" class="page-link custompager" title="${p}">${p}</a></li>
 		</c:forEach>
 
 		<c:if test="${pager.curBlock<pager.totalBlock}">

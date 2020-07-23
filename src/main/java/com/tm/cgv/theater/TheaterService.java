@@ -325,6 +325,11 @@ public class TheaterService {
 		System.out.println("service : " + num);
 		//cinema table의 totalTheater-1, totalSeat-좌석수 한 후 delete하기
 		TheaterVO theaterVO = theaterRepository.theaterSelect(num);
+		//받아온 theaterVO의 totalSeat를 갖고 cinema의 totalSeat-좌석수, totalTheater-1
+		CinemaVO cinemaVO = new CinemaVO();
+		cinemaVO.setTotalSeat(theaterVO.getSeatCount());
+		cinemaVO.setNum(theaterVO.getCinemaNum());
+		
 		int result =  cinemaRepository.theaterDelete(theaterVO);
 		return theaterRepository.theaterDelete(num);
 	}
