@@ -232,13 +232,11 @@
 				if(check){
 					var s = $(".fd"+index);
 					var tp = s.data("type");
-					alert("tp :" + tp)
 
 					s.parent().find('input').remove();
 					s.parent().parent().html('<input type="file" class="form-control files" id="files" placeholder="배너 이미지 선택" name="files">');
 					
 					deleteImage.push(s.attr('id'));
-					alert(deleteImage);
 					$("#fo").append('<input type="hidden" name="delNum" value="'+ deleteImage[deleteImage.length-1] +'">');
 					
 				}  
