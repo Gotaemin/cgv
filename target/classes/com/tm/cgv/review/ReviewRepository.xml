@@ -297,20 +297,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </select>
    
    <select id="reviewDiary_List" parameterType="String" resultType="ReviewVO">
-   		select M.*, I.fileName from
-		((select M.*, screenDate, screenTime from
-		((select R.*,I.title,I.titleEng from
-		((select R.*, D.with1, D.opinion, D.d_createAt from
-		(select D.* from
-		((select num, reservationNum,with1,opinion, date_format(d_createAt,'%Y-%m-%d %H:%i') d_createAt from reviewDiary 
-        where d_createAt is not null and d_deleteAt is null) D right join
-		(select num from reservation where uid=#{uid}) R on(D.reservationNum = R.num)) where D.num is not null) D 
-		left join (select num, movieNum, theaterName, cinemaName, movieTimeNum, common, teenager, preference from reservation 
-		where uid=#{uid} and deleteAt is null) R on (D.reservationNum = R.num)) R 
-		left join (select num, title, titleEng from movieInfo) I
-		on(R.movieNum = I.num)))M left join (select * from movieTime where deleteAt is null) T on(M.movieTimeNum = T.num))) M 
-		left join (select * from movieImage where type=1) I
-		on(M.movieNum = I.movieNum)) order by M.d_createAt desc
+<!--    		select M.*, I.fileName from -->
+<!-- 		((select M.*, screenDate, screenTime from -->
+<!-- 		((select R.*,I.title,I.titleEng from -->
+<!-- 		((select R.*, D.with1, D.opinion, D.d_createAt from -->
+<!-- 		(select D.* from -->
+<!-- 		((select num, reservationNum,with1,opinion, date_format(d_createAt,'%Y-%m-%d %H:%i') d_createAt from reviewDiary  -->
+<!--         where d_createAt is not null and d_deleteAt is null) D right join -->
+<!-- 		(select num from reservation where uid=#{uid}) R on(D.reservationNum = R.num)) where D.num is not null) D  -->
+<!-- 		left join (select num, movieNum, theaterName, cinemaName, movieTimeNum, common, teenager, preference from reservation  -->
+<!-- 		where uid=#{uid} and deleteAt is null) R on (D.reservationNum = R.num)) R  -->
+<!-- 		left join (select num, title, titleEng from movieInfo) I -->
+<!-- 		on(R.movieNum = I.num)))M left join (select * from movieTime where deleteAt is null) T on(M.movieTimeNum = T.num))) M  -->
+<!-- 		left join (select * from movieImage where type=1) I -->
+<!-- 		on(M.movieNum = I.movieNum)) order by M.d_createAt desc -->
+		select * from
+		(select * from
+		(select * from
+		(select * from
+		(select num,movieNum,cinemaName,movieTimeNum,common,teenager,preference from reservation where uid = 'admin')R
+		join
+		(select num as mNum,title,titleEng from movieInfo) MI
+		on(R.movieNum = MI.mNum)) A
+		join
+		(select num as mtNum,theaterNum,screenDate,screenTime from movieTime) MT
+		on(A.movieTimeNum = MT.mtNum))B
+		join
+		(select movieNum as meMovieNum,fileName from movieImage where type = 1) ME
+		on(B.movieNum = ME.meMovieNum))C
+		join 
+		(select reservationNum,with1,opinion,date_format(d_createAt,'%Y-%m-%d %H:%i') d_createAt from reviewDiary where d_deleteAt is null) RD
+		on(C.num = RD.reservationNum)
+		where screenDate <![CDATA[<=]]> now() order by num desc
    </select>
 
 	<update id="reviewDiary_Delete" parameterType="ReviewVO">

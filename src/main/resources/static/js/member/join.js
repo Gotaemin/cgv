@@ -241,7 +241,7 @@
 		$("#idCheck").click(function() {
 
 			if(idCheck) {
-				return;
+				//return;
 			}
 
 			var id = $("#userID").val();
