@@ -205,13 +205,13 @@ class MemberController {
     @ResponseBody
     public int memberEdit(MultipartFile[] files, MemberBasicVO memberBasicVO, HttpSession session) throws Exception{
     	
-//    	System.out.println("edit");
-//    	for (MultipartFile file : files) {
-//    		System.out.println("==========================");
-//    		System.out.println("upload File Name : "+file.getOriginalFilename());
-//    		System.out.println("upload File Size : "+file.getSize());
-//		}
-//    	System.out.println(memberBasicVO.getNick());
+    	System.out.println("edit");
+    	for (MultipartFile file : files) {
+    		System.out.println("==========================");
+    		System.out.println("upload File Name : "+file.getOriginalFilename());
+    		System.out.println("upload File Size : "+file.getSize());
+		}
+    	System.out.println(memberBasicVO.getNick());
     	
     	return memberService.memberEdit(memberBasicVO, files, session);
     }

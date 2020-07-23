@@ -77,7 +77,6 @@
 			//정말 삭제할 거냐고 묻는 alert창
 			var check = confirm("삭제하시겠습니까?");
 			if(check){
-				alert(${vo.num});
 				location.href="./eventDelete?num="+${vo.num};
 			}
 		});
