@@ -10,6 +10,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from point where username=#{username}
 	</select>
 	
+	<select id="pointExistCheck" parameterType="PointVO" resultType="PointVO">
+		select * from point where username=#{username} and type= #{type}
+	</select>
+	
 	<select id="getCjPoint" parameterType="PointVO" resultType="Integer">
 		SELECT SUM(price) FROM point WHERE type = 'cjOnePointipt' AND username = #{username}; 
 	</select>	
