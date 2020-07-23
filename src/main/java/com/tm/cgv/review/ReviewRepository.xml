@@ -25,7 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    	<select id="search_Count" resultType="Integer">
 	    select count(T.screenDate) from 
 		(reservation R inner join movieTime T on (R.movieTimeNum = T.num)) 
-		where R.uid=#{uid} and T.screenDate<![CDATA[<=]]>now()
+		where R.uid=#{uid} and R.createAt is not null and R.deleteAt is null and T.screenDate<![CDATA[<=]]>now()
     </select> 
 	<!--    
 	<select id="search_Count" resultType="Integer"> 총 영화예매건수 확인
@@ -111,8 +111,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       limit #{pager.startRow},#{pager.perPage}
    </select>
    
-   
-   
+  
    
    
    <update id="reviewLike" parameterType="ReviewVO">
