@@ -134,7 +134,7 @@
     			var date = new Date($(this).text()+ "T23:59:59");
     			console.log(date)
     			if(nowDate >= date){
-    				$(this).parent().css("backgroundColor","gray")
+    				$(this).parent().css("backgroundColor","lightgray")
     			}
 
     		});
