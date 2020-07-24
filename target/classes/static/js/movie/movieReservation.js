@@ -17,15 +17,14 @@ $(".sortmenu a").click(function() {
 //영화제목 선택  =영화 이미지, 제목, 연령제한
 $(".movie-list").on("click","#movie-list-content li",function() {
 	var titleChecked = false;
-
 	if($(this).hasClass("dimmed") === true){
-		//alert("선택할수 없습니다.");
-		//다른것으로 변경할 것인지에 대한 알림창 출력해야 됨
-		if(confirm('선택한 영화에 원하는 상영스케줄이 없습니다.\n계속하시겠습니까?(선택한 날짜 및 극장이 해제 됩니다.)')){
+		if(confirm('선택한 영화에 원하는 상영스케줄이 없습니다.'
+				+'\n계속하시겠습니까?(선택한 날짜 및 극장이 해제 됩니다.)')){
 			titleChecked = true;
-			
 			theaterReset();
 			dateReset();
+		}else{
+			titleChecked = false;
 		}
 	}else{
 		titleChecked = true;
@@ -67,7 +66,6 @@ $(".theater-area-list > ul > li").click(function(){
 $(".theater-list").on("click",".area_theater_list > ul > li",function(){
 	var theaterChecked = false;
 	if($(this).hasClass("dimmed") === true){
-		//alert("선택할수 없습니다.");
 		if(confirm('선택한 극장에 원하는 상영스케줄이 없습니다.\n계속하시겠습니까?(선택한 영화 및 날짜가 해제 됩니다.)')){
 			theaterChecked = true;
 			movieReset();
@@ -154,10 +152,8 @@ $(".date-list ul li.day").each(function(){
 $(".date-list ul li.day").click(function(){
 	var dateChecked = false;
 	if($(this).hasClass("dimmed") === true){
-		//alert("선택할수 없습니다.");
 		if(confirm('선택한 날짜에 원하는 상영스케줄이 없습니다.\n계속하시겠습니까?(선택한 영화 및 극장이 해제 됩니다.)')){
 			dateChecked = true;
-
 			movieReset();
 			theaterReset();
 		}
@@ -237,25 +233,16 @@ function ajaxLoad(){
 			kind:kind
 		},
 		success:function(result){
-			//영화
 			$("#movie-list-content li").addClass("dimmed");
-			
 			for(i=0;i<result.length;i++){
 				$("#movie-list-content li").each(function(){
-//					if($(this).data("title") == result[i].movieInfoVOs[0].title){
-//						$(this).removeClass("dimmed");
-//						$li = $(this);
-//						$("#movie-list-content").prepend($li);
-//					}
 					if($(this).data("index") == result[i].movieInfoVOs[0].num){
 						$(this).removeClass("dimmed");
 						$li = $(this);
 						$("#movie-list-content").prepend($li);
 					}
 				});
-				
 			}
-			
 		}
 	});
 	
@@ -264,7 +251,6 @@ function ajaxLoad(){
 		type:'GET',
 		url:'../reserveCheck/reserve',
 		data:{
-//			title:title,
 			num:movieNum,
 			date:date,
 			kind:kind
@@ -281,17 +267,14 @@ function ajaxLoad(){
 			
 			for(i=0;i<result.length;i++){
 				//극장
-				
 				$(".theater-list ul.content li").each(function(){
 					if($(this).data("theater") == result[i].cinemaVOs[0].name){
-						
 						if($(this).hasClass("dimmed")){
 							$(this).removeClass("dimmed");
 							
 							$li = $(this);
 							$parent = $(this).parent();
 							$parent.prepend($li);
-							
 							
 							//dimmed가 아닌 극장의 수 계산
 							var prev = $(this).parent().parent().parent().data("index");
@@ -313,7 +296,6 @@ function ajaxLoad(){
 		type:'GET',
 		url:'../reserveCheck/reserve',
 		data:{
-//			title:title,
 			num : movieNum,
 			theater:theater,
 			kind:kind
@@ -460,23 +442,17 @@ function timeMake(result){
 	
 	
 	//result[i].movieTimeVOs[0].screenTime 가  조조/심야 시간일때 CSS 부여 morning /night
-	var morningEndTime = ""; //조조 마무리 시간(10:00 or 11:00)
-	var nightStartTime = ""; //심야 시작 시간(23:01 or 00:01) => 00:01분은 비교를 위해 24:01분으로 변경해야됨(반대일수도..)
+	var morningEndTime = ""; 
+	var nightStartTime = ""; 
 	
 	//위 처럼 만드는 시간이 심야 또는 조조이면 addClass로 클래스 추가 해주면 끝 
 	$(".time-list ul li").each(function(){
 		//영화, 극장, 날짜의 조건에 해당하는 시간대 
 		var timeList =  $(this).data("time").split(":");
 		var filmType = $(this).parent().parent().data("name");
-		
-		//1, 2, 4 일대 구분 - timeLimitList(읽어온 조조/심야 시간값 존재)
-		//하나의 시간대에 대하여서 filmType이 맞는 timLimitList의 조조/심야값 매칭해야됨
-		
 		var morning;
 		var night;
 		var index = 0;
-		
-		//console.log(timeLimitList);
 		
 		for(i=0;i<timeLimitList.length;i++){
 			if(timeLimitList[i][2] == filmType){
