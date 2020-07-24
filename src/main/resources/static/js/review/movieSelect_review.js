@@ -146,7 +146,7 @@ $("#ajax_ms").on("click",".lii1",function(){
       }      
    }else{
       if(confirm("로그인이 필요한 서비스입니다.\n로그인 페이지로 이동하시겠습니까?")){
-         window.location.href='http://localhost/member/login';
+         window.location.href='${pageContext.request.contextPath}/member/login';
       }
    }
 });
@@ -179,7 +179,7 @@ $("#ajax_ms").on("click",".lii2",function(){
       }
    }else{
       if(confirm("로그인이 필요한 서비스입니다.\n로그인 페이지로 이동하시겠습니까?")){
-         window.location.href='http://localhost/member/login';
+         window.location.href='${pageContext.request.contextPath}/member/login';
       }
    }
 });
@@ -231,7 +231,7 @@ $("#ajax_ms").on("click",".date",function(){
       })
    }else{
       if(confirm("로그인이 필요한 서비스입니다.\n로그인 페이지로 이동하시겠습니까?")){
-         window.location.href='http://localhost/member/login';
+         window.location.href='${pageContext.request.contextPath}/member/login';
       }
    }
    
@@ -257,7 +257,7 @@ function review_Modal(){
          success:function(data){
             if(data==1000000){ //해당 영화를 보지 않았을 경우에
                if(confirm("실관람객에 한하여 관람평 작성이 가능합니다.\n실관람객 등록 페이지로 이동하시겠습니까?")){
-                  window.location.href='http://localhost/review/reviewList';
+                  window.location.href='${pageContext.request.contextPath}/review/reviewList';
                }
             //가장 최신쓴 "리뷰"의 reservationNum구하기(createAt은 notnull deleteAt은 null) 
             //data가 0이면 작성, 숫자나오면 수정
@@ -328,7 +328,7 @@ function review_Modal(){
       
    }else{
       if(confirm("로그인이 필요한 서비스입니다.\n로그인 페이지로 이동하시겠습니까?")){
-         window.location.href='http://localhost/member/login';
+         window.location.href='${pageContext.request.contextPath}/member/login';
       }
    }   
 

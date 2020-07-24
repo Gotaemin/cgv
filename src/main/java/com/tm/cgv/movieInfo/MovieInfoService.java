@@ -349,7 +349,7 @@ public class MovieInfoService {
 	}
 	
 	public long movieUpdate(MovieInfoVO movieInfoVO,List<MultipartFile> files, String[] videolink,int trailerCount,int steelCutCount,String[] delNum)throws Exception{
-		String path = FilePathGenerator.addTimePath("")+"\\";
+		String path = FilePathGenerator.addTimePath("");
 		System.out.println(path+"path!!!!");
 		String extendPath = FilePathGenerator.addTimePath(filePath);
 	    File file = filePathGenerator.getUseClassPathResource(extendPath);

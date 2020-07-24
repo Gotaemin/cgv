@@ -85,10 +85,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         
     	http.authorizeRequests()
                 // 페이지 권한 설정 (순서 위에서 아래로, 제한할 경로를 위로, 제한 없는 경로를 아래로)
-        		//.antMatchers("/admin/**").hasRole("ADMIN")
+        		.antMatchers("/admin/**").hasRole("ADMIN")
         		.antMatchers("/member/myPage").hasRole("MEMBER")
-        		//.antMatchers("/member/**").permitAll()
-                .antMatchers("/**").permitAll();
+        		.antMatchers("/member/edit").hasRole("MEMBER")
+        		.antMatchers("/member/memberDelete").hasRole("MEMBER")
+        		.antMatchers("/review/reviewList").hasRole("MEMBER")
+        		.antMatchers("/review/getList").hasRole("MEMBER")
+        		.antMatchers("/review/review_Write1").hasRole("MEMBER")
+        		.antMatchers("/review/review_Write2").hasRole("MEMBER")
+        		.antMatchers("/review/review_Select").hasRole("MEMBER")
+        		.antMatchers("/review/review_Delete").hasRole("MEMBER")
+        		.antMatchers("/review/reviewLook").hasRole("MEMBER")
+        		.antMatchers("/review/review_Update1").hasRole("MEMBER")
+        		.antMatchers("/review/review_Update2").hasRole("MEMBER")
+        		.antMatchers("/review/reviewLike").hasRole("MEMBER")
+        		.antMatchers("/review/reviewSpoiler").hasRole("MEMBER")
+        		.antMatchers("/review/reviewSwearWord").hasRole("MEMBER")
+        		.antMatchers("/review/review_Modal").hasRole("MEMBER")
+        		.antMatchers("/review/movieSelect_reviewUpdate").hasRole("MEMBER")
+        		.antMatchers("/review/movieSelect_reviewWrite").hasRole("MEMBER")
+        		.antMatchers("/review/reviewDiary").hasRole("MEMBER")
+        		.antMatchers("/review/reviewDiary_Write").hasRole("MEMBER")
+        		.antMatchers("/review/reviewDiary_Delete").hasRole("MEMBER")
+        		.antMatchers("/**").permitAll();
     	
     	// 로그인 설정
     	http.formLogin()
@@ -104,7 +123,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addLogoutHandler(logoutHandler)									// 로그아웃 핸들러
                 .logoutSuccessUrl("/member/logoutSuccess")							// controller내의 결과 경로 매핑
                 .invalidateHttpSession(true);										// 세션 해제;
-                //.deleteCookies("remember-me","JSESSIONID");							// 쿠키 삭제 (remember-me는 spring, JSESSIONID는 tomcat에서 발행)
+                //.deleteCookies("remember-me","JSESSIONID");						// 쿠키 삭제 (remember-me는 spring, JSESSIONID는 tomcat에서 발행)
         
         // 403 예외처리 핸들링
         http.exceptionHandling().accessDeniedPage("/member/denied");

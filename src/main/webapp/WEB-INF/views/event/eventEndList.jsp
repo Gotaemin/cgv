@@ -54,7 +54,7 @@
 						<c:forEach items="${list}" var="vo">
 						<li>
 							<div class="box-images">
-								<a href="">
+								<a href="/event/eventSelect?num=${vo.num}">
 									<span class="thumb-img">
 										<c:forEach items="${vo.eventImageVOs}" var="eventImageVO">
 										<img src="../images/event/eventList/eventImage/${eventImageVO.fileName}">
@@ -63,7 +63,7 @@
 								</a>
 							</div>
 							<div class="box-content">
-								<a href="">
+								<a href="/event/eventSelect?num=${vo.num}">
 									<em class="txt-lightblue">${vo.kind}</em>
 									<strong>${vo.title}</strong>
 								</a>

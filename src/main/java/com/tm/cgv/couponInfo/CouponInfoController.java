@@ -56,7 +56,6 @@ public class CouponInfoController {
 			}
 			
 		}
-		
 		return result;
 	}
 	
@@ -84,8 +83,13 @@ public class CouponInfoController {
 			pointVO.setType("cgvGiftPrePayipt");
 			pointVO.setKind("sum");
 			
-			result = pointService.pointDiscountUpdate(pointVO);
-			System.out.println("포인트 업데이트 result : "+result);
+			//포인트 테이블을 가지고 있지 않으면 포인트 테이블 생성 및 값 생성
+			PointVO pointVOCheck = pointService.pointExistCheck(pointVO);
+			if(pointVOCheck != null) {
+				result = pointService.pointDiscountUpdate(pointVO);
+			}else {
+				result = pointService.pointInsert(pointVO);
+			}
 			
 			//3.화면 출력값 변경 -> 총 금액 수정 : front에서 실행
 			//4.해당 쿠폰을 디비에서 삭제

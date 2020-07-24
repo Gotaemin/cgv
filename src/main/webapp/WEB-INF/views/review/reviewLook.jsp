@@ -176,7 +176,7 @@
                                  success : function(data) {
                                     if (data != null) {
                                        if (confirm("삭제가 완료되었습니다.\n새로 작성하시겠습니까?") == true) {
-                                          window.location.href = 'http://localhost/review/reviewList';
+                                          window.location.href = '${pageContext.request.contextPath}/review/reviewList';
                                        } else {
                                           location.reload();
                                        }

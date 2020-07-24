@@ -32,7 +32,7 @@
 	
 								
 						  <div class="form-group">
-						   	 <label for="name">이름:</label>
+						   	 <label for="name">상영관명:</label>
 						   	 <input type="text" class="form-control" id="name" name="name" value="${vo.name}" required="required">
 						  </div>
 						  
@@ -113,18 +113,19 @@
 	
 
 		$("#name").blur(function(){
-
-			var cinemaName = $("#name").val();
-			$.get("./cinemaNameCheck",{
-					name:cinemaName
-				},function(result){
-					if(result == 1){
-						alert("이미 존재하는 극장 이름입니다.")
-						$("#name").val("");
-					}else{
-						alert("사용 가능한 이름입니다.")
-					}
-			});
+			if($(this).val()!=""){
+				var cinemaName = $("#name").val();
+				$.get("./cinemaNameCheck",{
+						name:cinemaName
+					},function(result){
+						if(result == 1){
+							alert("이미 존재하는 극장 이름입니다.")
+							$("#name").val("");
+						}else{
+							alert("사용 가능한 이름입니다.")
+						}
+				});
+			}
 		});
 		</script>
 

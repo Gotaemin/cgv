@@ -197,7 +197,7 @@
 					
 			  		  var timetable = new Timetable();
 
-			  	      timetable.setScope(7,3)
+			  	      timetable.setScope(6,2)
 
 			  	      
 			  	      timetable.addLocations(['월', '화', '수', '목', '금', '토', '일']);
@@ -260,7 +260,6 @@
 				$(".submitBtn").each(function(index){	//0, 1
 					$("#submitBtn"+index).click(function(){
 						var ckDate = $("#datepicker"+index).val();
-						alert(ckDate);
 						$.get(
 								"./theaterTime", {
 									_csrf : $("#_csrf").val(),
@@ -270,7 +269,7 @@
 									
 									var timetable = new Timetable();
 
-							  	    timetable.setScope(7,3)
+							  	    timetable.setScope(6,2)
 
 							  	    timetable.addLocations(['월', '화', '수', '목', '금', '토', '일']);
 							  	 

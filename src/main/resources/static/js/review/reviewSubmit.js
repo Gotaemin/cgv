@@ -385,7 +385,7 @@
 		
 		/* ---------내 평점 보기---------- */
 		$("#look").click(function(){
-			window.location.href='http://localhost/review/reviewLook';
+			window.location.href='./reviewLook';
 		});
 		
 /*		function reviewLook(curPage){

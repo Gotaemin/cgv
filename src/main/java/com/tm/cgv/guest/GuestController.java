@@ -160,7 +160,7 @@ public class GuestController {
 		//인증 메일 전송
 		phoneNumber = "01071679549";
 		String contents = "[CGV]인증번호는 "+certifiNum+" 입니다";
-		//smsSender.smsSend(phoneNumber, contents);
+		smsSender.smsSend(phoneNumber, contents);
 		
 		return certifiNum;
 	}

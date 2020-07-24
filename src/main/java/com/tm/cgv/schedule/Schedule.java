@@ -96,6 +96,7 @@ public class Schedule {
 	
 	//자정에 결제금액에 해당하는 일정 포인트 지급 - (resevationTable이용)
 	@Scheduled(cron ="0 0 0 * * *")
+//	@Scheduled(cron ="10 * * * * *")
 	public void pointSchedule() throws Exception{
 		Calendar cal = Calendar.getInstance();
 		String year = cal.get(Calendar.YEAR)+"";

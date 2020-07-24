@@ -39,7 +39,7 @@
 						</c:if>
 						<div class="form-group">
 							<label class="theaterLebel" for="cinemaNum">영화관:</label> <input
-								type="text" class="form-control selectcinenum" id="name"
+								type="text" class="form-control selectcinenum" id="cinemaNum"
 								value="${cine.num} / ${cine.name}" readonly="readonly">
 							<input type="hidden" name="cinemaNum" value="${cine.num}">
 							<br> <label class="theaterLebel lebelname" for="name">이름:</label>
@@ -116,7 +116,7 @@
 										</select>
 
 										<!-- 아니면 select 할 때마다  script 처리 해서 바로 생성 -->
-										<button type="button" onclick="changeSelect()">좌석 생성</button>
+										<button type="button" onclick="" style="background:#585858;">좌석 생성</button>
 									</div>
 									<!-- end header_btn -->
 								</div>
@@ -129,7 +129,6 @@
 										<button class="btn_economy" type="button" onclick="changeGrade(1)">Economy</button>
 										<button class="btn_standard" type="button" onclick="changeGrade(2)">Standard</button>
 										<button class="btn_prime" type="button" onclick="changeGrade(3)">Prime</button>
-										<button class="btn_del" type="button" onclick="changeGrade(0)">좌석 삭제</button>
 								 	</div><!-- end section_btn -->
 							 		<div class="contents">
 							 			<div class="seats" id="seats_list">
@@ -252,7 +251,7 @@
 						
 					}
 
-					$("#r"+i).append('<span id="arrow'+i+'" class="arrow" name="'+ch+'"><img src="../../images/theater/arrow.png" class="arrow-img" /></span>')
+					$("#r"+i).append('<span id="arrow'+i+'" class="arrow" name="'+ch+'"><img src="/images/theater/arrow.png" class="arrow-img" /></span>')
 					
 				$("#seats_list").append('</div></div>');		
 				listLength = list.length;
@@ -385,7 +384,7 @@
 				$(c).after('<p class="row_space rs'+index+'"></p>');
 				rowList.push(index);
 	
-				$(c).find(".row_plus").attr("onclick","rowMinus("+(i)+");");
+				$(c).find(".row_plus").attr("onclick","rowMinus("+(index-1)+");");
 				$(c).find(".row_plus").find("#img").attr("src","/images/theater/minus.png");
 				$(c).find(".row_plus").attr("class","row_minus");
 			}else if(type == 1){
@@ -457,29 +456,16 @@
 		}
 
 
-		/////////////////////////////////////////////////////
+		// seat grade 조정
 		function checkSeat(name){
-			console.log("---test---");
-			console.log(name);
-		
 			var grade=1; 
 			var chName = $(name).attr("name");
 			var chClass = $(name).attr("class");
-			//console.log("ck : " + ck);
-			console.log(chClass)
-		
 			var rw = chName.substring(0,1);
 			var cl = chName.substring(1); 
-			console.log("rw : " + rw);
-			console.log("cl : " + cl);
-			
-			
-			
-			switch(seatColor) {
-		
+
 			//좌석 삭제
-			case 0:
-				
+			if(seatColor==0){
 				
 				if(chClass=='rating_delete'){
 					//$(name).attr("name","");
@@ -488,13 +474,11 @@
 					for(i=0; i<listLength; i++){
 						if(list[i].row == rw && list[i].col == cl){
 							list[i].grade = 1;
-							console.log("-----------:"+list[i].grade);
 						}
 					}
-		
+
 					seatCount += 1;
 					$("#seatCount").val(seatCount);
-		
 					
 				}else{
 					$(name).removeClass();
@@ -505,23 +489,18 @@
 					for(i=0; i<listLength; i++){
 						if(list[i].row == rw && list[i].col == cl){
 							list[i].grade = 0;
-							console.log("-----------:"+list[i].grade);
 						}
 					}
-		
 					
 					grade=0;
-		
-		
+
 					seatCount -= 1;
 					$("#seatCount").val(seatCount);
-					
 				}
-				
-				break;
-		
+			}else if(seatColor==1){
+
 			//Economy
-			case 1:
+
 				// 테두리 색 맞게 바꾸기
 				// vo.grade = 1
 				if(chClass!='rating_delete'){
@@ -530,17 +509,12 @@
 					for(i=0; i<listLength; i++){
 						if(list[i].row == rw && list[i].col == cl){
 							list[i].grade = 1;
-							console.log("-----------:"+list[i].grade);
 						}
 					}
 				}
-				
-				
-				
-				break;
-		
+			}else if(seatColor==2){
+
 			//Standard
-			case 2:
 				// 테두리 색 맞게 바꾸기
 				// vo.grade = 2 
 				if(chClass!='rating_delete'){
@@ -548,17 +522,16 @@
 				$(name).addClass("rating_standard");
 				
 					for(i=0; i<listLength; i++){
+					
 						if(list[i].row == rw && list[i].col == cl){
 							list[i].grade = 2;
-							console.log("-----------:"+list[i].grade);
+							console.log(list[i].row + " / " + list[i].col + " / " + cl);
 						}
 					}
 				}
-				
-				break;
-		
+			}else if(seatColor==3){
+
 			//Prime
-			case 3:
 				// 테두리 색 맞게 바꾸기
 				// vo.grade = 3
 				if(chClass!='rating_delete'){
@@ -571,28 +544,11 @@
 						}
 					}
 				}
-				
-				break;
-			
-		
-		 	case 4:
-				//seatBooking table의 reservationNum을 0으로
-				//grade는 4로
-				//컨트롤러 넘긴 후 grade가 4인 것은....X > 몇 개 없을 테니까 따로 String을 보내도 될 것 같음
-				//아무튼.....A5 이런 형식으로 보내서?
-				//아니면 따로따로 보내서
-				//DB에서 검색 몇관의 몇번시트인지
-				//
-		 		
-
-				
+			}else if(seatColor=4){
 				if(chClass!='rating_delete' && !$(name).hasClass('rating_stop')){
+					//alert(chClass)
+					console.log(chClass);
 					$(name).addClass("rating_stop");
-					/* 	for(i=0; i<listLength; i++){
-							if(list[i].row == rw && list[i].col == cl){
-								list[i].grade = 3;
-							}
-						} */
 						//stop list 만들어서 row, col, grade 삽입
 					var stopVO = {
 						"r":rw,
@@ -602,7 +558,10 @@
 					console.log(",,,")
 					console.log(stopList);
 				}else if($(name).hasClass('rating_stop')){
+					//alert("name : " + name)
+					//alert("yes")
 					$(name).removeClass("rating_stop");
+					//$(name).addClass("rating_economy");
 					for(i=0; i<stopList.length; i++){
 						if(stopList[i].r == rw && stopList[i].c == cl){
 							stopList[i].c=0;
@@ -611,12 +570,11 @@
 					console.log(stopList);
 					
 				}
-			
-			break; 
-		
 			}
 		}
 
+
+		
 	$(".seat_box").on("click",".arrow",function(){
 		var r = $(this).attr("name")
 		var l = $("#seat_col").val();
@@ -703,181 +661,12 @@
 	}
 
 
-
 	
 	console.log(list);
-		
-
-	$("#btn_insert").click(function(){
-
-		// grade가 0인 것 앞쪽으로 정렬 후 list에서 제거
-		list.sort(function(a,b) {
-
-			return a["grade"] - b["grade"];
-		});
-
-		var cnt = 0; 
-		
-		for(i=0; i<listLength; i++){
-			if(list[i].grade=="0"){
-				cnt = cnt+1;
-			}
-
-			console.log(list[i]);
-		}
-		console.log(cnt);
-		list.splice(0,cnt);
 
 
-
-
-
-
-		
-
-		// list - row, col, grade / row_space / col_space -> form 안에 hidden으로 넣기
-		for(i=0; i<list.length; i++){
-			var r = '<input type="hidden" name="row" value="'+list[i].row+'">';
-			r = r + '<input type="hidden" name="col" value="'+list[i].col+'">';
-			r = r + '<input type="hidden" name="grade" value="'+list[i].grade+'">';
-			$("#frm").append(r);
-		}
-
-
-		for(y=0; y<rowList.length; y++){
-			var r = '<input type="hidden" name="row_space" value="'+rowList[y]+'">';
-			$("#frm").append(r);
-		}
-
-		for(z=0; z<colList.length; z++){
-			var r = '<input type="hidden" name="col_space" value="'+colList[z]+'">';
-			$("#frm").append(r);
-		}
-
-		for(n=0; n<stopList.length; n++){
-			console.log(stopList[n])
-			var r = '<input type="hidden" name="stop_rc" value="'+stopList[n].r+'">';
-			r = r + '<input type="hidden" name="stop_idx" value="'+stopList[n].c+'">';
-			$("#frm").append(r);
-			
-		}
-		
-
-		// name & seatCount - null check
-		var name = document.getElementById("name");
-		var seatCount = document.getElementById("seatCount");
-
-		var nameCheck = true;
-		var seatCheck = true;
-
-
-		if(nameCheck && seatCheck){
-			//$("#frm").submit();
-		}
-
-	});
-
-	
-	
-	$("#btn_test").click(function(){
-		for(n=0; n<stopList.length; n++){
-			console.log(stopList[n])
-			var r = '<input type="hidden" name="stop_row" value="'+stopList[n].r+'">';
-			r = r + '<input type="hidden" name="stop_col" value="'+stopList[n].c+'">';
-			$("#frm").append(r);
-			
-		}
-
-		stopList.sort(function(a,b) {
-
-			return a["c"] - b["c"];
-		});
-
-		cnt = 0; 
-		
-		for(i=0; i<stopList.length; i++){
-			if(stopList[i].c=="0"){
-				cnt = cnt+1;
-			}
-
-			console.log(stopList[i]);
-		}
-		console.log(cnt);
-		stopList.splice(0,cnt);
-		console.log(stopList)
-
-		
-	});
-
-
+	// submit
 	$("#btn_insert2").click(function(){
-		// grade가 0인 것 앞쪽으로 정렬 후 list에서 제거
-		list.sort(function(a,b) {
-
-			return a["grade"] - b["grade"];
-		});
-
-		var cnt = 0; 
-		
-		for(i=0; i<listLength; i++){
-			if(list[i].grade=="0"){
-				cnt = cnt+1;
-			}
-
-			console.log(list[i]);
-		}
-		console.log(cnt);
-		list.splice(0,cnt);
-
-
-
-		// grade가 0인 것 앞쪽으로 정렬 후 list에서 제거
-		stopList.sort(function(a,b) {
-
-			return a["c"] - b["c"];
-		});
-
-		cnt = 0; 
-		
-		for(i=0; i<stopList.length; i++){
-			if(stopList[i].c=="0"){
-				cnt = cnt+1;
-			}
-
-			console.log(stopList[i]);
-		}
-		console.log(cnt);
-		stopList.splice(0,cnt);
-		console.log(stopList)
-
-		
-
-		// list - row, col, grade / row_space / col_space -> form 안에 hidden으로 넣기
-		for(i=0; i<list.length; i++){
-			var r = '<input type="hidden" name="row" value="'+list[i].row+'">';
-			r = r + '<input type="hidden" name="col" value="'+list[i].col+'">';
-			r = r + '<input type="hidden" name="grade" value="'+list[i].grade+'">';
-			$("#frm").append(r);
-		}
-
-
-		for(y=0; y<rowList.length; y++){
-			var r = '<input type="hidden" name="row_space" value="'+rowList[y]+'">';
-			$("#frm").append(r);
-		}
-
-		for(z=0; z<colList.length; z++){
-			var r = '<input type="hidden" name="col_space" value="'+colList[z]+'">';
-			$("#frm").append(r);
-		}
-
-		for(n=0; n<stopList.length; n++){
-			var r = '<input type="hidden" name="stop_rc" value="'+stopList[n].r+'">';
-			r = r + '<input type="hidden" name="stop_idx" value="'+stopList[n].c+'">';
-			$("#frm").append(r);
-			
-		}
-		
 
 		// name & seatCount - null check
 		var name = document.getElementById("name");
@@ -912,10 +701,57 @@
 		
 		//submit
 		if(nameCheck && seatCheck && typeCheck){
+		
+			// grade가 0인 것 앞쪽으로 정렬 후 list에서 제거
+			list.sort(function(a,b) {
+				return a["grade"] - b["grade"];
+			});
+		
+			var cnt = 0; 
+			
+			for(i=0; i<listLength; i++){
+				if(list[i].grade=="0"){
+					cnt = cnt+1;
+				}
+			}
+			list.splice(0,cnt);
+		
+			
+			// list - row, col, grade / row_space / col_space -> form 안에 hidden으로 넣기
+			for(k=0; k<list.length; k++){
+				
+				console.log(list[k].row+""+list[k].col+ " : "+list[k].grade)
+				
+				var r = '<input type="hidden" name="row" value="'+list[k].row+'">';
+				r = r + '<input type="hidden" name="col" value="'+list[k].col+'">';
+				r = r + '<input type="hidden" name="grade" value="'+list[k].grade+'">';
+				$("#frm").append(r);
+			}
+		
+			for(y=0; y<rowList.length; y++){
+				var r = '<input type="hidden" name="row_space" value="'+rowList[y]+'">';
+				$("#frm").append(r);
+			}
+		
+			for(z=0; z<colList.length; z++){
+				var r = '<input type="hidden" name="col_space" value="'+colList[z]+'">';
+				$("#frm").append(r);
+			}
+
+			for(n=0; n<stopList.length; n++){
+				console.log(stopList[n])
+				var r = '<input type="hidden" name="stop_rc" value="'+stopList[n].r+'">';
+				r = r + '<input type="hidden" name="stop_idx" value="'+stopList[n].c+'">';
+				$("#frm").append(r);
+				
+			}
+
+			
 			$("#frm").submit();
 		}else if(typeCheck == false){
 			alert("필름타입은 적어도 한개 체크해야합니다!");
 		}
+
 	});
 
 	</script>

@@ -475,7 +475,7 @@ public class AdminController {
 
 		int result = timePriceService.timePriceDeleteFilm(timePriceVO);
 		
-		mv.setViewName("redirect:../../cinemaSelect?num="+timePriceVO.getCinemaNum());
+		mv.setViewName("redirect:../cinemaSelect?num="+timePriceVO.getCinemaNum());
 		
 		return mv;
 	}
@@ -1058,9 +1058,6 @@ public class AdminController {
 		mv.addObject("pager", pager);
 		mv.addObject("pointHistoryList", pointHistoryList);
 		mv.setViewName("admin/point/pointList");
-
-	
-
 		
 		return mv;
 	}
@@ -1182,9 +1179,10 @@ public class AdminController {
 	@ResponseBody
 	public ModelAndView selectKind(String kind, Pager_eventList pager) throws Exception {
 		ModelAndView mv = new ModelAndView();
+	
 		List<EventVO> list = eventService.eventList(pager);
 		System.out.println(list.size() + " :: size");
-		
+	
 		mv.addObject("pager", pager);
 		mv.addObject("list", list);
 		mv.setViewName("admin/event/ajax/selectKind");

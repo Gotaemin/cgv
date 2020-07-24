@@ -11,6 +11,11 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <title>Insert title here</title>
+<style type="text/css">
+	.b-round	{
+		border-radius:4px;
+	}
+</style>
 </head>
 <body>
 
@@ -30,13 +35,10 @@
 						</a>
 					</li>
 					<li>
-						<a href="./movieList">영화</a>
+						<a href="./eventList">이벤트</a>
 					</li>
 					<li>
-						<a href="./movieList">무비차트</a>
-					</li>
-					<li class="last">
-						무비차트
+						<a href="./eventList">이벤트리스트</a>
 					</li>
 				</ul>
 			</div>
@@ -67,8 +69,8 @@
 						</li>
 					</ul>
 					<div class="submenu">
-						<a href="" class="round red on"><i>당첨자 발표</i></a>
-						<a href="./endEventList" class="round red on"><i>종료된 이벤트</i></a>
+						<a href="" class="round red on b-round"><i>당첨자 발표</i></a>
+						<a href="./endEventList" class="round red on b-round"><i>종료된 이벤트</i></a>
 					</div>
 				</div>
 				<div class="evt-select-area"></div>
@@ -93,8 +95,8 @@
 												<p class="txt1">${vo.title}</p>
 												<p class="txt2">
 													"${vo.startDate}~${vo.endDate}"
-													<span> . </span>
-													<em class="d-day">D-5</em>
+													<!-- <span> . </span> -->
+													<!-- <em class="d-day">D-5</em> -->
 												</p>
 											</div>
 										</a>
@@ -108,8 +110,9 @@
 						<input type="hidden" id="totalPage" value="${pager.totalPage}">
 						<input type="hidden" id="curPage" value="${pager.curPage}">
 						
+						<c:if test="${pager.totalCount>9 }">
 						<button type="button" class="btn-item-more" id="btnMoreData" name="${list[0].kind}"><strong>더보기</strong></button>
-						
+						</c:if>
 						
 						
 					
@@ -119,12 +122,12 @@
 							<div class="ad-evnet">
 								<div class="ad-partner01">
 									<div src="" width="160" height="300" frameborder="0" scrolling="no" margingeight="0" name="M_Rectangle" id="M_Rectangle">
-										<a href="${movie.link}"><img src="/images/banner/sideBanner/${movie.fileName}" width="160" height="300" alt="파리의 인어" border="0"></a>
+										<a href="${movie.link}" target="_blank"><img src="/images/banner/sideBanner/${movie.fileName}" width="160" height="300" alt="파리의 인어" border="0"></a>
 									</div>	
 								</div>
 								<div class="ad-partner01">
 									<div src="" width="160" height="300" frameborder="0" scrolling="no" margingeight="0" name="M_Rectangle" id="M_Rectangle">
-										<a href="${event.link}"><img src="/images/banner/sideBanner/${event.fileName}" width="160" height="300" alt="파리의 인어" border="0"></a>
+										<a href="${event.link}" target="_blank"><img src="/images/banner/sideBanner/${event.fileName}" width="160" height="300" alt="파리의 인어" border="0"></a>
 									</div>	
 								</div>
 							</div>
