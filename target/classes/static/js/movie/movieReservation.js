@@ -18,7 +18,8 @@ $(".sortmenu a").click(function() {
 $(".movie-list").on("click","#movie-list-content li",function() {
 	var titleChecked = false;
 	if($(this).hasClass("dimmed") === true){
-		if(confirm('선택한 영화에 원하는 상영스케줄이 없습니다.\n계속하시겠습니까?(선택한 날짜 및 극장이 해제 됩니다.)')){
+		if(confirm('선택한 영화에 원하는 상영스케줄이 없습니다.'
+				+'\n계속하시겠습니까?(선택한 날짜 및 극장이 해제 됩니다.)')){
 			titleChecked = true;
 			theaterReset();
 			dateReset();
@@ -255,17 +256,22 @@ function ajaxLoad(){
 			kind:kind
 		},
 		success:function(result){
+			//극장
 			$(".theater-list li").addClass("dimmed");
+			//극장, 날짜
+			
 			$(".theater-area-list > ul > li").each(function(){
 				$(this).data("index",0);
 				$(this).find(".count").text("("+$(this).data("index")+")");
 			});
 			
 			for(i=0;i<result.length;i++){
+				//극장
 				$(".theater-list ul.content li").each(function(){
 					if($(this).data("theater") == result[i].cinemaVOs[0].name){
 						if($(this).hasClass("dimmed")){
 							$(this).removeClass("dimmed");
+							
 							$li = $(this);
 							$parent = $(this).parent();
 							$parent.prepend($li);
@@ -276,8 +282,10 @@ function ajaxLoad(){
 							$(this).parent().parent().parent().data("index",prev);
 							var next = $(this).parent().parent().parent().data("index");
 							$(this).parent().parent().parent().find(".count").text("("+next+")");
+							
 						}
 					}
+					
 				});
 			}
 		}
@@ -293,7 +301,9 @@ function ajaxLoad(){
 			kind:kind
 		},
 		success:function(result){
+			//날짜
 			$(".date-list ul li.day").addClass("dimmed");
+			// 날짜
 			for(i=0;i<result.length;i++){
 				$(".date-list ul li.day").each(function(){
 					var str = result[i].movieTimeVOs[0].screenDate;
@@ -315,6 +325,7 @@ function ajaxLoad(){
 	
 	$(".time-list .content").html('');
 	selectedCheck();
+	
 }
 		
 		
@@ -323,6 +334,7 @@ function selectedCheck(){
 	var cMovie = false;
 	var cTheater = false;
 	var cDate = false;
+
 	if($(".movie-list ul li").hasClass("selected") == true){
 		cMovie = true;
 	}
@@ -332,6 +344,7 @@ function selectedCheck(){
 	if($(".date-list ul li.day").hasClass("selected") == true){
 		cDate = true;
 	}
+
 	if(cMovie && cTheater && cDate){
 		$("#ticket .step1 .section-time .col-body .placeholder").css("display","none");
 		$("#ticket .step1 .section-time .col-body .time-list").css("display","block");
@@ -341,11 +354,13 @@ function selectedCheck(){
 			type:'GET',
 			url:'../reserveCheck/reserve',
 			data:{
+//				title:title,
 				num : movieNum,
 				theater:theater,
 				date:date
 			},
 			success:function(result){
+				//상영시간 html 생성
 				timeMake(result);
 			}
 		});
@@ -447,14 +462,10 @@ function timeMake(result){
 				
 				morningList = morning.split(",");
 				nightList = night.split(",");
-				
 				var t1 = new Date(0,0,0,morningList[0],morningList[1]); //조조
 				var t2 = new Date(0,0,0,nightList[0],nightList[1]); //심야
 				var t3 = new Date(0,0,0,timeList[0],timeList[1]); //비교시간
 				
-				
-				//비교시간이 10 > x || 23 < x
-				//if(timeList[0] > 23){
 				if(t3 > t2){
 					//심야
 					$(this).addClass("night");
